@@ -1,0 +1,49 @@
+{
+  "name": "es6-6to5-browserify-boilerplate",
+  "version": "0.0.0",
+  "description": "A repo to play with ES6++",
+  "homepage": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thoughtram/es6-6to5-browserify-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate/issues"
+  },
+  "dependencies": {
+    "ampersand-app": "^1.0.0",
+    "ampersand-dom": "^1.2.1",
+    "ampersand-form-view": "^3.1.1",
+    "ampersand-input-view": "^4.0.5",
+    "ampersand-model": "^5.0.3",
+    "ampersand-rest-collection": "^4.0.0",
+    "ampersand-router": "^3.0.1",
+    "ampersand-view": "^7.0.1",
+    "ampersand-view-switcher": "^2.0.0",
+    "clientconfig": "^1.0.0",
+    "domready": "^1.0.5",
+    "jquery": "^2.1.4",
+    "local-links": "^1.2.0"
+  },
+  "devDependencies": {
+    "babelify": "~5.0.3",
+    "browser-sync": "^1.7.1",
+    "browserify": "^6.3.3",
+    "gulp": "~3.8.10",
+    "gulp-amd-jst": "0.0.1",
+    "gulp-cmd-jst": "^0.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-jst": "^0.1.1",
+    "gulp-jst2": "^0.1.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-template-compile": "^1.1.0",
+    "gulp-watch": "^4.3.5",
+    "lodash": "^2.4.1",
+    "rimraf": "~2.2.8",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
+  },
+  "author": "Alexey Pedyashev",
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+div.panel.panel-default(data-hook='player-is-initialized my-turn')
+    div.panel-heading
+        div.panel-title
+            div(data-hook='show-if-initialized')
+                div(data-hook='player-name')
+            div(data-hook='hide-if-initialized') Please eneter your name
+    div.panel-body
+        p.text-success(data-hook='player-won') You are the winner! Congratulations!
+        p(data-hook='show-if-initialized')
+            span.label.label-success(data-hook='my-turn-visible') Your turn!
+        form(data-hook='hide-if-initialized')
+            fieldset(data-hook="field-container")
+            button.btn(data-hook="reset", type="submit") Submit
