@@ -38,6 +38,10 @@ class AmpersandPlayer extends Player {
     get isWon() {
         return this._user.get('isWon');
     }
+
+    get isInitialized() {
+        return this._user.get('isInitialized');
+    }
 }
 
 export {AmpersandPlayer}

@@ -36,6 +36,10 @@ class Player {
     get isWon() {
         return this._isWon;
     }
+
+    get isInitialized() {
+        throw new Error('isInitialized is not implemented for Player');
+    }
 }
 
 export {Player}

@@ -72,6 +72,7 @@ class GameBoard {
     }
 
     init() {
+        this._isGameFinished = false;
         this._setNextPlayersTurn();
     }
 
@@ -150,6 +151,10 @@ class GameBoard {
                 this._players.crosses.isWon = true;
             }
         });
+
+        if ((this._players.noughts && this._players.noughts.isWon) || (this._players.crosses && this._players.crosses.isWon)) {
+            this._isGameFinished = true;
+        }
     }
 
     _crossOutRow(rowIndex) {
@@ -194,6 +199,11 @@ class GameBoard {
     }
 
     _doMove(clickedCell) {
+        let isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;
+        if (this._isGameFinished || !isGameStarted) {
+            return;
+        }
+
         let {col, row} = clickedCell,
             isCellEmpty = !this._boardMatrix[row][col];
 
@@ -213,7 +223,10 @@ class GameBoard {
             }
             this.draw();
 
-            this._setNextPlayersTurn();
+            // stop changing turns if game is finished
+            if (!this._isGameFinished) {
+                this._setNextPlayersTurn();
+            }
         }
     }
 
