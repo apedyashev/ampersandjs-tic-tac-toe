@@ -55,6 +55,8 @@ app.extend({
         this.board.noughtsPlayer = this.gameModel.get('leftSideUser');
         this.board.crossesPlayer = this.gameModel.get('rightSideUser');
         this.board.init();
+
+        this.games.add(this.gameModel);
         //this.board = new GameBoard({
         //    canvasEl: $('#game-board'),
         //    width: 300,

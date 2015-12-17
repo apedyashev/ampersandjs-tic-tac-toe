@@ -1,6 +1,8 @@
 var PageView = require('./base');
 var templates = require('../templates');
+// TODO: delete
 var PersonView = require('../views/person');
+var FinishedGameView = require('../views/finished-game');
 
 
 module.exports = PageView.extend({
@@ -14,10 +16,11 @@ module.exports = PageView.extend({
     },
     render: function () {
         this.renderWithTemplate();
-        this.renderCollection(this.collection, PersonView, this.queryByHook('people-list'));
-        if (!this.collection.length) {
-            this.fetchCollection();
-        }
+        this.renderCollection(this.collection, FinishedGameView, this.queryByHook('people-list'));
+        //this.renderCollection(this.collection, PersonView, this.queryByHook('people-list'));
+        //if (!this.collection.length) {
+        //    this.fetchCollection();
+        //}
     },
     fetchCollection: function () {
         this.collection.fetch();
