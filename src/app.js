@@ -4,7 +4,9 @@ var config = require('clientconfig');
 var Router = require('./router');
 var MainView = require('./views/main');
 var Me = require('./models/me');
+// TODO: get rid of it
 var People = require('./models/persons');
+var Games = require('./collections/games');
 var domReady = require('domready');
 var $ = require('jquery');
 
@@ -23,6 +25,7 @@ import {CrossBrush} from './game_core/CrossBrush';
 app.extend({
     me: new Me(),
     people: new People(),
+    games: new Games(),
     router: new Router(),
     gameModel: new GameModel({
         leftSideUser: new AmpersandPlayer(new NoughtBrush()),

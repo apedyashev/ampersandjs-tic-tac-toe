@@ -78,8 +78,11 @@ gulp.task('watch', ['build-persistent', 'jst'], function() {
 
     browserSync({
         server: {
-          baseDir: './'
+            baseDir: './',
             //https://browsersync.io/docs/options/
+            routes: {
+                "/collections": "./"
+            }
         }
     });
 

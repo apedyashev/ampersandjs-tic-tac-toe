@@ -11,7 +11,7 @@ var PersonShowPage = require('./pages/person-show');
 module.exports = Router.extend({
     routes: {
         '': 'home',
-        'collections': 'collectionDemo',
+        'collections(/)': 'collectionDemo',
         'info': 'info',
         'person/add': 'personAdd',
         'person/:id': 'personView',
@@ -28,9 +28,10 @@ module.exports = Router.extend({
     },
 
     collectionDemo: function () {
+        console.log('collectionDemo');
         app.trigger('page', new CollectionDemo({
             model: app.me,
-            collection: app.people
+            collection: app.games
         }));
     },
 
@@ -57,6 +58,7 @@ module.exports = Router.extend({
     },
 
     catchAll: function () {
+        console.log('catchAll');
         this.redirectTo('');
     }
 });
