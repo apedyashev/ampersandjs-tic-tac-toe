@@ -22,7 +22,10 @@
     "ampersand-view-switcher": "^2.0.0",
     "clientconfig": "^1.0.0",
     "domready": "^1.0.5",
+    "gulp-less": "^3.0.5",
+    "gulp-sourcemaps": "^1.6.0",
     "jquery": "^2.1.4",
+    "less-plugin-clean-css": "^1.5.1",
     "local-links": "^1.2.0"
   },
   "devDependencies": {

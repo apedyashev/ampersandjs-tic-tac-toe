@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var fs = require('fs');
+var path = require('path');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify');
@@ -11,7 +11,11 @@ var reload = browserSync.reload;
 var jade = require('gulp-jade');
 var template = require('./gulp-template-compile-commonjs.js');
 var concat = require('gulp-concat');
-var watch = require('gulp-watch')
+var watch = require('gulp-watch');
+var less = require('gulp-less');
+var sourcemaps = require('gulp-sourcemaps');
+var LessPluginCleanCSS = require('less-plugin-clean-css'),
+    cleancss = new LessPluginCleanCSS({ advanced: true });
 
 var config = {
   entryFile: './src/app.js',
@@ -74,8 +78,19 @@ gulp.task('watch-templates', function (cb) {
     });
 });
 
-gulp.task('watch', ['build-persistent', 'jst'], function() {
+/**
+ * Documentation: https://github.com/plus3network/gulp-less
+ */
+gulp.task('less', function () {
+    return gulp.src('stylesheets/less/**/*.less')
+        .pipe(less({
+            plugins: [cleancss]
+        }))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(config.outputDir));
+});
 
+gulp.task('watch', ['build-persistent', 'jst', 'less'], function() {
     browserSync({
         server: {
             baseDir: './',
@@ -83,11 +98,16 @@ gulp.task('watch', ['build-persistent', 'jst'], function() {
             routes: {
                 "/collections": "./"
             }
-        }
+        },
+        files: "dist/app.css"
     });
 
     watch('templates/**/*jade', function () {
         gulp.start('jst');
+    });
+
+    watch('stylesheets/**/*less', function () {
+        gulp.start('less');
     });
 
     getBundler().on('update', function() {
