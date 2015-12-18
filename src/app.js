@@ -28,8 +28,8 @@ app.extend({
     games: new Games(),
     router: new Router(),
     gameModel: new GameModel({
-        leftSideUser: new AmpersandPlayer(new NoughtBrush()),
-        rightSideUser: new AmpersandPlayer(new CrossBrush())
+        leftSideUser: new AmpersandPlayer(new NoughtBrush(), {symbol: 'nought'}),
+        rightSideUser: new AmpersandPlayer(new CrossBrush(), {symbol: 'cross'})
     }),
     board: new GameBoard({
         width:  360,
@@ -53,6 +53,7 @@ app.extend({
     createNewGame: function(leftSideUser, rightSideUser) {
         this.board.noughtsPlayer = leftSideUser;
         this.board.crossesPlayer = rightSideUser;
+        this.gameModel.set('isGameOver', false);
         this.board.initGame();
 
         let addGameToLeaderBaoard = function(model, value) {
@@ -61,6 +62,7 @@ app.extend({
                     leftSideUser: this.gameModel.get('leftSideUser'),
                     rightSideUser: this.gameModel.get('rightSideUser')
                 });
+                this.gameModel.set('isGameOver', true);
                 this.games.add(game);
             }
         };

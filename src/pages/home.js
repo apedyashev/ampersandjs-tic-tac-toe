@@ -15,6 +15,14 @@ module.exports = PageView.extend({
     events: {
         'click [data-hook~=new-game]': 'startNewGame'
     },
+    bindings: {
+        'model.isGameOver': {
+            type: 'booleanClass',
+            hook: 'show-if-game-is-over',
+            yes: '',
+            no: 'hide'
+        }
+    },
     initialize: function(options) {
         this.board = options.board;
         this.model.on('change:leftSideUser', _.bind(this.render, this));
@@ -38,8 +46,8 @@ module.exports = PageView.extend({
     },
 
     startNewGame: function() {
-        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush()));
-        this.model.set('rightSideUser', new AmpersandPlayer(new CrossBrush()));
+        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush(), {'symbol': 'nought'}));
+        this.model.set('rightSideUser', new AmpersandPlayer(new CrossBrush(), {'symbol': 'cross'}));
         app.createNewGame(this.model.get('leftSideUser'), this.model.get('rightSideUser'));
         this.render();
     }

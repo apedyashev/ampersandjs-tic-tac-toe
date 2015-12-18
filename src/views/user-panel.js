@@ -6,10 +6,17 @@ var PlayerNameForm = require('../forms/player-name');
 module.exports = View.extend({
     template: templates['includes/user-panel'],
     bindings: {
+        'model.symbol': {
+            type: 'switchClass',
+            name: 'hide',
+            cases: {
+                'nought': '.symbol-icon.fa-times',
+                'cross': '.symbol-icon.fa-circle-o'
+            }
+        },
         'model.isInitialized': [{
                 type: 'booleanClass',
                 hook: 'player-is-initialized',
-                //name: 'active',
                 yes: '',
                 no: 'panel-danger'
             },
@@ -36,13 +43,25 @@ module.exports = View.extend({
                 hook: 'my-turn-visible',
                 yes: '',
                 no: 'hide'
+            },
+            {
+                type: 'booleanClass',
+                hook: 'show-if-not-my-turn',
+                yes: 'hide',
+                no: ''
             }],
-        'model.isWon': {
-            type: 'booleanClass',
-            hook: 'player-won',
-            yes: '',
-            no: 'hide'
-        },
+        'model.isWon': [{
+                type: 'booleanClass',
+                hook: 'show-if-player-won',
+                yes: '',
+                no: 'hide'
+            },
+            {
+                type: 'booleanClass',
+                hook: 'hide-if-player-won',
+                yes: 'hide',
+                no: ''
+            }],
         'model.name': {
             hook: 'player-name'
         }

@@ -1,13 +1,27 @@
 div.panel.panel-default.player-panel(data-hook='player-is-initialized my-turn')
     div.panel-heading
         div.panel-title
+            i.fa.fa-circle-o.pull-left.symbol-icon
+            i.fa.fa-times.pull-left.symbol-icon
+            = ' '
             div(data-hook='show-if-initialized')
                 div(data-hook='player-name')
             div(data-hook='hide-if-initialized') Please eneter your name
     div.panel-body
-        p.text-success(data-hook='player-won') You are the winner! Congratulations!
-        p(data-hook='show-if-initialized')
-            span.label.label-success(data-hook='my-turn-visible') Your turn!
+        div(data-hook='show-if-player-won')
+            h4.text-success.text-center You are the winner! Congratulations!
+            div.text-center
+                i.fa.fa-trophy.fa-5x.winner-icon
+        div(data-hook='hide-if-player-won')
+            div(data-hook='show-if-initialized')
+                div.text-success.text-center(data-hook='my-turn-visible')
+                    h4 Your turn!
+                    div
+                        i.fa.fa-commenting.fa-5x
+        div(data-hook='show-if-initialized')
+            div.text-center(data-hook='show-if-not-my-turn')
+                h4 Wait and relax...
+                i.fa.fa-coffee.fa-5x
         form(data-hook='hide-if-initialized')
             fieldset(data-hook="field-container")
             button.btn.btn-default.pull-right(type="submit") Submit

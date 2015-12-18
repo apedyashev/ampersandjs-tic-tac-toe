@@ -6,11 +6,9 @@ let Person = AmpersandModel.extend({
         id: 'any',
         name: ['string', true, ''],
         isWon: ['boolean', false, false],
-        isMyTurn: ['boolean', false, false]
+        isMyTurn: ['boolean', false, false],
+        symbol: 'string'
     },
-    //session: {
-    //    selected: ['boolean', true, false]
-    //},
     derived: {
         isInitialized: {
             deps: ['name'],
@@ -23,33 +21,26 @@ let Person = AmpersandModel.extend({
             fn: function() {
                 return !this.name;
             }
+        },
+        fullInfo: {
+            deps: ['name', 'isWon', 'symbol'],
+            fn: function() {
+                let info = '';
+                if (this.symbol == 'nought') {
+                    info += 'O ';
+                }
+                else if (this.symbol == 'cross') {
+                    info += 'X ';
+                }
+                info += this.name;
+
+                if (this.isWon) {
+                    info += ' [WINNER]';
+                }
+                return info;
+            }
         }
     }
-    //    fullName: {
-    //        deps: ['firstName', 'lastName'],
-    //        fn: function () {
-    //            return this.firstName + ' ' + this.lastName;
-    //        }
-    //    },
-    //    avatar: {
-    //        deps: ['firstName', 'lastName'],
-    //        fn: function () {
-    //            return 'http://robohash.org/' + encodeURIComponent(this.fullName) + '?size=80x80';
-    //        }
-    //    },
-    //    editUrl: {
-    //        deps: ['id'],
-    //        fn: function () {
-    //            return '/person/' + this.id + '/edit';
-    //        }
-    //    },
-    //    viewUrl: {
-    //        deps: ['id'],
-    //        fn: function () {
-    //            return '/person/' + this.id;
-    //        }
-    //    }
-    //}
 });
 
 export {Person}

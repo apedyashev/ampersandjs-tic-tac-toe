@@ -34,7 +34,8 @@ module.exports = AmpersandModel.extend({
     },
     props: {
         leftSideUser: 'ampersandPlayer',
-        rightSideUser: 'ampersandPlayer'
+        rightSideUser: 'ampersandPlayer',
+        isGameOver: ['boolean', false, false]
     },
 
     initialize: function() {

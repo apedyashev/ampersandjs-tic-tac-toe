@@ -5,10 +5,10 @@ var templates = require('../templates');
 module.exports = View.extend({
     template: templates['includes/finished-game'],
     bindings: {
-        'model.leftSideUser.model.name': {
+        'model.leftSideUser.model.fullInfo': {
             'hook': 'left-user-name'
         },
-        'model.rightSideUser.model.name': {
+        'model.rightSideUser.model.fullInfo': {
             'hook': 'right-user-name'
         },
         'model.leftSideUser.model.isWon': {

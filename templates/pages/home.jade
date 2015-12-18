@@ -1,11 +1,12 @@
 section.page.home
-    h2 Welcome Tic-Tac-Toe written in AmpersandJS
+    h2 Welcome to Tic-Tac-Toe game written in AmpersandJS
 
     div.row
         div.col-md-4
             #left-player
         div#game-board-container.col-md-4
             div.toolbar
+                span.label.label-success(data-hook='show-if-game-is-over') Game Over
                 span.pull-right
                     a.btn.btn-link(href='/past-games') Past Games
                     button.btn.btn-small.btn-default(data-hook='new-game')
