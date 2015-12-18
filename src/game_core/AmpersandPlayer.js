@@ -6,9 +6,12 @@ import {Person} from '../models/person'
  * Framework specific implementation
  */
 class AmpersandPlayer extends Player {
-    constructor(brush) {
+    constructor(brush, userData = {}) {
         super(brush);
-        this._user = new Person();
+        if (!userData.id) {
+            userData.id = (new Date).getTime();
+        }
+        this._user = new Person(userData);
     }
 
     get name() {

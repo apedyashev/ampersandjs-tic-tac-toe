@@ -96,7 +96,7 @@ gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
             baseDir: './',
             //https://browsersync.io/docs/options/
             routes: {
-                "/collections": "./"
+                "/past-games": "./"
             }
         },
         files: "dist/app.css"
