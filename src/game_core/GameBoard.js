@@ -71,7 +71,11 @@ class GameBoard {
         this._players.crosses = player;
     }
 
-    init() {
+    get crossesPlayer() {
+        return this._players.crosses;
+    }
+
+    initGame() {
         this._isGameFinished = false;
         this._setNextPlayersTurn();
     }

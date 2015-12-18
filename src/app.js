@@ -34,8 +34,6 @@ app.extend({
     board: new GameBoard({
         width: 300,
         height: 300
-        //noughtsPlayer: this.noughtsPlayer,
-        //crossesPlayer: this.crossesPlayer
     }),
     // This is where it all starts
     init: function() {
@@ -50,20 +48,29 @@ app.extend({
         // to fire.
         this.router.history.start({ pushState: true });
 
-        //this.leftPanelPlayer = new AmpersandPlayer(new NoughtBrush());
-        //this.rightPanelPlayer = new AmpersandPlayer(new CrossBrush());
+        this.createNewGame();
+        //this.board.noughtsPlayer = this.gameModel.get('leftSideUser');
+        //this.board.crossesPlayer = this.gameModel.get('rightSideUser');
+        //this.board.initGame();
+        //
+        //this.games.add(this.gameModel);
+    },
+    createNewGame: function() {
         this.board.noughtsPlayer = this.gameModel.get('leftSideUser');
         this.board.crossesPlayer = this.gameModel.get('rightSideUser');
-        this.board.init();
+        this.board.initGame();
 
-        this.games.add(this.gameModel);
-        //this.board = new GameBoard({
-        //    canvasEl: $('#game-board'),
-        //    width: 300,
-        //    height: 300,
-        //    noughtsPlayer: this.noughtsPlayer,
-        //    crossesPlayer: this.crossesPlayer
-        //});
+        let addGameToLeaderBaoard = function(model, value) {
+            if (value) {
+                let game = new GameModel({
+                    leftSideUser: this.gameModel.get('leftSideUser'),
+                    rightSideUser: this.gameModel.get('rightSideUser')
+                });
+                this.games.add(game);
+            }
+        };
+        this.board.noughtsPlayer.model.on('change:isWon', _.bind(addGameToLeaderBaoard, this));
+        this.board.crossesPlayer.model.on('change:isWon', _.bind(addGameToLeaderBaoard, this));
     },
     // This is a helper for navigating around the app.
     // this gets called by a global click handler that handles

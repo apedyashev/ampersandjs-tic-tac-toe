@@ -7,13 +7,6 @@ var UserPanelView = require('../views/user-panel');
 module.exports = PageView.extend({
     pageTitle: 'home',
     template: templates['pages/home'],
-    //bindings: {
-    //    'model.avatar': {
-    //        type: 'attribute',
-    //        hook: 'avatar',
-    //        name: 'src'
-    //    }
-    //},
     subviews: {
         leftUser: {
             container: '#left-player',
