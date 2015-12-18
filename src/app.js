@@ -48,16 +48,11 @@ app.extend({
         // to fire.
         this.router.history.start({ pushState: true });
 
-        this.createNewGame();
-        //this.board.noughtsPlayer = this.gameModel.get('leftSideUser');
-        //this.board.crossesPlayer = this.gameModel.get('rightSideUser');
-        //this.board.initGame();
-        //
-        //this.games.add(this.gameModel);
+        this.createNewGame(this.gameModel.get('leftSideUser'), this.gameModel.get('rightSideUser'));
     },
-    createNewGame: function() {
-        this.board.noughtsPlayer = this.gameModel.get('leftSideUser');
-        this.board.crossesPlayer = this.gameModel.get('rightSideUser');
+    createNewGame: function(leftSideUser, rightSideUser) {
+        this.board.noughtsPlayer = leftSideUser;
+        this.board.crossesPlayer = rightSideUser;
         this.board.initGame();
 
         let addGameToLeaderBaoard = function(model, value) {

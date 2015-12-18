@@ -77,11 +77,13 @@ class GameBoard {
 
     initGame() {
         this._isGameFinished = false;
+        this._boardMatrix = [0, 1, 2].map(x => [null, null, null]);
+
+        this._initPointsArrays();
         this._setNextPlayersTurn();
     }
 
     _setNextPlayersTurn() {
-        // TODO
         let nextPlyerName = this._getNextPlayerName();
 
         for(let key in this._players) {
@@ -91,7 +93,7 @@ class GameBoard {
         this._players[nextPlyerName].isMyTurn = true;
     }
 
-    draw(context) {
+    draw() {
         this._drawGrid();
 
         let {width, height} = this._options,
