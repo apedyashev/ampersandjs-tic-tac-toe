@@ -13,7 +13,7 @@ return __p
 (function() {
 module.exports["includes/finished-game"] = function(data) {
 var __t, __p = '';
-__p += '<li class="person list-group-item container"><span data-hook="left-user-name left-user-win-class" class="label"></span><span>vs</span><span data-hook="right-user-name right-user-win-class" class="label"></span></li>';
+__p += '<li class="person list-group-item container"><span data-hook="left-user-name left-user-win-class" class="label player-name"></span><span></span> vs <span data-hook="right-user-name right-user-win-class" class="label player-name"></span></li>';
 return __p
 }})();
 (function() {
@@ -35,12 +35,6 @@ __p += '<div data-hook="player-is-initialized my-turn" class="panel panel-defaul
 return __p
 }})();
 (function() {
-module.exports["pages/collectionDemo"] = function(data) {
-var __t, __p = '';
-__p += '<section class="page pageOne"><h2>Collection demo</h2><p>Intelligently rendering collections can be a bit tricky. </p><p><a href="https://github.com/ampersandjs/ampersand-view">ampersand-view\'s</a> <code>renderCollection()</code> method makes it simple.</p><p>The only code required to manage the collection is:</p><pre><code>this.renderCollection(\n   this.collection, \n   PersonView, \n   this.queryByHook(\'people-list\')\n);</code></pre><h3>People container:</h3><ul data-hook="people-list" class="list-group"></ul><p>Try it by clicking the buttons</p><div class="buttons btn-group"><button data-hook="reset" class="btn btn-default">.reset() </button><button data-hook="fetch" class="btn btn-default">.fetch() </button><button data-hook="shuffle" class="btn btn-default">.shuffle() </button><button data-hook="add" class="btn btn-default">.addRandom()</button><a href="/person/add" class="btn btn-default">Add Person</a></div><p>Events are always managed so you don\'t get any leaks.</p></section>';
-return __p
-}})();
-(function() {
 module.exports["pages/home"] = function(data) {
 var __t, __p = '';
 __p += '<section class="page home"><h2>Welcome Tic-Tac-Toe written in AmpersandJS</h2><div class="row"><div class="col-md-4"><div id="left-player"></div></div><div id="game-board-container" class="col-md-4"><div class="toolbar"><span class="pull-right"><a href="/past-games" class="btn btn-link">Past Games</a><button data-hook="new-game" class="btn btn-small btn-default"><i class="fa fa-refresh"></i> New Game</button></span></div><canvas id="game-board"></canvas></div><div class="col-md-4"><div id="right-player"></div></div></div></section>';
@@ -50,6 +44,12 @@ return __p
 module.exports["pages/info"] = function(data) {
 var __t, __p = '';
 __p += '<section class="page pageTwo"><h2>Simple Page Example</h2><p>This page was rendered by a simple page view file at client/pages/info.js.</p></section>';
+return __p
+}})();
+(function() {
+module.exports["pages/past-games"] = function(data) {
+var __t, __p = '';
+__p += '<section class="page past-games"><h2>Past games</h2><ul data-hook="past-games-list" class="list-group"><li data-hook="collection-is-empty" class="person list-group-item container text-center"><h4>List is empty</h4></li></ul></section>';
 return __p
 }})();
 (function() {
