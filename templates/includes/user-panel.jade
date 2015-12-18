@@ -1,4 +1,4 @@
-div.panel.panel-default(data-hook='player-is-initialized my-turn')
+div.panel.panel-default.player-panel(data-hook='player-is-initialized my-turn')
     div.panel-heading
         div.panel-title
             div(data-hook='show-if-initialized')
@@ -10,4 +10,4 @@ div.panel.panel-default(data-hook='player-is-initialized my-turn')
             span.label.label-success(data-hook='my-turn-visible') Your turn!
         form(data-hook='hide-if-initialized')
             fieldset(data-hook="field-container")
-            button.btn(data-hook="reset", type="submit") Submit
+            button.btn.btn-default.pull-right(type="submit") Submit

@@ -46,7 +46,7 @@ function bundle() {
     .pipe(reload({ stream: true }));
 }
 
-gulp.task('build-persistent', ['clean'], function() {
+gulp.task('build-persistent', function() {
   return bundle();
 });
 
@@ -90,7 +90,7 @@ gulp.task('less', function () {
         .pipe(gulp.dest(config.outputDir));
 });
 
-gulp.task('watch', ['build-persistent', 'jst', 'less'], function() {
+gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
     browserSync({
         server: {
             baseDir: './',

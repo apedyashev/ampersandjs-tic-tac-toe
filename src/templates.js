@@ -31,7 +31,7 @@ return __p
 (function() {
 module.exports["includes/user-panel"] = function(data) {
 var __t, __p = '';
-__p += '<div data-hook="player-is-initialized my-turn" class="panel panel-default"><div class="panel-heading"><div class="panel-title"><div data-hook="show-if-initialized"><div data-hook="player-name"></div></div><div data-hook="hide-if-initialized">Please eneter your name</div></div></div><div class="panel-body"><p data-hook="player-won" class="text-success">You are the winner! Congratulations!</p><p data-hook="show-if-initialized"><span data-hook="my-turn-visible" class="label label-success">Your turn!</span></p><form data-hook="hide-if-initialized"><fieldset data-hook="field-container"></fieldset><button data-hook="reset" type="submit" class="btn">Submit</button></form></div></div>';
+__p += '<div data-hook="player-is-initialized my-turn" class="panel panel-default player-panel"><div class="panel-heading"><div class="panel-title"><div data-hook="show-if-initialized"><div data-hook="player-name"></div></div><div data-hook="hide-if-initialized">Please eneter your name</div></div></div><div class="panel-body"><p data-hook="player-won" class="text-success">You are the winner! Congratulations!</p><p data-hook="show-if-initialized"><span data-hook="my-turn-visible" class="label label-success">Your turn!</span></p><form data-hook="hide-if-initialized"><fieldset data-hook="field-container"></fieldset><button type="submit" class="btn btn-default pull-right">Submit</button></form></div></div>';
 return __p
 }})();
 (function() {
@@ -43,7 +43,7 @@ return __p
 (function() {
 module.exports["pages/home"] = function(data) {
 var __t, __p = '';
-__p += '<section class="page home"><h2>Welcome to a skeleton for AmpersandJS Tic-Tac-Toe implementation</h2><p>If you "view source" you\'ll see it\'s 100% client rendered.</p><p>Click around the site using the nav bar at the top.</p><div class="row"><div class="col-md-4"><div id="left-player"></div></div><div class="col-md-4"><button data-hook="new-game" class="btn btn-small">New Game</button><canvas id="game-board"></canvas></div><div class="col-md-4"><div id="right-player"></div></div></div></section>';
+__p += '<section class="page home"><h2>Welcome Tic-Tac-Toe written in AmpersandJS</h2><div class="row"><div class="col-md-4"><div id="left-player"></div></div><div id="game-board-container" class="col-md-4"><div class="toolbar"><span class="pull-right"><a href="/past-games" class="btn btn-link">Past Games</a><button data-hook="new-game" class="btn btn-small btn-default"><i class="fa fa-refresh"></i> New Game</button></span></div><canvas id="game-board"></canvas></div><div class="col-md-4"><div id="right-player"></div></div></div></section>';
 return __p
 }})();
 (function() {

@@ -59,6 +59,13 @@ class GameBoard {
         }));
     }
 
+    set width(val) {
+        this._options.widht  = val;
+        this._options.height = val;
+
+        this._initCanvas();
+    }
+
     set noughtsPlayer(player) {
         this._players.noughts = player;
     }

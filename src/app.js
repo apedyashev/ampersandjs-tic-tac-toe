@@ -32,8 +32,8 @@ app.extend({
         rightSideUser: new AmpersandPlayer(new CrossBrush())
     }),
     board: new GameBoard({
-        width: 300,
-        height: 300
+        width:  360,
+        height: 360
     }),
     // This is where it all starts
     init: function() {
