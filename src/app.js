@@ -27,6 +27,7 @@ app.extend({
     people: new People(),
     games: new Games(),
     router: new Router(),
+    noughtsColor: '#006398',
     gameModel: new GameModel({
         leftSideUser: new AmpersandPlayer(new NoughtBrush(), {symbol: 'nought'}),
         rightSideUser: new AmpersandPlayer(new CrossBrush(), {symbol: 'cross'})
@@ -48,6 +49,7 @@ app.extend({
         // to fire.
         this.router.history.start({ pushState: true });
 
+        this.gameModel.get('leftSideUser').brushColor = this.noughtsColor;
         this.createNewGame(this.gameModel.get('leftSideUser'), this.gameModel.get('rightSideUser'));
     },
     createNewGame: function(leftSideUser, rightSideUser) {

@@ -46,7 +46,7 @@ module.exports = PageView.extend({
     },
 
     startNewGame: function() {
-        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush(), {'symbol': 'nought'}));
+        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush(app.noughtsColor), {'symbol': 'nought'}));
         this.model.set('rightSideUser', new AmpersandPlayer(new CrossBrush(), {'symbol': 'cross'}));
         app.createNewGame(this.model.get('leftSideUser'), this.model.get('rightSideUser'));
         this.render();

@@ -1,11 +1,9 @@
+import {Brush} from './brush'
+
 /**
  * Brush to draw noughts on the game canvas' context
  */
-class NoughtBrush {
-    constructor(color = '#990000') {
-        this._color = color;
-    }
-
+class NoughtBrush extends Brush {
     /**
      * Draws nought in the center of given cell
      *
@@ -18,11 +16,11 @@ class NoughtBrush {
         let radius = (cellSize / 2) - 15,
             x0 = cellPosX  + (cellSize / 2),
             y0 = cellPosY  + (cellSize / 2),
-            penWeight = 3;
+            penWeight = 3,
+            timeoutValue = 100;
 
         ctx.fillStyle = this._color;
 
-        var timeoutValue = 100;
         for(var alpha = -50; alpha < 315; alpha++) {
             (alpha => {
                 setTimeout(() => {

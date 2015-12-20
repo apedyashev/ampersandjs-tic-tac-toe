@@ -1,5 +1,7 @@
 let $ = require('jquery');
 
+import {Brush} from './brush';
+
 const LTR_DIAG_INDEX = 0,
       RTL_DIAG_INDEX = 1;
 
@@ -16,6 +18,8 @@ class GameBoard {
             noughts: this._options.noughtsPlayer,
             crosses: this._options.crossesPlayer
         };
+
+        this._crossOutBrush = new Brush();
 
         this._initPointsArrays();
     }
@@ -103,15 +107,16 @@ class GameBoard {
     draw() {
         this._drawGrid();
 
-        let {width, height} = this._options,
+        let {width} = this._options,
             cellSize = width / 3;
         for(let row = 0; row < 3; row++) {
             for(let col = 0; col < 3; col++) {
-                let cellBrush = this._boardMatrix[row][col];
-                if (cellBrush) {
+                let brushData = this._boardMatrix[row][col];
+                if (brushData && !brushData.wasDrawn) {
                     let posX = col * cellSize,
                         posY = row * cellSize;
-                    cellBrush.draw(this._ctx, posX, posY, cellSize);
+                    brushData.brush.draw(this._ctx, posX, posY, cellSize);
+                    this._boardMatrix[row][col].wasDrawn = true;
                 }
             }
         }
@@ -128,40 +133,34 @@ class GameBoard {
     _crossOutIfWon() {
         this._rowPoints.forEach((row, rowIndex) => {
             if (row.noughts == 3) {
-                console.log(`noughts won at row ${rowIndex}`);
-                this._crossOutRow(rowIndex);
-                this._players.noughts.isWon = true;
+                this._crossOutRow(rowIndex, this._players.noughts);
+                //this._players.noughts.isWon = true;
             }
             if (row.crosses == 3) {
-                console.log(`crosses won at row ${rowIndex}`);
-                this._crossOutRow(rowIndex);
-                this._players.crosses.isWon = true;
+                this._crossOutRow(rowIndex, this._players.crosses);
+                //this._players.crosses.isWon = true;
             }
         });
 
         this._colPoints.forEach((col, colIndex) => {
             if (col.noughts == 3) {
-                console.log(`noughts won at col ${colIndex}`);
-                this._crossOutCol(colIndex);
-                this._players.noughts.isWon = true;
+                this._crossOutCol(colIndex, this._players.noughts);
+                //this._players.noughts.isWon = true;
             }
             if (col.crosses == 3) {
-                console.log(`crosses won at col ${colIndex}`);
-                this._crossOutCol(colIndex);
-                this._players.crosses.isWon = true;
+                this._crossOutCol(colIndex, this._players.crosses);
+                //this._players.crosses.isWon = true;
             }
         });
 
         this._diagPoints.forEach((diag, diagIndex) => {
             if (diag.noughts == 3) {
-                console.log(`noughts won at diag ${diagIndex}`);
-                this._crossOutDiagonal(diagIndex);
-                this._players.noughts.isWon = true;
+                this._crossOutDiagonal(diagIndex, this._players.noughts);
+                //this._players.noughts.isWon = true;
             }
             if (diag.crosses == 3) {
-                console.log(`crosses won at diag ${diagIndex}`);
-                this._crossOutDiagonal(diagIndex);
-                this._players.crosses.isWon = true;
+                this._crossOutDiagonal(diagIndex, this._players.crosses);
+                //this._players.crosses.isWon = true;
             }
         });
 
@@ -170,21 +169,23 @@ class GameBoard {
         }
     }
 
-    _crossOutRow(rowIndex) {
+    _crossOutRow(rowIndex, winner) {
         let startPoint = this._indecesToCoordinates(rowIndex, 0, 0, this._cellSize / 2),
             endPoint = this._indecesToCoordinates(rowIndex, 2, this._cellSize, this._cellSize / 2);
 
-        this._drawCrossOutLine(startPoint, endPoint);
+        winner.isWon = true;
+        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor);
     }
 
-    _crossOutCol(colIndex) {
+    _crossOutCol(colIndex, winner) {
         let startPoint = this._indecesToCoordinates(0, colIndex, this._cellSize / 2, 0),
             endPoint = this._indecesToCoordinates(2, colIndex, this._cellSize / 2, this._cellSize);
 
-        this._drawCrossOutLine(startPoint, endPoint);
+        winner.isWon = true;
+        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor);
     }
 
-    _crossOutDiagonal(diagIndex) {
+    _crossOutDiagonal(diagIndex, winner) {
         let startPoint = {
                 x: (diagIndex === LTR_DIAG_INDEX) ? 0 : this._options.width,
                 y: 0
@@ -193,7 +194,8 @@ class GameBoard {
                 x: (diagIndex === LTR_DIAG_INDEX) ?  this._options.width : 0,
                 y:  this._options.height
             };
-        this._drawCrossOutLine(startPoint, endPoint);
+        winner.isWon = true;
+        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor);
     }
 
     _indecesToCoordinates(rowIndex, colIndex, xCorrection = 0, yCorrection = 0) {
@@ -203,12 +205,9 @@ class GameBoard {
         };
     }
 
-    _drawCrossOutLine(startPoint, endPoint) {
-        this._ctx.beginPath();
-        this._ctx.moveTo(startPoint.x, startPoint.y);
-        this._ctx.lineTo(endPoint.x, endPoint.y);
-        this._ctx.closePath();
-        this._ctx.stroke();
+    _drawCrossOutLine(startPoint, endPoint, brushColor) {
+        this._crossOutBrush.color = brushColor;
+        this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     }
 
     _doMove(clickedCell) {
@@ -222,7 +221,10 @@ class GameBoard {
 
         if (isCellEmpty) {
             let playerName = this._nextPlayerName;
-            this._boardMatrix[row][col] = this._players[playerName].brush;
+            this._boardMatrix[row][col] = {
+                brush: this._players[playerName].brush,
+                wasDrawn: false
+            };
 
             this._rowPoints[row][playerName]++;
             this._colPoints[col][playerName]++;

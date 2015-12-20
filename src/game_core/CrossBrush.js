@@ -1,14 +1,12 @@
-import {Brush} from './Brush';
+import {Brush} from './brush'
 
 class CrossBrush extends Brush {
     draw(ctx, posX, posY, cellSize) {
-        ctx.beginPath();
-        ctx.moveTo(posX, posY);
-        ctx.lineTo(posX + cellSize, posY + cellSize);
-        ctx.moveTo(posX + cellSize, posY);
-        ctx.lineTo(posX, posY + cellSize);
-        ctx.closePath();
-        ctx.stroke();
+        let cellPadding = 15;
+
+        this.drawLine(ctx, posX + cellPadding, posY + cellPadding, posX + cellSize - cellPadding, posY + cellSize - cellPadding, () => {
+            this.drawLine(ctx, posX + cellSize - cellPadding, posY + cellPadding, posX + cellPadding, posY + cellSize - cellPadding);
+        });
     }
 }
 

@@ -40,6 +40,14 @@ class Player {
     get isInitialized() {
         throw new Error('isInitialized is not implemented for Player');
     }
+
+    set brushColor(val) {
+        this._brush.color = val;
+    }
+
+    get brushColor() {
+        return this._brush.color;
+    }
 }
 
 export {Player}
