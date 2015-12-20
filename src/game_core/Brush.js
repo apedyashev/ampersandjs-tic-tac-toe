@@ -1,9 +1,6 @@
 class Brush {
-    constructor() {
-    }
-
     draw(ctx, posX, posY, cellSize) {
-        console.error('Brush::draw not implemented');
+        throw new Error('Brush::draw not implemented');
     }
 }
 
