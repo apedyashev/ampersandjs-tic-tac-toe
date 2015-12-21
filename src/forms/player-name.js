@@ -16,7 +16,9 @@ const PlayerNameForm = FormView.extend({
                 name: 'name',
                 value: this.model && this.model.name,
                 placeholder: 'Name',
-                parent: this
+                parent: this,
+                validityClassSelector: '.form-group',
+                invalidClass: 'has-error'
             })
         ];
     }
