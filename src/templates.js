@@ -37,7 +37,7 @@ return __p
 (function() {
 module.exports["pages/home"] = function(data) {
 var __t, __p = '';
-__p += '<section class="page home"><h2>Welcome to Tic-Tac-Toe game written in AmpersandJS</h2><div class="row"><div class="col-sm-4"><div id="left-player"></div></div><div id="game-board-container" class="col-sm-4"><div class="toolbar"><span data-hook="show-if-game-is-over" class="label label-success">Game Over</span><span class="pull-right"><a href="/past-games" class="btn btn-link">Past Games</a><button data-hook="new-game" class="btn btn-small btn-default"><i class="fa fa-refresh"></i> New Game</button></span></div><canvas id="game-board"></canvas></div><div class="col-sm-4"><div id="right-player"></div></div></div></section>';
+__p += '<section class="page home"><h2>Welcome to Tic-Tac-Toe game written in AmpersandJS</h2><div class="row"><div class="col-md-4"><div id="left-player"></div></div><div id="game-board-container" class="col-md-4"><div class="toolbar"><span data-hook="show-if-game-is-over" class="label label-success">Game Over</span><span class="pull-right"><a href="/past-games" class="btn btn-link">Past Games</a><button data-hook="new-game" class="btn btn-small btn-default"><i class="fa fa-refresh"></i> New Game</button></span></div><canvas id="game-board"></canvas></div><div class="col-md-4"><div id="right-player"></div></div></div></section>';
 return __p
 }})();
 (function() {
