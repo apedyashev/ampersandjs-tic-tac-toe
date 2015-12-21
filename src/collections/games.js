@@ -1,7 +1,10 @@
 import Collection from 'ampersand-rest-collection'
 import GameModel from '../models/game'
 
-export default Collection.extend({
+/**
+ * Games collection class derived from {@link https://ampersandjs.com/docs/#ampersand-rest-collection}
+ */
+const GamesCollection = Collection.extend({
     model: GameModel,
     url: '/api/games',
 
@@ -26,3 +29,4 @@ export default Collection.extend({
         }
     }
 });
+export default GamesCollection

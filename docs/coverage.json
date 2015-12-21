@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 43,
-  "actualCount": 43,
+  "expectCount": 51,
+  "actualCount": 51,
   "files": {
     "src/game_core/ampersand-player.js": {
       "expectCount": 10,
@@ -18,14 +18,44 @@
       "actualCount": 2,
       "undocumentLines": []
     },
+    "src/views/finished-game.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/game_core/game-board.js": {
       "expectCount": 10,
       "actualCount": 10,
       "undocumentLines": []
     },
+    "src/models/game.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/collections/games.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/home.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/views/main.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/game_core/nought-brush.js": {
       "expectCount": 2,
       "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/pages/past-games.js": {
+      "expectCount": 1,
+      "actualCount": 1,
       "undocumentLines": []
     },
     "src/game_core/player.js": {
@@ -34,6 +64,16 @@
       "undocumentLines": []
     },
     "src/models/player.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/forms/player-name.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/views/user-panel.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []

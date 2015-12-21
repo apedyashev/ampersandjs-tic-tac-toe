@@ -32,13 +32,21 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">collections</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GamesCollection">GamesCollection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">forms</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerNameForm">PlayerNameForm</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GameModel">GameModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-HomePageView">HomePageView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PastGamesView">PastGamesView</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">views</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FinishedGameView">FinishedGameView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MainView">MainView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UserPanelView">UserPanelView</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -47,10 +55,12 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import View from &apos;ampersand-view&apos;
 import PlayerNameForm from &apos;../forms/player-name&apos;
 
-
 const templates = require(&apos;../templates&apos;);
 
-export default View.extend({
+/**
+ * Displays users panel. See {@link https://ampersandjs.com/docs/#ampersand-view}
+ */
+const UserPanelView = View.extend({
     template: templates[&apos;includes/user-panel&apos;],
     bindings: {
         &apos;model.symbol&apos;: {
@@ -130,6 +140,7 @@ export default View.extend({
         }
     }
 });
+export default UserPanelView
 
 </code></pre>
 

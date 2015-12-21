@@ -1,10 +1,12 @@
 import View from 'ampersand-view'
 import PlayerNameForm from '../forms/player-name'
 
-
 const templates = require('../templates');
 
-export default View.extend({
+/**
+ * Displays users panel. See {@link https://ampersandjs.com/docs/#ampersand-view}
+ */
+const UserPanelView = View.extend({
     template: templates['includes/user-panel'],
     bindings: {
         'model.symbol': {
@@ -84,4 +86,5 @@ export default View.extend({
         }
     }
 });
+export default UserPanelView
 

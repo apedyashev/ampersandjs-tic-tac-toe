@@ -18,16 +18,52 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "ampersandjs-tic-tac-toe/src/views/finished-game.js~finishedgameview",
+    "variable/index.html#static-variable-FinishedGameView",
+    "<span>FinishedGameView</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/views/finished-game.js</span>",
+    "variable"
+  ],
+  [
     "ampersandjs-tic-tac-toe/src/game_core/game-board.js~gameboard",
     "class/src/game_core/game-board.js~GameBoard.html",
     "<span>GameBoard</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/game_core/game-board.js</span>",
     "class"
   ],
   [
+    "ampersandjs-tic-tac-toe/src/models/game.js~gamemodel",
+    "variable/index.html#static-variable-GameModel",
+    "<span>GameModel</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/models/game.js</span>",
+    "variable"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/collections/games.js~gamescollection",
+    "variable/index.html#static-variable-GamesCollection",
+    "<span>GamesCollection</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/collections/games.js</span>",
+    "variable"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/pages/home.js~homepageview",
+    "variable/index.html#static-variable-HomePageView",
+    "<span>HomePageView</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/pages/home.js</span>",
+    "variable"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/views/main.js~mainview",
+    "variable/index.html#static-variable-MainView",
+    "<span>MainView</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/views/main.js</span>",
+    "variable"
+  ],
+  [
     "ampersandjs-tic-tac-toe/src/game_core/nought-brush.js~noughtbrush",
     "class/src/game_core/nought-brush.js~NoughtBrush.html",
     "<span>NoughtBrush</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/game_core/nought-brush.js</span>",
     "class"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/pages/past-games.js~pastgamesview",
+    "variable/index.html#static-variable-PastGamesView",
+    "<span>PastGamesView</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/pages/past-games.js</span>",
+    "variable"
   ],
   [
     "ampersandjs-tic-tac-toe/src/game_core/player.js~player",
@@ -39,6 +75,18 @@ window.esdocSearchIndex = [
     "ampersandjs-tic-tac-toe/src/models/player.js~playermodel",
     "variable/index.html#static-variable-PlayerModel",
     "<span>PlayerModel</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/models/player.js</span>",
+    "variable"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/forms/player-name.js~playernameform",
+    "variable/index.html#static-variable-PlayerNameForm",
+    "<span>PlayerNameForm</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/forms/player-name.js</span>",
+    "variable"
+  ],
+  [
+    "ampersandjs-tic-tac-toe/src/views/user-panel.js~userpanelview",
+    "variable/index.html#static-variable-UserPanelView",
+    "<span>UserPanelView</span> <span class=\"search-result-import-path\">ampersandjs-tic-tac-toe/src/views/user-panel.js</span>",
     "variable"
   ],
   [
@@ -457,13 +505,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/brush.js~brush#color",
-    "class/src/game_core/brush.js~Brush.html#instance-set-color",
+    "class/src/game_core/brush.js~Brush.html#instance-get-color",
     "src/game_core/brush.js~Brush#color",
     "member"
   ],
   [
     "src/game_core/brush.js~brush#color",
-    "class/src/game_core/brush.js~Brush.html#instance-get-color",
+    "class/src/game_core/brush.js~Brush.html#instance-set-color",
     "src/game_core/brush.js~Brush#color",
     "member"
   ],
@@ -517,13 +565,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/game-board.js~gameboard#crossesplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-get-crossesPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-set-crossesPlayer",
     "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "member"
   ],
   [
     "src/game_core/game-board.js~gameboard#crossesplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-set-crossesPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-get-crossesPlayer",
     "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "member"
   ],
@@ -541,13 +589,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/game-board.js~gameboard#noughtsplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-get-noughtsPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-set-noughtsPlayer",
     "src/game_core/game-board.js~GameBoard#noughtsPlayer",
     "member"
   ],
   [
     "src/game_core/game-board.js~gameboard#noughtsplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-set-noughtsPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-get-noughtsPlayer",
     "src/game_core/game-board.js~GameBoard#noughtsPlayer",
     "member"
   ],
@@ -583,13 +631,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/player.js~player#brushcolor",
-    "class/src/game_core/player.js~Player.html#instance-set-brushColor",
+    "class/src/game_core/player.js~Player.html#instance-get-brushColor",
     "src/game_core/player.js~Player#brushColor",
     "member"
   ],
   [
     "src/game_core/player.js~player#brushcolor",
-    "class/src/game_core/player.js~Player.html#instance-get-brushColor",
+    "class/src/game_core/player.js~Player.html#instance-set-brushColor",
     "src/game_core/player.js~Player#brushColor",
     "member"
   ],

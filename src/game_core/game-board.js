@@ -7,7 +7,8 @@ const LTR_DIAG_INDEX = 0,
       BOARD_DIMENSION_CELLS = 3;
 
 /**
- * Implements game board and handles game logic
+ * Implements game board and handles game logic. It design to be framework-independent and has only two dependencies:
+ * jquery and lodash
  */
 export default class GameBoard {
     /**

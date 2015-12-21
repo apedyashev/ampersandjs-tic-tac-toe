@@ -32,13 +32,21 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">collections</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GamesCollection">GamesCollection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">forms</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerNameForm">PlayerNameForm</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GameModel">GameModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-HomePageView">HomePageView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PastGamesView">PastGamesView</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">views</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FinishedGameView">FinishedGameView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MainView">MainView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UserPanelView">UserPanelView</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -59,13 +67,222 @@
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-FinishedGameView">FinishedGameView</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>View of finished game item.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-GameModel">GameModel</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Model that stores game data (players and finished/unfinished state) See <span><a href="https://ampersandjs.com/docs/#ampersand-model">https://ampersandjs.com/docs/#ampersand-model</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-GamesCollection">GamesCollection</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Games collection class derived from <span><a href="https://ampersandjs.com/docs/#ampersand-rest-collection">https://ampersandjs.com/docs/#ampersand-rest-collection</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-HomePageView">HomePageView</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Home page view.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-MainView">MainView</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>This app view is responsible for rendering all content that goes into
+It&apos;s initted right away and renders itself on DOM ready.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-PastGamesView">PastGamesView</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Paste games (leaderboard) page view.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Model to store player&apos;s data</p>
+        <div data-ice="description"><p>Model to store player&apos;s data. See <span><a href="https://ampersandjs.com/docs/#ampersand-model">https://ampersandjs.com/docs/#ampersand-model</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerNameForm">PlayerNameForm</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Form view for player name entering see <span><a href="https://github.com/AmpersandJS/ampersand-form-view">https://github.com/AmpersandJS/ampersand-form-view</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-UserPanelView">UserPanelView</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Displays users panel.</p>
 </div>
       </div>
     </td>
@@ -79,6 +296,253 @@
 </div>
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-FinishedGameView">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">FinishedGameView</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/views/finished-game.js.html#lineNumber7">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import FinishedGameView from &apos;<span><a href="file/src/views/finished-game.js.html#lineNumber7">ampersandjs-tic-tac-toe/src/views/finished-game.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>View of finished game item. Used to render collection</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-GameModel">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">GameModel</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/models/game.js.html#lineNumber9">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import GameModel from &apos;<span><a href="file/src/models/game.js.html#lineNumber9">ampersandjs-tic-tac-toe/src/models/game.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Model that stores game data (players and finished/unfinished state) See <span><a href="https://ampersandjs.com/docs/#ampersand-model">https://ampersandjs.com/docs/#ampersand-model</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-GamesCollection">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">GamesCollection</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/collections/games.js.html#lineNumber7">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import GamesCollection from &apos;<span><a href="file/src/collections/games.js.html#lineNumber7">ampersandjs-tic-tac-toe/src/collections/games.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Games collection class derived from <span><a href="https://ampersandjs.com/docs/#ampersand-rest-collection">https://ampersandjs.com/docs/#ampersand-rest-collection</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-HomePageView">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">HomePageView</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/pages/home.js.html#lineNumber14">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import HomePageView from &apos;<span><a href="file/src/pages/home.js.html#lineNumber14">ampersandjs-tic-tac-toe/src/pages/home.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Home page view. See <span><a href="https://ampersandjs.com/docs/#ampersand-view">https://ampersandjs.com/docs/#ampersand-view</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-MainView">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">MainView</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/views/main.js.html#lineNumber15">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import MainView from &apos;<span><a href="file/src/views/main.js.html#lineNumber15">ampersandjs-tic-tac-toe/src/views/main.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>This app view is responsible for rendering all content that goes into
+It&apos;s initted right away and renders itself on DOM ready.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-PastGamesView">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">PastGamesView</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/pages/past-games.js.html#lineNumber9">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import PastGamesView from &apos;<span><a href="file/src/pages/past-games.js.html#lineNumber9">ampersandjs-tic-tac-toe/src/pages/past-games.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Paste games (leaderboard) page view. See <span><a href="https://ampersandjs.com/docs/#ampersand-view">https://ampersandjs.com/docs/#ampersand-view</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-variable-PlayerModel">
     <span class="access" data-ice="access">public</span>
@@ -97,7 +561,89 @@
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import PlayerModel from &apos;<span><a href="file/src/models/player.js.html#lineNumber6">ampersandjs-tic-tac-toe/src/models/player.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Model to store player&apos;s data</p>
+  <div data-ice="description"><p>Model to store player&apos;s data. See <span><a href="https://ampersandjs.com/docs/#ampersand-model">https://ampersandjs.com/docs/#ampersand-model</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-PlayerNameForm">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">PlayerNameForm</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/forms/player-name.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import PlayerNameForm from &apos;<span><a href="file/src/forms/player-name.js.html#lineNumber11">ampersandjs-tic-tac-toe/src/forms/player-name.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Form view for player name entering see <span><a href="https://github.com/AmpersandJS/ampersand-form-view">https://github.com/AmpersandJS/ampersand-form-view</a></span></p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-UserPanelView">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">UserPanelView</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/views/user-panel.js.html#lineNumber9">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import UserPanelView from &apos;<span><a href="file/src/views/user-panel.js.html#lineNumber9">ampersandjs-tic-tac-toe/src/views/user-panel.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Displays users panel. See <span><a href="https://ampersandjs.com/docs/#ampersand-view">https://ampersandjs.com/docs/#ampersand-view</a></span></p>
 </div>
 
   

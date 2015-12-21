@@ -32,25 +32,33 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">collections</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GamesCollection">GamesCollection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">forms</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerNameForm">PlayerNameForm</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GameModel">GameModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-HomePageView">HomePageView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PastGamesView">PastGamesView</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">views</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FinishedGameView">FinishedGameView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MainView">MainView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UserPanelView">UserPanelView</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import GameBoard from &apos;<span><a href="file/src/game_core/game-board.js.html#lineNumber12">ampersandjs-tic-tac-toe/src/game_core/game-board.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import GameBoard from &apos;<span><a href="file/src/game_core/game-board.js.html#lineNumber13">ampersandjs-tic-tac-toe/src/game_core/game-board.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/game_core/game-board.js.html#lineNumber12">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/game_core/game-board.js.html#lineNumber13">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -70,7 +78,8 @@
 
   
   
-  <div class="description" data-ice="description"><p>Implements game board and handles game logic</p>
+  <div class="description" data-ice="description"><p>Implements game board and handles game logic. It design to be framework-independent and has only two dependencies:
+jquery and lodash</p>
 </div>
 
   
@@ -357,7 +366,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -418,7 +427,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber133">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber134">source</a></span></span>
     </span>
   </h3>
 
@@ -459,7 +468,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber118">source</a></span></span>
     </span>
   </h3>
 
@@ -500,7 +509,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber125">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber126">source</a></span></span>
     </span>
   </h3>
 
@@ -551,7 +560,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber101">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber102">source</a></span></span>
     </span>
   </h3>
 
@@ -592,7 +601,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber109">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber110">source</a></span></span>
     </span>
   </h3>
 
@@ -643,7 +652,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -687,7 +696,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -745,7 +754,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/game_core/game-board.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 

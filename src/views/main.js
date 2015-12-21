@@ -1,5 +1,3 @@
-// This app view is responsible for rendering all content that goes into
-// <html>. It's initted right away and renders itself on DOM ready.
 import app from 'ampersand-app'
 import View from 'ampersand-view'
 import dom from 'ampersand-dom'
@@ -10,8 +8,11 @@ import localLinks from 'local-links'
 // TODO: place gulp-template-compile-commonjs to separate module that supports UMD
 const templates = require('../templates');
 
-
-export default View.extend({
+/**
+ * This app view is responsible for rendering all content that goes into
+ * It's initted right away and renders itself on DOM ready.
+ */
+const MainView = View.extend({
     template: templates.body,
     autoRender: true,
     initialize: function() {
@@ -85,3 +86,5 @@ export default View.extend({
         });
     }
 });
+
+export default MainView

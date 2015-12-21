@@ -8,7 +8,10 @@ import CrossBrush from '../game_core/cross-brush'
 
 const templates = require('../templates');
 
-export default View.extend({
+/**
+ * Home page view. See {@link https://ampersandjs.com/docs/#ampersand-view}
+ */
+const HomePageView = View.extend({
     pageTitle: 'home',
     template: templates['pages/home'],
     events: {
@@ -51,3 +54,4 @@ export default View.extend({
         this.render();
     }
 });
+export default HomePageView

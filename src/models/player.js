@@ -1,7 +1,7 @@
 import AmpersandModel  from 'ampersand-model'
 
 /**
- * Model to store player's data
+ * Model to store player's data. See {@link https://ampersandjs.com/docs/#ampersand-model}
  */
 const PlayerModel = AmpersandModel.extend({
     props: {

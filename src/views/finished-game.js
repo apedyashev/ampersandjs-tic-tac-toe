@@ -1,7 +1,10 @@
 import View from  'ampersand-view'
 const templates = require('../templates');
 
-export default View.extend({
+/**
+ * View of finished game item. Used to render collection
+ */
+const FinishedGameView = View.extend({
     template: templates['includes/finished-game'],
     bindings: {
         'model.leftSideUser.model.fullInfo': {
@@ -24,3 +27,4 @@ export default View.extend({
         }
     }
 });
+export default FinishedGameView

@@ -5,7 +5,10 @@ const templates = require('../templates'),
         template: templates['includes/form-input']()
     });
 
-export default FormView.extend({
+/**
+ * Form view for player name entering see {@link https://github.com/AmpersandJS/ampersand-form-view}
+ */
+const PlayerNameForm = FormView.extend({
     fields: function() {
         return [
             new ExtendedInput({
@@ -18,3 +21,4 @@ export default FormView.extend({
         ];
     }
 });
+export default PlayerNameForm

@@ -3,7 +3,10 @@ import AmpersandPlayer  from '../game_core/ampersand-player'
 import CrossBrush  from '../game_core/cross-brush'
 import NoughtBrush  from '../game_core/nought-brush'
 
-export default AmpersandModel.extend({
+/**
+ * Model that stores game data (players and finished/unfinished state) See {@link https://ampersandjs.com/docs/#ampersand-model}
+ */
+const GameModel = AmpersandModel.extend({
     dataTypes: {
         ampersandPlayer: {
             // set called every time someone tried to set a property of this datatype
@@ -59,3 +62,4 @@ export default AmpersandModel.extend({
         });
     }
 });
+export default GameModel
