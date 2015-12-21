@@ -20,7 +20,7 @@ export default Collection.extend({
     },
 
     readFromLocalStorage: function() {
-        var existingData = localStorage[this.url];
+        const existingData = localStorage[this.url];
         if (existingData) {
             this.set(JSON.parse(existingData));
         }

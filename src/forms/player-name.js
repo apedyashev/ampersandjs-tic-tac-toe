@@ -1,9 +1,9 @@
 import FormView  from 'ampersand-form-view'
 import InputView from 'ampersand-input-view'
-let templates = require('../templates');
-let ExtendedInput = InputView.extend({
-    template: templates['includes/form-input']()
-});
+const templates = require('../templates'),
+    ExtendedInput = InputView.extend({
+        template: templates['includes/form-input']()
+    });
 
 export default FormView.extend({
     fields: function() {
@@ -14,7 +14,7 @@ export default FormView.extend({
                 value: this.model && this.model.name,
                 placeholder: 'Name',
                 parent: this
-            }),
+            })
         ];
     }
 });

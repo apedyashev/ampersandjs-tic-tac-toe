@@ -1,5 +1,5 @@
 import View from  'ampersand-view'
-let templates = require('../templates');
+const templates = require('../templates');
 
 export default View.extend({
     template: templates['includes/finished-game'],

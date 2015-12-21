@@ -47,9 +47,9 @@ app.extend({
         this.gameModel.set('isGameOver', false);
         this.board.initGame();
 
-        let addGameToLeaderBaoard = function(model, value) {
+        const addGameToLeaderBaoard = function(model, value) {
             if (value) {
-                let game = new GameModel({
+                const game = new GameModel({
                     leftSideUser: this.gameModel.get('leftSideUser'),
                     rightSideUser: this.gameModel.get('rightSideUser')
                 });
@@ -65,7 +65,7 @@ app.extend({
     // all the <a> tags in the app.
     // it expects a url pathname for example: "/costello/settings"
     navigate: function(page) {
-        var url = (page.charAt(0) === '/') ? page.slice(1) : page;
+        const url = (page.charAt(0) === '/') ? page.slice(1) : page;
         this.router.history.navigate(url, {
             trigger: true
         });

@@ -3,16 +3,17 @@ import _ from 'lodash';
 import Brush from './brush';
 
 const LTR_DIAG_INDEX = 0,
-      RTL_DIAG_INDEX = 1;
+      RTL_DIAG_INDEX = 1,
+      BOARD_DIMENSION_CELLS = 3;
 
 export default class GameBoard {
     constructor(options) {
         this._options = options;
 
-        let {width} = this._options;
-        this._cellSize = width / 3;
+        const {width} = this._options;
+        this._cellSize = width / BOARD_DIMENSION_CELLS;
 
-        this._boardMatrix = [0, 1, 2].map(x => [null, null, null]);
+        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);
         this._players = {
             noughts: this._options.noughtsPlayer,
             crosses: this._options.crossesPlayer
@@ -25,17 +26,16 @@ export default class GameBoard {
 
     _attachClickListener() {
         $(this._options.canvasEl).off('click').click((event)=> {
-            let canvasOffset = $(event.target).offset(),
+            const canvasOffset = $(event.target).offset(),
                 mouseX = event.pageX - canvasOffset.left,
-                mouseY = event.pageY - canvasOffset.top;
-
-            let clickedCell = this._translateMousePosToCellCoordinates(mouseX, mouseY);
+                mouseY = event.pageY - canvasOffset.top,
+                clickedCell = this._translateMousePosToCellCoordinates(mouseX, mouseY);
             this._doMove(clickedCell);
         });
     }
 
     _initCanvas() {
-        let {canvasEl, width, height} = this._options;
+        const {canvasEl, width, height} = this._options;
         if (width != height) {
             throw new Error('Canvas must be square');
         }
@@ -48,15 +48,15 @@ export default class GameBoard {
     }
 
     _initPointsArrays() {
-        this._rowPoints = [0, 1, 2].map(x => ({
+        this._rowPoints = [0, 1, 2].map(() => ({
             'noughts': 0,
             'crosses': 0
         }));
-        this._colPoints = [0, 1, 2].map(x => ({
+        this._colPoints = [0, 1, 2].map(() => ({
             'noughts': 0,
             'crosses': 0
         }));
-        this._diagPoints = [0, 1].map(x => ({
+        this._diagPoints = [0, 1].map(() => ({
             'noughts': 0,
             'crosses': 0
         }));
@@ -87,14 +87,14 @@ export default class GameBoard {
 
     initGame() {
         this._isGameFinished = false;
-        this._boardMatrix = [0, 1, 2].map(x => [null, null, null]);
+        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);
 
         this._initPointsArrays();
         this._setNextPlayersTurn();
     }
 
     _setNextPlayersTurn() {
-        let nextPlyerName = this._getNextPlayerName();
+        const nextPlyerName = this._getNextPlayerName();
 
         for (let key in this._players) {
             this._players[key].isMyTurn = false;
@@ -106,13 +106,13 @@ export default class GameBoard {
     draw(forceRedraw) {
         this._drawGrid();
 
-        let {width} = this._options,
-            cellSize = width / 3,
+        const {width} = this._options,
+            cellSize = width / BOARD_DIMENSION_CELLS,
             alreadyDrawnBrushes = [],
             notDrawnBrushes = [];
-        for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 3; col++) {
-                let brushData = this._boardMatrix[row][col],
+        for (let row = 0; row < BOARD_DIMENSION_CELLS; row++) {
+            for (let col = 0; col < BOARD_DIMENSION_CELLS; col++) {
+                const brushData = this._boardMatrix[row][col],
                     posX = col * cellSize,
                     posY = row * cellSize;
                 // Determine cells that have not been drawn yet (basycally only one cell). This cell will be drawn with animation
@@ -147,28 +147,28 @@ export default class GameBoard {
 
     _crossOutIfWon(useAnimation = true) {
         this._rowPoints.forEach((row, rowIndex) => {
-            if (row.noughts == 3) {
+            if (row.noughts == BOARD_DIMENSION_CELLS) {
                 this._crossOutRow(rowIndex, this._players.noughts, useAnimation);
             }
-            if (row.crosses == 3) {
+            if (row.crosses == BOARD_DIMENSION_CELLS) {
                 this._crossOutRow(rowIndex, this._players.crosses, useAnimation);
             }
         });
 
         this._colPoints.forEach((col, colIndex) => {
-            if (col.noughts == 3) {
+            if (col.noughts == BOARD_DIMENSION_CELLS) {
                 this._crossOutCol(colIndex, this._players.noughts, useAnimation);
             }
-            if (col.crosses == 3) {
+            if (col.crosses == BOARD_DIMENSION_CELLS) {
                 this._crossOutCol(colIndex, this._players.crosses, useAnimation);
             }
         });
 
         this._diagPoints.forEach((diag, diagIndex) => {
-            if (diag.noughts == 3) {
+            if (diag.noughts == BOARD_DIMENSION_CELLS) {
                 this._crossOutDiagonal(diagIndex, this._players.noughts, useAnimation);
             }
-            if (diag.crosses == 3) {
+            if (diag.crosses == BOARD_DIMENSION_CELLS) {
                 this._crossOutDiagonal(diagIndex, this._players.crosses, useAnimation);
             }
         });
@@ -179,7 +179,7 @@ export default class GameBoard {
     }
 
     _crossOutRow(rowIndex, winner) {
-        let startPoint = this._indecesToCoordinates(rowIndex, 0, 0, this._cellSize / 2),
+        const startPoint = this._indecesToCoordinates(rowIndex, 0, 0, this._cellSize / 2),
             endPoint = this._indecesToCoordinates(rowIndex, 2, this._cellSize, this._cellSize / 2);
 
         winner.isWon = true;
@@ -187,7 +187,7 @@ export default class GameBoard {
     }
 
     _crossOutCol(colIndex, winner, useAnimation = true) {
-        let startPoint = this._indecesToCoordinates(0, colIndex, this._cellSize / 2, 0),
+        const startPoint = this._indecesToCoordinates(0, colIndex, this._cellSize / 2, 0),
             endPoint = this._indecesToCoordinates(2, colIndex, this._cellSize / 2, this._cellSize);
 
         winner.isWon = true;
@@ -195,7 +195,7 @@ export default class GameBoard {
     }
 
     _crossOutDiagonal(diagIndex, winner, useAnimation) {
-        let startPoint = {
+        const startPoint = {
                 x: (diagIndex === LTR_DIAG_INDEX) ? 0 : this._options.width,
                 y: 0
             },
@@ -220,16 +220,16 @@ export default class GameBoard {
     }
 
     _doMove(clickedCell) {
-        let isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;
+        const isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;
         if (this._isGameFinished || !isGameStarted) {
             return;
         }
 
-        let {col, row} = clickedCell,
+        const {col, row} = clickedCell,
             isCellEmpty = !this._boardMatrix[row][col];
 
         if (isCellEmpty) {
-            let playerName = this._nextPlayerName;
+            const playerName = this._nextPlayerName;
             this._boardMatrix[row][col] = {
                 brush: this._players[playerName].brush,
                 wasDrawn: false
@@ -255,8 +255,8 @@ export default class GameBoard {
     }
 
     _drawGrid() {
-        let {width, height} = this._options,
-            cellSize = width / 3;
+        const {width, height} = this._options,
+            cellSize = width / BOARD_DIMENSION_CELLS;
         this._ctx.strokeRect(0, 0, width, height);
 
         // draw vertical lines
@@ -279,7 +279,8 @@ export default class GameBoard {
     }
 
     _getNextPlayerName() {
-        let names = ['noughts', 'crosses'];
+        const names = ['noughts', 'crosses'];
+        // determine the first-moving player randomly
         if (!this._nextPlayerName) {
             this._nextPlayerName = names[Math.random() < 0.5 ? 0 : 1];
         }
@@ -299,8 +300,8 @@ export default class GameBoard {
     }
 
     _translateMousePosToCellCoordinates(mouseX, mouseY) {
-        let {width} = this._options,
-            cellSize = width / 3,
+        const {width} = this._options,
+            cellSize = width / BOARD_DIMENSION_CELLS,
             col = Math.floor(mouseX / cellSize),
             row = Math.floor(mouseY / cellSize);
 

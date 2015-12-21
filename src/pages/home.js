@@ -1,4 +1,3 @@
-let templates = require('../templates');
 import app from 'ampersand-app'
 import _ from 'lodash'
 import View from 'ampersand-view'
@@ -6,6 +5,8 @@ import UserPanelView from '../views/user-panel'
 import AmpersandPlayer from '../game_core/ampersand-player'
 import NoughtBrush from '../game_core/nought-brush'
 import CrossBrush from '../game_core/cross-brush'
+
+const templates = require('../templates');
 
 export default View.extend({
     pageTitle: 'home',

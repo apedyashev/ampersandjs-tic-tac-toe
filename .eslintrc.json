@@ -8,7 +8,7 @@
         "curly": 2,
         "default-case": 2,
         "dot-notation": 2,
-        "no-magic-numbers": 2,
+        "no-magic-numbers": 1,
         "comma-dangle": [2, "never"],
         "no-cond-assign": 2,
         "no-constant-condition": 2,

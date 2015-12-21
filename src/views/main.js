@@ -8,20 +8,20 @@ import _ from 'lodash'
 import domify from 'domify'
 import localLinks from 'local-links'
 // TODO: place gulp-template-compile-commonjs to separate module that supports UMD
-let templates = require('../templates');
+const templates = require('../templates');
 
 
 export default View.extend({
     template: templates.body,
     autoRender: true,
-    initialize: function () {
+    initialize: function() {
         // this marks the correct nav item selected
         this.listenTo(app, 'page', this.handleNewPage);
     },
     events: {
         'click a[href]': 'handleLinkClick'
     },
-    render: function () {
+    render: function() {
         // some additional stuff we want to add to the document head
         document.head.appendChild(domify(templates.head()));
 
@@ -30,7 +30,7 @@ export default View.extend({
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
-            show: function (newView, oldView) {
+            show: function(newView /* , oldView*/) {
                 // it's inserted and rendered for me
                 document.title = _.result(newView, 'pageTitle') || 'AmpersandJS Tic-Tac-Toe implementation ';
                 document.scrollTop = 0;
@@ -43,12 +43,10 @@ export default View.extend({
             }
         });
 
-        // setting a favicon for fun (note, it's dynamic)
-        //setFavicon('/favicon.ico');
         return this;
     },
 
-    handleNewPage: function (view) {
+    handleNewPage: function(view) {
         // tell the view switcher to render the new one
         this.pageSwitcher.set(view);
 
@@ -59,13 +57,13 @@ export default View.extend({
     // Handles all `<a>` clicks in the app not handled
     // by another view. This lets us determine if this is
     // a click that should be handled internally by the app.
-    handleLinkClick: function (e) {
+    handleLinkClick: function(e) {
         // This module determines whether a click event is
         // a local click (making sure the for modifier keys, etc)
         // and dealing with browser quirks to determine if this
         // event was from clicking an internal link. That we should
         // treat like local navigation.
-        var localPath = localLinks.pathname(e);
+        const localPath = localLinks.pathname(e);
 
         if (localPath) {
             e.preventDefault();
@@ -73,11 +71,11 @@ export default View.extend({
         }
     },
 
-    updateActiveNav: function () {
-        var path = window.location.pathname.slice(1);
+    updateActiveNav: function() {
+        const path = window.location.pathname.slice(1);
 
-        this.queryAll('.nav a[href]').forEach(function (aTag) {
-            var aPath = aTag.pathname.slice(1);
+        this.queryAll('.nav a[href]').forEach(function(aTag) {
+            const aPath = aTag.pathname.slice(1);
 
             if ((!aPath && !path) || (aPath && path.indexOf(aPath) === 0)) {
                 dom.addClass(aTag.parentNode, 'active');

@@ -1,7 +1,8 @@
 import View from 'ampersand-view'
 import PlayerNameForm from '../forms/player-name'
 
-var templates = require('../templates');
+
+const templates = require('../templates');
 
 export default View.extend({
     template: templates['includes/user-panel'],

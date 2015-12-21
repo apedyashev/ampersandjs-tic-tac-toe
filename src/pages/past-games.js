@@ -1,7 +1,7 @@
 import View from 'ampersand-view'
 import FinishedGameView from '../views/finished-game'
 
-let templates = require('../templates');
+const templates = require('../templates');
 
 export default View.extend({
     pageTitle: 'collection demo',

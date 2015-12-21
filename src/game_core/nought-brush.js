@@ -14,29 +14,33 @@ export default class NoughtBrush extends Brush {
      */
     draw(ctx, cellPosX, cellPosY, cellSize, useAnimation = true) {
         const START_ANGLE = -50,
-              END_ANGLE   = 315;
-        let radius = (cellSize / 2) - 15,
-            x0 = cellPosX  + (cellSize / 2),
-            y0 = cellPosY  + (cellSize / 2),
-            penWeight = 3,
-            timeoutValue = 100,
-            fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};
+              END_ANGLE   = 315,
+              PI_IN_DEGREES = 180,
+              TWO_PI_IN_DEGREES = 360,
+              // the difference between pen weight on the start and on the end of circle
+              PEN_WEIGHT__START_END_DIFF = 10,
+              x0 = cellPosX  + (cellSize / 2),
+              y0 = cellPosY  + (cellSize / 2),
+              fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};
+        let radius = (cellSize / 2) - this._cellPadding,
+            penWeight = this._initialPenWeight,
+            timeoutValue = 100;
 
         ctx.fillStyle = this._color;
 
         return new Promise((resolve) => {
-            for (var alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {
+            for (let alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {
                 (alpha => {
                     fnTimeout(() => {
-                        let x = x0 + radius * Math.cos(alpha * Math.PI / 180),
-                            y = y0 + radius * Math.sin(alpha * Math.PI / 180);
+                        const x = x0 + radius * Math.cos(alpha * Math.PI / PI_IN_DEGREES),
+                            y = y0 + radius * Math.sin(alpha * Math.PI / PI_IN_DEGREES);
 
                         ctx.beginPath();
                         ctx.fillRect(x, y, penWeight, penWeight);
                         ctx.stroke();
 
-                        penWeight += 4 / 360;
-                        radius += 10 / 360;
+                        penWeight += (this._maxPenWeight - this._initialPenWeight) / TWO_PI_IN_DEGREES;
+                        radius += PEN_WEIGHT__START_END_DIFF / TWO_PI_IN_DEGREES;
                         if (alpha == (END_ANGLE - 1)) {
                             resolve();
                         }
