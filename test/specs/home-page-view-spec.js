@@ -40,11 +40,11 @@ describe('The HomePage view', function() {
     });
 
     it('ask left-side user for his name', function() {
-        expect(this.home.render().query('#left-player .panel-title').innerText).toContain('Please eneter your name');
+        expect(this.home.render().query('#left-player .panel-title').innerText).toContain('Please enter your name');
     });
 
     it('ask right-side user for his name', function() {
-        expect(this.home.render().query('#right-player .panel-title').innerText).toContain('Please eneter your name');
+        expect(this.home.render().query('#right-player .panel-title').innerText).toContain('Please enter your name');
     });
 
     it('reflects name set on gameModel user in left panel', function() {
@@ -55,5 +55,57 @@ describe('The HomePage view', function() {
     it('reflects name set on gameModel user in left panel', function() {
         this.gameModel.rightSideUser.model.set('name', 'Right User');
         expect(this.home.render().query('#right-player .panel-title').innerText).toContain('Right User');
+    });
+
+    it('shows error message and adds error class when empty string entered to input for the left user', function() {
+        this.home.render();
+        const input = this.home.query('#left-player input[type="text"]'),
+            button = this.home.query('#left-player button[type="submit"]'),
+            name = `Left user ${(new Date).getTime()}`;
+
+        input.value = '';
+        button.click();
+
+        expect(this.home.query('#left-player .form-group').className).toContain('has-error');
+        expect(this.home.query('#left-player span[data-hook="message-text"]').innerText).toEqual('This field is required.');
+        expect(this.home.query('#left-player .panel-title').innerText).toContain('Please enter your name');
+    });
+
+    it('reflects name entered to input for the left user', function() {
+        this.home.render();
+        const input = this.home.query('#left-player input[type="text"]'),
+            button = this.home.query('#left-player button[type="submit"]'),
+            name = `Left user ${(new Date).getTime()}`;
+
+        input.value = name;
+        button.click();
+
+        expect(this.home.query('#left-player .panel-title').innerText).toContain(name);
+    });
+
+    it('reflects name entered to input for the right user', function() {
+        this.home.render();
+        const input = this.home.query('#right-player input[type="text"]'),
+            button = this.home.query('#right-player button[type="submit"]'),
+            name = `Right user ${(new Date).getTime()}`;
+
+        input.value = name;
+        button.click();
+
+        expect(this.home.query('#right-player .panel-title').innerText).toContain(name);
+    });
+
+    it('shows error message and adds error class when empty string entered to input for the right user', function() {
+        this.home.render();
+        const input = this.home.query('#right-player input[type="text"]'),
+            button = this.home.query('#right-player button[type="submit"]'),
+            name = `Right user ${(new Date).getTime()}`;
+
+        input.value = '';
+        button.click();
+
+        expect(this.home.query('#right-player .form-group').className).toContain('has-error');
+        expect(this.home.query('#right-player span[data-hook="message-text"]').innerText).toEqual('This field is required.');
+        expect(this.home.query('#right-player .panel-title').innerText).toContain('Please enter your name');
     });
 });
