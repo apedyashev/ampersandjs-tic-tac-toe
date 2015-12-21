@@ -20,7 +20,7 @@ npm install -g gulp
 gulp watch
 ```
 
-### Also you may require following gulp tasks:
+### Following commands may be also useful:
 ```bash
 # code linting
 gulp lint
@@ -28,7 +28,8 @@ gulp lint
 #update documentation
 gulp docs
 
-#gulp test TBD
+#run tests
+gulp test
 ```
 
 Tested on node v5.2.0

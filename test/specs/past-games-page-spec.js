@@ -6,7 +6,7 @@ import NoughtBrush from '../../src/game_core/nought-brush'
 import CrossBrush from '../../src/game_core/cross-brush'
 import app from 'ampersand-app'
 
-describe('The HomePage view', function() {
+describe('The PastGamesPageView view', function() {
     beforeEach(function() {
         this.games = new GamesCollection();
         // url is used as a key when reading from localStorage. Unuique url guarantiees that collection will be empty
