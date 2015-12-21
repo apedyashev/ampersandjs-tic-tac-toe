@@ -10,7 +10,6 @@ import AmpersandPlayer from './game_core/ampersand-player'
 import NoughtBrush from './game_core/nought-brush'
 import CrossBrush from './game_core/cross-brush'
 
-window.app = app;
 // Extends our main app singleton
 app.extend({
     games: new GamesCollection(),
