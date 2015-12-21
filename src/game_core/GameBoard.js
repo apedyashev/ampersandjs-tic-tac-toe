@@ -46,7 +46,7 @@ class GameBoard {
 
         this._ctx = canvasEl[0].getContext('2d');
 
-        this.draw();
+        this.draw(true);
     }
 
     _initPointsArrays() {
@@ -196,7 +196,7 @@ class GameBoard {
         this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
     }
 
-    _crossOutDiagonal(diagIndex, winner) {
+    _crossOutDiagonal(diagIndex, winner, useAnimation) {
         let startPoint = {
                 x: (diagIndex === LTR_DIAG_INDEX) ? 0 : this._options.width,
                 y: 0
@@ -206,7 +206,7 @@ class GameBoard {
                 y:  this._options.height
             };
         winner.isWon = true;
-        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor);
+        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
     }
 
     _indecesToCoordinates(rowIndex, colIndex, xCorrection = 0, yCorrection = 0) {
@@ -217,6 +217,7 @@ class GameBoard {
     }
 
     _drawCrossOutLine(startPoint, endPoint, brushColor, useAnimation) {
+        console.log(brushColor, useAnimation);
         this._crossOutBrush.color = brushColor;
         this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, useAnimation);
     }
