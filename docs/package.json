@@ -44,7 +44,7 @@
     "gulp-jst": "^0.1.1",
     "gulp-jst2": "^0.1.4",
     "gulp-rename": "^1.2.0",
-    "gulp-template-compile": "^1.1.0",
+    "gulp-template-compile-commonjs": "git+https://github.com/apedyashev/gulp-template-compile-commonjs.git#0.0.3",
     "gulp-watch": "^4.3.5",
     "lodash": "^2.4.1",
     "rimraf": "~2.2.8",

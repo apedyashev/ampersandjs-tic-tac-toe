@@ -70,7 +70,9 @@ const PlayerNameForm = FormView.extend({
                 name: &apos;name&apos;,
                 value: this.model &amp;&amp; this.model.name,
                 placeholder: &apos;Name&apos;,
-                parent: this
+                parent: this,
+                validityClassSelector: &apos;.form-group&apos;,
+                invalidClass: &apos;has-error&apos;
             })
         ];
     }
