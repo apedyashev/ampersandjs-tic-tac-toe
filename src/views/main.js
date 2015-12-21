@@ -60,13 +60,13 @@ module.exports = View.extend({
     // by another view. This lets us determine if this is
     // a click that should be handled internally by the app.
     handleLinkClick: function (e) {
-        // This module determines whether a click event is 
+        // This module determines whether a click event is
         // a local click (making sure the for modifier keys, etc)
         // and dealing with browser quirks to determine if this
         // event was from clicking an internal link. That we should
         // treat like local navigation.
         var localPath = localLinks.pathname(e);
-        
+
         if (localPath) {
             e.preventDefault();
             app.navigate(localPath);

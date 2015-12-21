@@ -1,9 +1,10 @@
-var PageView = require('./base');
+//var PageView = require('./base');
+var View = require('ampersand-view');
 var templates = require('../templates');
 var FinishedGameView = require('../views/finished-game');
 
 
-module.exports = PageView.extend({
+module.exports = View.extend({
     pageTitle: 'collection demo',
     template: templates['pages/past-games'],
     bindings: {
@@ -14,7 +15,7 @@ module.exports = PageView.extend({
             no: ''
         }
     },
-    render: function () {
+    render: function() {
         this.renderWithTemplate();
         this.renderCollection(this.collection, FinishedGameView, this.queryByHook('past-games-list'));
     }

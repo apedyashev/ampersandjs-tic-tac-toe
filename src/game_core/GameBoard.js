@@ -8,7 +8,6 @@ const LTR_DIAG_INDEX = 0,
 
 class GameBoard {
     constructor(options) {
-
         this._options = options;
 
         let {width} = this._options;
@@ -98,7 +97,7 @@ class GameBoard {
     _setNextPlayersTurn() {
         let nextPlyerName = this._getNextPlayerName();
 
-        for(let key in this._players) {
+        for (let key in this._players) {
             this._players[key].isMyTurn = false;
         }
 
@@ -112,8 +111,8 @@ class GameBoard {
             cellSize = width / 3,
             alreadyDrawnBrushes = [],
             notDrawnBrushes = [];
-        for(let row = 0; row < 3; row++) {
-            for(let col = 0; col < 3; col++) {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
                 let brushData = this._boardMatrix[row][col],
                     posX = col * cellSize,
                     posY = row * cellSize;
@@ -203,7 +202,7 @@ class GameBoard {
             },
             endPoint = {
                 x: (diagIndex === LTR_DIAG_INDEX) ?  this._options.width : 0,
-                y:  this._options.height
+                y: this._options.height
             };
         winner.isWon = true;
         this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
@@ -217,7 +216,6 @@ class GameBoard {
     }
 
     _drawCrossOutLine(startPoint, endPoint, brushColor, useAnimation) {
-        console.log(brushColor, useAnimation);
         this._crossOutBrush.color = brushColor;
         this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, useAnimation);
     }
@@ -290,7 +288,7 @@ class GameBoard {
             if (this._nextPlayerName == names[0]) {
                 this._nextPlayerName = names[1];
             }
-            else if(this._nextPlayerName == names[1]){
+            else if (this._nextPlayerName == names[1]) {
                 this._nextPlayerName = names[0];
             }
             else {

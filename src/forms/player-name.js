@@ -6,7 +6,7 @@ var ExtendedInput = InputView.extend({
 });
 
 module.exports = FormView.extend({
-    fields: function () {
+    fields: function() {
         return [
             new ExtendedInput({
                 label: 'Name',

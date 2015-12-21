@@ -2,13 +2,10 @@ var app = require('ampersand-app');
 var _ = require('lodash');
 var config = require('clientconfig');
 var Router = require('./router');
-var MainView = require('./views/main');
-var Me = require('./models/me');
-// TODO: get rid of it
-var People = require('./models/persons');
 var Games = require('./collections/games');
 var domReady = require('domready');
 var $ = require('jquery');
+var MainView = require('./views/main');
 
 var GameModel = require('./models/game');
 
@@ -23,8 +20,6 @@ import {CrossBrush} from './game_core/CrossBrush';
 
 // Extends our main app singleton
 app.extend({
-    me: new Me(),
-    people: new People(),
     games: new Games(),
     router: new Router(),
     noughtsColor: '#006398',
@@ -33,7 +28,7 @@ app.extend({
         rightSideUser: new AmpersandPlayer(new CrossBrush(), {symbol: 'cross'})
     }),
     board: new GameBoard({
-        width:  360,
+        width: 360,
         height: 360
     }),
     // This is where it all starts
@@ -47,7 +42,9 @@ app.extend({
         // this kicks off our backbutton tracking (browser history)
         // and will cause the first matching handler in the router
         // to fire.
-        this.router.history.start({ pushState: true });
+        this.router.history.start({
+            pushState: true
+        });
 
         this.gameModel.get('leftSideUser').brushColor = this.noughtsColor;
         this.createNewGame(this.gameModel.get('leftSideUser'), this.gameModel.get('rightSideUser'));

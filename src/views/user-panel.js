@@ -70,11 +70,11 @@ module.exports = View.extend({
         playerInfoForm: {
             container: 'form',
             waitFor: 'model.isNotInitialized',
-            prepareView: function (el) {
+            prepareView: function(el) {
                 return new PlayerNameForm({
                     el: el,
                     model: this.model,
-                    submitCallback: function (data) {
+                    submitCallback: function(data) {
                         console.log(data);
                         this.model.set(data);
                     }

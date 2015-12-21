@@ -1,4 +1,4 @@
-var PageView = require('./base');
+var View = require('ampersand-view');
 var templates = require('../templates');
 var $ = require('jquery');
 var UserPanelView = require('../views/user-panel');
@@ -9,7 +9,7 @@ import {AmpersandPlayer} from '../game_core/AmpersandPlayer';
 import {NoughtBrush} from '../game_core/NoughtBrush';
 import {CrossBrush} from '../game_core/CrossBrush';
 
-module.exports = PageView.extend({
+module.exports = View.extend({
     pageTitle: 'home',
     template: templates['pages/home'],
     events: {
@@ -28,7 +28,7 @@ module.exports = PageView.extend({
         this.model.on('change:leftSideUser', _.bind(this.render, this));
         this.model.on('change:rightSideUser', _.bind(this.render, this));
     },
-    render: function () {
+    render: function() {
         this.renderWithTemplate();
 
         this.renderSubview(new UserPanelView({

@@ -2,14 +2,14 @@ var AmpersandModel = require('ampersand-model');
 import {AmpersandPlayer}  from '../game_core/AmpersandPlayer'
 
 module.exports = AmpersandModel.extend({
-    dataTypes : {
-        ampersandPlayer : {
+    dataTypes: {
+        ampersandPlayer: {
             // set called every time someone tried to set a property of this datatype
-            set : function(newVal) {
-                if(newVal instanceof AmpersandPlayer) {
+            set: function(newVal) {
+                if (newVal instanceof AmpersandPlayer) {
                     return {
-                        val : newVal,
-                        type : 'ampersandPlayer'
+                        val: newVal,
+                        type: 'ampersandPlayer'
                     };
                 }
                 try {
@@ -17,15 +17,15 @@ module.exports = AmpersandModel.extend({
                     var player = new AmpersandPlayer(newVal._brush, newVal._user);
 
                     return {
-                        val : player,
-                        type : 'ampersandPlayer'
+                        val: player,
+                        type: 'ampersandPlayer'
                     };
                 }
-                catch(parseError) {
+                catch (parseError) {
                     // return the value with what we think its type is
                     return {
-                        val : newVal,
-                        type : typeof newVal
+                        val: newVal,
+                        type: typeof newVal
                     };
                 }
             }

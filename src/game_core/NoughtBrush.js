@@ -25,7 +25,7 @@ class NoughtBrush extends Brush {
         ctx.fillStyle = this._color;
 
         return new Promise((resolve) => {
-            for(var alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {
+            for (var alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {
                 (alpha => {
                     fnTimeout(() => {
                         let x = x0 + radius * Math.cos(alpha * Math.PI / 180),

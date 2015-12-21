@@ -5,7 +5,7 @@ module.exports = Collection.extend({
     model: Game,
     url: '/api/games',
 
-    initialize: function () {
+    initialize: function() {
         // Attempt to read from localStorage right away
         // this also adds them to the collection
         this.readFromLocalStorage();
@@ -15,11 +15,11 @@ module.exports = Collection.extend({
         this.on('all', this.writeToLocalStorage, this);
     },
 
-    writeToLocalStorage: function () {
+    writeToLocalStorage: function() {
         localStorage[this.url] = JSON.stringify(this);
     },
 
-    readFromLocalStorage: function () {
+    readFromLocalStorage: function() {
         var existingData = localStorage[this.url];
         if (existingData) {
             this.set(JSON.parse(existingData));
