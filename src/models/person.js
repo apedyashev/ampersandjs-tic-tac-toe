@@ -23,15 +23,9 @@ let Person = AmpersandModel.extend({
             }
         },
         fullInfo: {
-            deps: ['name', 'isWon', 'symbol'],
+            deps: ['name', 'isWon'],
             fn: function() {
                 let info = '';
-                if (this.symbol == 'nought') {
-                    info += 'O ';
-                }
-                else if (this.symbol == 'cross') {
-                    info += 'X ';
-                }
                 info += this.name;
 
                 if (this.isWon) {

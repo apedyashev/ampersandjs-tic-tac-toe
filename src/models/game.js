@@ -42,7 +42,7 @@ module.exports = AmpersandModel.extend({
         this.leftSideUser.model.on('change:name', () => {
             let leftSideUserName = this.leftSideUser.model.get('name'),
                 rightSideUSerName = this.rightSideUser.model.get('name');
-            if (leftSideUserName && (leftSideUserName === rightSideUSerName)) {
+            if (leftSideUserName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
                 this.leftSideUser.model.set('name', leftSideUserName + ' #1');
             }
         });
@@ -50,7 +50,7 @@ module.exports = AmpersandModel.extend({
         this.rightSideUser.model.on('change:name', () => {
             let leftSideUserName = this.leftSideUser.model.get('name'),
                 rightSideUSerName = this.rightSideUser.model.get('name');
-            if (rightSideUSerName && (leftSideUserName === rightSideUSerName)) {
+            if (rightSideUSerName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
                 this.rightSideUser.model.set('name', rightSideUSerName + ' #1');
             }
         });

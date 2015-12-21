@@ -4,7 +4,6 @@ class Brush {
     }
 
     drawLine(ctx, startX, startY, endX, endY, useAnimation = true, cbDone = null) {
-        console.log(startX, startY, endX, endY, useAnimation, cbDone);
         let k = (endY - startY) / (endX - startX),
             b = startY - k * startX,
             minX = Math.min(startX, endX),
@@ -43,7 +42,6 @@ class Brush {
                         ctx.fillRect(x, y, penWeight, penWeight);
                         ctx.stroke();
                         penWeight -= 4 / (maxX - minX);
-                        console.log('cbDone', cbDone, x, maxX);
                         if (cbDone && (x == maxX)) {
                             cbDone();
                         }

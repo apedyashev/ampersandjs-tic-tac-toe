@@ -13,7 +13,7 @@ return __p
 (function() {
 module.exports["includes/finished-game"] = function(data) {
 var __t, __p = '';
-__p += '<li class="person list-group-item container"><span data-hook="left-user-name left-user-win-class" class="label player-name"></span><span></span> vs <span data-hook="right-user-name right-user-win-class" class="label player-name"></span></li>';
+__p += '<tr><td class="player-name"><span data-hook="left-user-name left-user-win-class" class="label pull-right"></span></td><td class="player-name"><span data-hook="right-user-name right-user-win-class" class="label pull-left"></span></td></tr>';
 return __p
 }})();
 (function() {
@@ -49,7 +49,7 @@ return __p
 (function() {
 module.exports["pages/past-games"] = function(data) {
 var __t, __p = '';
-__p += '<section class="page past-games"><h2>Past games</h2><ul data-hook="past-games-list" class="list-group"><li data-hook="collection-is-empty" class="person list-group-item container text-center"><h4>List is empty</h4></li></ul></section>';
+__p += '<section class="page past-games"><h2>Past games</h2><table class="table table-striped table-condensed"><thead><tr><th class="left-side-user"><span class="pull-right"><i class="fa fa-circle-o"></i> Left-side player</span></th><th class="right-side-user"><span></span><i class="fa fa-times"></i> Right-side player</th></tr></thead><tbody data-hook="past-games-list"><tr data-hook="collection-is-empty"><td colspan="2" class="text-center"><h4>No winners yet</h4></td></tr></tbody></table></section>';
 return __p
 }})();
 (function() {

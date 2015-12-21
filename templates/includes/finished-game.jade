@@ -1,7 +1,5 @@
-li.person.list-group-item.container
-    span.label.player-name(data-hook="left-user-name left-user-win-class")
-    span
-    = ' '
-    | vs
-    = ' '
-    span.label.player-name(data-hook="right-user-name right-user-win-class")
+tr
+    td.player-name
+        span.label.pull-right(data-hook="left-user-name left-user-win-class")
+    td.player-name
+        span.label.pull-left(data-hook="right-user-name right-user-win-class")

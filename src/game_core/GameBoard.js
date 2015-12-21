@@ -218,7 +218,6 @@ class GameBoard {
 
     _drawCrossOutLine(startPoint, endPoint, brushColor, useAnimation) {
         this._crossOutBrush.color = brushColor;
-        console.log('useAnimation', useAnimation);
         this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, useAnimation);
     }
 
