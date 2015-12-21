@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/game_core/player.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/apedyashev/ampersandjs-tic-tac-toe.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/game_core/player.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Brush from &apos;./brush&apos;
+
+/**
+ * Base player class which provides interface that is used by {@link GameBoard}.
+ * It supposed to be used as a base class to create framework-specific implementation
+ *
+ * @interface
+ */
+export default class Player {
+    /**
+     * Initialized the player with an instance of a class derived from {@link Brush}
+     * @param {CrossBrush|NoughtBrush}  brush - object that implements drawing function
+     *
+     * @throws instance of the Error
+     */
+    constructor(brush) {
+        if (!brush || !(brush instanceof Brush)) {
+            throw new Error(&apos;Players constructor accepts instance of Brush&apos;);
+        }
+        this._brush = brush;
+    }
+
+    /**
+     * Returns player&apos;s brush
+     * @returns {CrossBrush|NoughtBrush}
+     */
+    get brush() {
+        return this._brush;
+    }
+
+    /**
+     * Returns player name
+     * @returns  {string} player name
+     */
+    get name() {
+        return this._name;
+    }
+
+    /**
+     * Sets player&apos;s name
+     * @param {string} name - player&apos;s name
+     */
+    set name(name) {
+        this._name = name;
+    }
+
+    /**
+     * Sets isMyTurn flag
+     * @param {boolean} val - new value
+     */
+    set isMyTurn(val) {
+        this._isMyTurn = val;
+    }
+
+    /**
+     * Gets isMyTurn flag
+     * @returns {boolean} - isMyTurn flag
+     */
+    get isMyTurn() {
+        return this._isMyTurn;
+    }
+
+    /**
+     * Sets isWon flag
+     * @param {boolean} val - isWon flag
+     */
+    set isWon(val) {
+        this._isWon = val;
+    }
+
+    /**
+     * Returns isWon flag
+     * @returns {boolean}
+     */
+    get isWon() {
+        return this._isWon;
+    }
+
+    /**
+     * Returns isInitialized. Must be overriden by derived class
+     *
+     * @throws {Error}
+     */
+    get isInitialized() {
+        throw new Error(&apos;isInitialized is not implemented for Player&apos;);
+    }
+
+    /**
+     * Sets color of player&apos;s brush
+     * @param {string} val - Hex value of color. E.g. &apos;#fcf&apos;
+     */
+    set brushColor(val) {
+        this._brush.color = val;
+    }
+
+    /**
+     * Returns color of player&apos;s brush
+     * @returns {string}
+     */
+    get brushColor() {
+        return this._brush.color;
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

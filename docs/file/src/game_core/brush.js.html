@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/game_core/brush.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/apedyashev/ampersandjs-tic-tac-toe.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/game_core/brush.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Class which implemets drawing on a canvas.
+ * It supposed to be used as a base class to for classes that implement drawing of crosses or noughts
+ *
+ * @interface
+ */
+export default class Brush {
+    /**
+     * Initializes the brush with color
+     *
+     * @param {string} color - hex value of brush color
+     */
+    constructor(color = &apos;#990000&apos;) {
+        this._color = color;
+        this._cellPadding = 15;
+        this._initialPenWeight = 3;
+        this._maxPenWeight = 7;
+    }
+
+    /**
+     * Drawing function that must be implemented in derived class
+     *
+     * @throws {Error}
+     */
+    draw() {
+        throw new Error(&apos;Brush::draw must be implemented in derived class&apos;);
+    }
+
+    /**
+     * Draws line on the canvas using animation (can be disabled)
+     * @param {native} ctx - 2d context of canvas
+     * @param {number} startX - x position of starting point
+     * @param {number} startY - y position of starting point
+     * @param {number} endX - x position of end point
+     * @param {number} endY - y position of end point
+     * @param {boolean} useAnimation - turns animation on or off
+     *
+     * @returns {Promise}
+     */
+    drawLine(ctx, startX, startY, endX, endY, useAnimation = true) {
+        return new Promise((resolve) =&gt; {
+            const   k = (endY - startY) / (endX - startX),
+                b = startY - k * startX,
+                minX = Math.min(startX, endX),
+                maxX = Math.max(startX, endX),
+                // setImmediate is not crossbrowser, so simple function that calls callback
+                fnTimeout = useAnimation ? setTimeout : (fn) =&gt; {fn()};
+            let penWeight = 7,
+                timeoutValue = 100;
+
+            ctx.fillStyle = this._color;
+
+            if (startX == endX) {
+                // draw vertical line without using a formula (because there is devision by zero when calculatin b
+                // for the formula y = kx + b )
+                const minY = Math.min(startY, endY),
+                    maxY = Math.max(startY, endY);
+
+                for (let y = minY; y &lt;= maxY; y++) {
+                    (y =&gt; {
+                        fnTimeout(() =&gt; {
+                            ctx.beginPath();
+                            ctx.fillRect(startX, y, penWeight, penWeight);
+                            ctx.stroke();
+                            // we want different pen weight in the start and and pf the line
+                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxY - minY);
+                            if (y == maxY) {
+                                resolve();
+                            }
+                        }, timeoutValue++);
+                    })(y);
+                }
+            }
+            else {
+                // draw line without using  formula y = kx + b
+                for (let x = minX; x &lt;= maxX; x++) {
+                    (x =&gt; {
+                        fnTimeout(() =&gt; {
+                            const y = k * x + b;
+                            ctx.beginPath();
+                            ctx.fillRect(x, y, penWeight, penWeight);
+                            ctx.stroke();
+                            // we want different pen weight in the start and and pf the line
+                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxX - minX);
+                            if (x == maxX) {
+                                resolve();
+                            }
+                        }, timeoutValue++);
+                    })(x);
+                }
+            }
+        });
+    }
+
+    /**
+     * Sets color of the brush
+     * @param {string} val - Hex value of color. E.g &apos;#fcf&apos;
+     */
+    set color(val) {
+        this._color = val;
+    }
+
+    /**
+     * Returns color of the brush
+     * @returns {string}
+     */
+    get color() {
+        return this._color;
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

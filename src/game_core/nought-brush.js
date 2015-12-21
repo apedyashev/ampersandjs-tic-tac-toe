@@ -7,10 +7,11 @@ export default class NoughtBrush extends Brush {
     /**
      * Draws nought in the center of given cell
      *
-     * @param ctx       canvas 2d context
-     * @param cellPosX  X position of top left corner of the cell
-     * @param cellPosY  Y position of top left corner of the cell
-     * @param cellSize  cell's width (or height, because cell is supposed to be square)
+     * @param {native} ctx - canvas 2d context
+     * @param {number} cellPosX - X position of top left corner of the cell
+     * @param {number} cellPosY - Y position of top left corner of the cell
+     * @param {number} cellSize - cell's width (or height, because cell is supposed to be square)
+     * @param {boolean} useAnimation - enables or disables animation
      */
     draw(ctx, cellPosX, cellPosY, cellSize, useAnimation = true) {
         const START_ANGLE = -50,
@@ -39,6 +40,7 @@ export default class NoughtBrush extends Brush {
                         ctx.fillRect(x, y, penWeight, penWeight);
                         ctx.stroke();
 
+                        // we want different pen weight and radius in the start and and pf the circle
                         penWeight += (this._maxPenWeight - this._initialPenWeight) / TWO_PI_IN_DEGREES;
                         radius += PEN_WEIGHT__START_END_DIFF / TWO_PI_IN_DEGREES;
                         if (alpha == (END_ANGLE - 1)) {

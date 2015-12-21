@@ -1,6 +1,9 @@
 import AmpersandModel  from 'ampersand-model'
 
-export default AmpersandModel.extend({
+/**
+ * Model to store player's data
+ */
+const PlayerModel = AmpersandModel.extend({
     props: {
         id: 'any',
         name: ['string', true, ''],
@@ -35,3 +38,4 @@ export default AmpersandModel.extend({
         }
     }
 });
+export default PlayerModel

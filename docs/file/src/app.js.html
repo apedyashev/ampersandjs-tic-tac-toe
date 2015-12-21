@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/app.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/apedyashev/ampersandjs-tic-tac-toe.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/app.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import app from &apos;ampersand-app&apos;
+import _ from &apos;lodash&apos;
+import domReady from &apos;domready&apos;
+import AppRouter from &apos;./router&apos;
+import GamesCollection from &apos;./collections/games&apos;
+import MainView from &apos;./views/main&apos;
+import GameModel from &apos;./models/game&apos;
+import GameBoard from &apos;./game_core/game-board&apos;;
+import AmpersandPlayer from &apos;./game_core/ampersand-player&apos;;
+import NoughtBrush from &apos;./game_core/nought-brush&apos;;
+import CrossBrush from &apos;./game_core/cross-brush&apos;;
+
+// Extends our main app singleton
+app.extend({
+    games: new GamesCollection(),
+    router: new AppRouter(),
+    noughtsColor: &apos;#006398&apos;,
+    gameModel: new GameModel({
+        leftSideUser: new AmpersandPlayer(new NoughtBrush(), {symbol: &apos;nought&apos;}),
+        rightSideUser: new AmpersandPlayer(new CrossBrush(), {symbol: &apos;cross&apos;})
+    }),
+    board: new GameBoard({
+        width: 360,
+        height: 360
+    }),
+    // This is where it all starts
+    init: function() {
+        // Create and attach our main view
+        this.mainView = new MainView({
+            model: this.me,
+            el: document.body
+        });
+
+        // this kicks off our backbutton tracking (browser history)
+        // and will cause the first matching handler in the router
+        // to fire.
+        this.router.history.start({
+            pushState: true
+        });
+
+        this.gameModel.get(&apos;leftSideUser&apos;).brushColor = this.noughtsColor;
+        this.createNewGame(this.gameModel.get(&apos;leftSideUser&apos;), this.gameModel.get(&apos;rightSideUser&apos;));
+    },
+    createNewGame: function(leftSideUser, rightSideUser) {
+        this.board.noughtsPlayer = leftSideUser;
+        this.board.crossesPlayer = rightSideUser;
+        this.gameModel.set(&apos;isGameOver&apos;, false);
+        this.board.initGame();
+
+        const addGameToLeaderBaoard = function(model, value) {
+            if (value) {
+                const game = new GameModel({
+                    leftSideUser: this.gameModel.get(&apos;leftSideUser&apos;),
+                    rightSideUser: this.gameModel.get(&apos;rightSideUser&apos;)
+                });
+                this.gameModel.set(&apos;isGameOver&apos;, true);
+                this.games.add(game);
+            }
+        };
+        this.board.noughtsPlayer.model.on(&apos;change:isWon&apos;, _.bind(addGameToLeaderBaoard, this));
+        this.board.crossesPlayer.model.on(&apos;change:isWon&apos;, _.bind(addGameToLeaderBaoard, this));
+    },
+    // This is a helper for navigating around the app.
+    // this gets called by a global click handler that handles
+    // all the &lt;a&gt; tags in the app.
+    // it expects a url pathname for example: &quot;/costello/settings&quot;
+    navigate: function(page) {
+        const url = (page.charAt(0) === &apos;/&apos;) ? page.slice(1) : page;
+        this.router.history.navigate(url, {
+            trigger: true
+        });
+    }
+});
+
+// run it on domReady
+domReady(_.bind(app.init, app));
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

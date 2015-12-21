@@ -17,6 +17,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var LessPluginCleanCSS = require('less-plugin-clean-css'),
     cleancss = new LessPluginCleanCSS({ advanced: true });
 var eslint = require('gulp-eslint');
+var esdoc = require('gulp-esdoc');
 
 var config = {
   entryFile: './src/app.js',
@@ -107,6 +108,14 @@ gulp.task('lint', function () {
         // To have the process exit with an error code (1) on
         // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
+});
+
+/**
+ * https://www.npmjs.com/package/gulp-esdoc
+ */
+gulp.task('docs', function () {
+    return gulp.src("./src")
+        .pipe(esdoc({ destination: "./docs" }));
 });
 
 gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {

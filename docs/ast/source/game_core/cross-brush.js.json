@@ -1,0 +1,1535 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Brush",
+            "range": [
+              7,
+              12
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            7,
+            12
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./brush",
+        "raw": "'./brush'",
+        "range": [
+          18,
+          27
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 18
+          },
+          "end": {
+            "line": 1,
+            "column": 27
+          }
+        },
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Draws cross on the canvas\n *\n * @implements {Brush}\n ",
+            "range": [
+              29,
+              91
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "range": [
+        0,
+        92
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 0
+        }
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "CrossBrush",
+          "range": [
+            113,
+            123
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 21
+            },
+            "end": {
+              "line": 8,
+              "column": 31
+            }
+          }
+        },
+        "superClass": {
+          "type": "Identifier",
+          "name": "Brush",
+          "range": [
+            132,
+            137
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 40
+            },
+            "end": {
+              "line": 8,
+              "column": 45
+            }
+          }
+        },
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "draw",
+                "range": [
+                  598,
+                  602
+                ],
+                "loc": {
+                  "start": {
+                    "line": 20,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 20,
+                    "column": 8
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "ctx",
+                    "range": [
+                      603,
+                      606
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 12
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "posX",
+                    "range": [
+                      608,
+                      612
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 18
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "posY",
+                    "range": [
+                      614,
+                      618
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 24
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "cellSize",
+                    "range": [
+                      620,
+                      628
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 26
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 34
+                      }
+                    }
+                  },
+                  {
+                    "type": "AssignmentPattern",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "useAnimation",
+                      "range": [
+                        630,
+                        642
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 36
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 48
+                        }
+                      }
+                    },
+                    "right": {
+                      "type": "Literal",
+                      "value": true,
+                      "raw": "true",
+                      "range": [
+                        645,
+                        649
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 20,
+                          "column": 51
+                        },
+                        "end": {
+                          "line": 20,
+                          "column": 55
+                        }
+                      }
+                    },
+                    "range": [
+                      630,
+                      649
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 36
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 55
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "VariableDeclaration",
+                      "declarations": [
+                        {
+                          "type": "VariableDeclarator",
+                          "id": {
+                            "type": "Identifier",
+                            "name": "cellPadding",
+                            "range": [
+                              667,
+                              678
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 14
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 25
+                              }
+                            }
+                          },
+                          "init": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                              "range": [
+                                681,
+                                685
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 21,
+                                  "column": 28
+                                },
+                                "end": {
+                                  "line": 21,
+                                  "column": 32
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "_cellPadding",
+                              "range": [
+                                686,
+                                698
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 21,
+                                  "column": 33
+                                },
+                                "end": {
+                                  "line": 21,
+                                  "column": 45
+                                }
+                              }
+                            },
+                            "range": [
+                              681,
+                              698
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 28
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 45
+                              }
+                            }
+                          },
+                          "range": [
+                            667,
+                            698
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 21,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 21,
+                              "column": 45
+                            }
+                          }
+                        }
+                      ],
+                      "kind": "const",
+                      "range": [
+                        661,
+                        699
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 21,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 21,
+                          "column": 46
+                        }
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  716,
+                                  720
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 19
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "drawLine",
+                                "range": [
+                                  721,
+                                  729
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 20
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 28
+                                  }
+                                }
+                              },
+                              "range": [
+                                716,
+                                729
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 23,
+                                  "column": 28
+                                }
+                              }
+                            },
+                            "arguments": [
+                              {
+                                "type": "Identifier",
+                                "name": "ctx",
+                                "range": [
+                                  730,
+                                  733
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 29
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 32
+                                  }
+                                }
+                              },
+                              {
+                                "type": "BinaryExpression",
+                                "operator": "+",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "posX",
+                                  "range": [
+                                    735,
+                                    739
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 34
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 38
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "cellPadding",
+                                  "range": [
+                                    742,
+                                    753
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 41
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 52
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  735,
+                                  753
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 34
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 52
+                                  }
+                                }
+                              },
+                              {
+                                "type": "BinaryExpression",
+                                "operator": "+",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "posY",
+                                  "range": [
+                                    755,
+                                    759
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 54
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 58
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "cellPadding",
+                                  "range": [
+                                    762,
+                                    773
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 61
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 72
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  755,
+                                  773
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 54
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 72
+                                  }
+                                }
+                              },
+                              {
+                                "type": "BinaryExpression",
+                                "operator": "-",
+                                "left": {
+                                  "type": "BinaryExpression",
+                                  "operator": "+",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "posX",
+                                    "range": [
+                                      775,
+                                      779
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 74
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 78
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "Identifier",
+                                    "name": "cellSize",
+                                    "range": [
+                                      782,
+                                      790
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 81
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 89
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    775,
+                                    790
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 74
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 89
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "cellPadding",
+                                  "range": [
+                                    793,
+                                    804
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 92
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 103
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  775,
+                                  804
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 74
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 103
+                                  }
+                                }
+                              },
+                              {
+                                "type": "BinaryExpression",
+                                "operator": "-",
+                                "left": {
+                                  "type": "BinaryExpression",
+                                  "operator": "+",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "posY",
+                                    "range": [
+                                      806,
+                                      810
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 105
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 109
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "Identifier",
+                                    "name": "cellSize",
+                                    "range": [
+                                      813,
+                                      821
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 112
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 120
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    806,
+                                    821
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 105
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 120
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "Identifier",
+                                  "name": "cellPadding",
+                                  "range": [
+                                    824,
+                                    835
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 123
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 134
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  806,
+                                  835
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 105
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 134
+                                  }
+                                }
+                              },
+                              {
+                                "type": "Identifier",
+                                "name": "useAnimation",
+                                "range": [
+                                  837,
+                                  849
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 136
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 148
+                                  }
+                                }
+                              }
+                            ],
+                            "range": [
+                              716,
+                              850
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 23,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 23,
+                                "column": 149
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "then",
+                            "range": [
+                              864,
+                              868
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 24,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 24,
+                                "column": 17
+                              }
+                            }
+                          },
+                          "range": [
+                            716,
+                            868
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 23,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 24,
+                              "column": 17
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "ArrowFunctionExpression",
+                            "id": null,
+                            "params": [],
+                            "body": {
+                              "type": "BlockStatement",
+                              "body": [
+                                {
+                                  "type": "ReturnStatement",
+                                  "argument": {
+                                    "type": "CallExpression",
+                                    "callee": {
+                                      "type": "MemberExpression",
+                                      "computed": false,
+                                      "object": {
+                                        "type": "ThisExpression",
+                                        "range": [
+                                          900,
+                                          904
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 23
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 27
+                                          }
+                                        }
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "drawLine",
+                                        "range": [
+                                          905,
+                                          913
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 28
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 36
+                                          }
+                                        }
+                                      },
+                                      "range": [
+                                        900,
+                                        913
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 25,
+                                          "column": 23
+                                        },
+                                        "end": {
+                                          "line": 25,
+                                          "column": 36
+                                        }
+                                      }
+                                    },
+                                    "arguments": [
+                                      {
+                                        "type": "Identifier",
+                                        "name": "ctx",
+                                        "range": [
+                                          914,
+                                          917
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 37
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 40
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "BinaryExpression",
+                                        "operator": "-",
+                                        "left": {
+                                          "type": "BinaryExpression",
+                                          "operator": "+",
+                                          "left": {
+                                            "type": "Identifier",
+                                            "name": "posX",
+                                            "range": [
+                                              919,
+                                              923
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 25,
+                                                "column": 42
+                                              },
+                                              "end": {
+                                                "line": 25,
+                                                "column": 46
+                                              }
+                                            }
+                                          },
+                                          "right": {
+                                            "type": "Identifier",
+                                            "name": "cellSize",
+                                            "range": [
+                                              926,
+                                              934
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 25,
+                                                "column": 49
+                                              },
+                                              "end": {
+                                                "line": 25,
+                                                "column": 57
+                                              }
+                                            }
+                                          },
+                                          "range": [
+                                            919,
+                                            934
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 42
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 57
+                                            }
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "Identifier",
+                                          "name": "cellPadding",
+                                          "range": [
+                                            937,
+                                            948
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 60
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 71
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          919,
+                                          948
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 42
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 71
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "BinaryExpression",
+                                        "operator": "+",
+                                        "left": {
+                                          "type": "Identifier",
+                                          "name": "posY",
+                                          "range": [
+                                            950,
+                                            954
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 73
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 77
+                                            }
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "Identifier",
+                                          "name": "cellPadding",
+                                          "range": [
+                                            957,
+                                            968
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 80
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 91
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          950,
+                                          968
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 73
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 91
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "BinaryExpression",
+                                        "operator": "+",
+                                        "left": {
+                                          "type": "Identifier",
+                                          "name": "posX",
+                                          "range": [
+                                            970,
+                                            974
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 93
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 97
+                                            }
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "Identifier",
+                                          "name": "cellPadding",
+                                          "range": [
+                                            977,
+                                            988
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 100
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 111
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          970,
+                                          988
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 93
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 111
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "BinaryExpression",
+                                        "operator": "-",
+                                        "left": {
+                                          "type": "BinaryExpression",
+                                          "operator": "+",
+                                          "left": {
+                                            "type": "Identifier",
+                                            "name": "posY",
+                                            "range": [
+                                              990,
+                                              994
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 25,
+                                                "column": 113
+                                              },
+                                              "end": {
+                                                "line": 25,
+                                                "column": 117
+                                              }
+                                            }
+                                          },
+                                          "right": {
+                                            "type": "Identifier",
+                                            "name": "cellSize",
+                                            "range": [
+                                              997,
+                                              1005
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 25,
+                                                "column": 120
+                                              },
+                                              "end": {
+                                                "line": 25,
+                                                "column": 128
+                                              }
+                                            }
+                                          },
+                                          "range": [
+                                            990,
+                                            1005
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 113
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 128
+                                            }
+                                          }
+                                        },
+                                        "right": {
+                                          "type": "Identifier",
+                                          "name": "cellPadding",
+                                          "range": [
+                                            1008,
+                                            1019
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 131
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 142
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          990,
+                                          1019
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 113
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 142
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "Identifier",
+                                        "name": "useAnimation",
+                                        "range": [
+                                          1021,
+                                          1033
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 25,
+                                            "column": 144
+                                          },
+                                          "end": {
+                                            "line": 25,
+                                            "column": 156
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "range": [
+                                      900,
+                                      1034
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 25,
+                                        "column": 23
+                                      },
+                                      "end": {
+                                        "line": 25,
+                                        "column": 157
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    893,
+                                    1035
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 25,
+                                      "column": 16
+                                    },
+                                    "end": {
+                                      "line": 25,
+                                      "column": 158
+                                    }
+                                  }
+                                }
+                              ],
+                              "range": [
+                                875,
+                                1049
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 24
+                                },
+                                "end": {
+                                  "line": 26,
+                                  "column": 13
+                                }
+                              }
+                            },
+                            "generator": false,
+                            "expression": false,
+                            "range": [
+                              869,
+                              1049
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 24,
+                                "column": 18
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 13
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          716,
+                          1050
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 14
+                          }
+                        }
+                      },
+                      "range": [
+                        709,
+                        1051
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 15
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    651,
+                    1057
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 57
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  602,
+                  1057
+                ],
+                "loc": {
+                  "start": {
+                    "line": 20,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                598,
+                1057
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 4
+                },
+                "end": {
+                  "line": 27,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Draws cross on the canvas' context\n     *\n     * @param {native} ctx - canvas 2d context\n     * @param {number} posX - x coordinate of the cross' center\n     * @param {number} posY - y coordinate of the cross' center\n     * @param {number} cellSize - width (and height, because cells are square) of the cell, where cross will be drawn\n     * @param {boolean} useAnimation - enables or disables animation\n     * @returns {Promise}\n     ",
+                  "range": [
+                    145,
+                    593
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            }
+          ],
+          "range": [
+            138,
+            1059
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 46
+            },
+            "end": {
+              "line": 28,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          107,
+          1059
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 15
+          },
+          "end": {
+            "line": 28,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Draws cross on the canvas\n *\n * @implements {Brush}\n ",
+            "range": [
+              29,
+              91
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "range": [
+        92,
+        1059
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Draws cross on the canvas\n *\n * @implements {Brush}\n ",
+          "range": [
+            29,
+            91
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    1059
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 28,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * Draws cross on the canvas\n *\n * @implements {Brush}\n ",
+      "range": [
+        29,
+        91
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Draws cross on the canvas' context\n     *\n     * @param {native} ctx - canvas 2d context\n     * @param {number} posX - x coordinate of the cross' center\n     * @param {number} posY - y coordinate of the cross' center\n     * @param {number} cellSize - width (and height, because cells are square) of the cell, where cross will be drawn\n     * @param {boolean} useAnimation - enables or disables animation\n     * @returns {Promise}\n     ",
+      "range": [
+        145,
+        593
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 4
+        },
+        "end": {
+          "line": 19,
+          "column": 7
+        }
+      }
+    }
+  ]
+}

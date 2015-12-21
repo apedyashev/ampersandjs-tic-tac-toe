@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/templates.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/apedyashev/ampersandjs-tic-tac-toe.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">game_core</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/ampersand-player.js~AmpersandPlayer.html">AmpersandPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/cross-brush.js~CrossBrush.html">CrossBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/game-board.js~GameBoard.html">GameBoard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/game_core/nought-brush.js~NoughtBrush.html">NoughtBrush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/brush.js~Brush.html">Brush</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/game_core/player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PlayerModel">PlayerModel</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/templates.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">(function() {
+module.exports[&quot;body&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;body&gt;&lt;nav class=&quot;navbar navbar-default&quot;&gt;&lt;div class=&quot;container-fluid&quot;&gt;&lt;div class=&quot;navbar-header&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;navbar-brand&quot;&gt;Tic-Tac-Toe&lt;/a&gt;&lt;/div&gt;&lt;ul class=&quot;nav navbar-nav&quot;&gt;&lt;li&gt;&lt;a href=&quot;/&quot;&gt;home&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/past-games&quot;&gt;past games&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/nav&gt;&lt;div class=&quot;container&quot;&gt;&lt;main data-hook=&quot;page-container&quot;&gt;&lt;/main&gt;&lt;footer&gt;&lt;div class=&quot;text-center&quot;&gt;&amp;copy; Alexey Pedyashev 2015&lt;/div&gt;&lt;/footer&gt;&lt;/div&gt;&lt;/body&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;head&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0&quot;/&gt;&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;/&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;includes/finished-game&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;tr&gt;&lt;td class=&quot;player-name&quot;&gt;&lt;span data-hook=&quot;left-user-name left-user-win-class&quot; class=&quot;label pull-right&quot;&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;player-name&quot;&gt;&lt;span data-hook=&quot;right-user-name right-user-win-class&quot; class=&quot;label pull-left&quot;&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;includes/form-input&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;div class=&quot;form-group&quot;&gt;&lt;label data-hook=&quot;label&quot;&gt;&lt;/label&gt;&lt;div data-hook=&quot;message-container&quot;&gt;&lt;div data-hook=&quot;message-text&quot; class=&quot;alert alert-danger&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;input class=&quot;form-control&quot;/&gt;&lt;/div&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;includes/person&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;li class=&quot;person list-group-item container&quot;&gt;&lt;img data-hook=&quot;avatar&quot; width=&quot;40&quot; height=&quot;40&quot;/&gt;&lt;a data-hook=&quot;name&quot;&gt;&lt;/a&gt;&lt;span class=&quot;btn-group pull-right&quot;&gt; &lt;a data-hook=&quot;action-edit&quot; class=&quot;btn btn-default&quot;&gt;edit &lt;/a&gt;&lt;a href=&quot;#&quot; data-hook=&quot;action-delete&quot; class=&quot;btn btn-danger&quot;&gt;delete&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;includes/user-panel&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;div data-hook=&quot;player-is-initialized my-turn&quot; class=&quot;panel panel-default player-panel&quot;&gt;&lt;div class=&quot;panel-heading&quot;&gt;&lt;div class=&quot;panel-title&quot;&gt;&lt;i class=&quot;fa fa-circle-o pull-left symbol-icon&quot;&gt;&lt;/i&gt;&lt;i class=&quot;fa fa-times pull-left symbol-icon&quot;&gt;&lt;/i&gt; &lt;div data-hook=&quot;show-if-initialized&quot;&gt;&lt;div data-hook=&quot;player-name&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-hook=&quot;hide-if-initialized&quot;&gt;Please eneter your name&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;panel-body&quot;&gt;&lt;div data-hook=&quot;show-if-player-won&quot;&gt;&lt;h4 class=&quot;text-success text-center&quot;&gt;You are the winner! Congratulations!&lt;/h4&gt;&lt;div class=&quot;text-center&quot;&gt;&lt;i class=&quot;fa fa-trophy fa-5x winner-icon&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-hook=&quot;hide-if-player-won&quot;&gt;&lt;div data-hook=&quot;show-if-initialized&quot;&gt;&lt;div data-hook=&quot;my-turn-visible&quot; class=&quot;text-success text-center&quot;&gt;&lt;h4&gt;Your turn!&lt;/h4&gt;&lt;div&gt;&lt;i class=&quot;fa fa-commenting fa-5x&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-hook=&quot;show-if-initialized&quot;&gt;&lt;div data-hook=&quot;show-if-not-my-turn&quot; class=&quot;text-center&quot;&gt;&lt;h4&gt;Wait and relax...&lt;/h4&gt;&lt;i class=&quot;fa fa-coffee fa-5x&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;&lt;form data-hook=&quot;hide-if-initialized&quot;&gt;&lt;fieldset data-hook=&quot;field-container&quot;&gt;&lt;/fieldset&gt;&lt;button type=&quot;submit&quot; class=&quot;btn btn-default pull-right&quot;&gt;Save&lt;/button&gt;&lt;/form&gt;&lt;/div&gt;&lt;/div&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;pages/home&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;section class=&quot;page home&quot;&gt;&lt;h2&gt;Welcome to Tic-Tac-Toe game written in AmpersandJS&lt;/h2&gt;&lt;div class=&quot;row&quot;&gt;&lt;div class=&quot;col-md-4&quot;&gt;&lt;div id=&quot;left-player&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;game-board-container&quot; class=&quot;col-md-4&quot;&gt;&lt;div class=&quot;toolbar&quot;&gt;&lt;span data-hook=&quot;show-if-game-is-over&quot; class=&quot;label label-success&quot;&gt;Game Over&lt;/span&gt;&lt;span class=&quot;pull-right&quot;&gt;&lt;a href=&quot;/past-games&quot; class=&quot;btn btn-link&quot;&gt;Past Games&lt;/a&gt;&lt;button data-hook=&quot;new-game&quot; class=&quot;btn btn-small btn-default&quot;&gt;&lt;i class=&quot;fa fa-refresh&quot;&gt;&lt;/i&gt; New Game&lt;/button&gt;&lt;/span&gt;&lt;/div&gt;&lt;canvas id=&quot;game-board&quot;&gt;&lt;/canvas&gt;&lt;/div&gt;&lt;div class=&quot;col-md-4&quot;&gt;&lt;div id=&quot;right-player&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&apos;;
+return __p
+}})();
+(function() {
+module.exports[&quot;pages/past-games&quot;] = function(data) {
+var __t, __p = &apos;&apos;;
+__p += &apos;&lt;section class=&quot;page past-games&quot;&gt;&lt;h2&gt;Past games&lt;/h2&gt;&lt;table class=&quot;table table-striped table-condensed&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th class=&quot;left-side-user&quot;&gt;&lt;span class=&quot;pull-right&quot;&gt;&lt;i class=&quot;fa fa-circle-o&quot;&gt;&lt;/i&gt; Left-side player&lt;/span&gt;&lt;/th&gt;&lt;th class=&quot;right-side-user&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt; Right-side player&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody data-hook=&quot;past-games-list&quot;&gt;&lt;tr data-hook=&quot;collection-is-empty&quot;&gt;&lt;td colspan=&quot;2&quot; class=&quot;text-center&quot;&gt;&lt;h4&gt;No winners yet&lt;/h4&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/section&gt;&apos;;
+return __p
+}})();</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.3)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import AmpersandModel  from 'ampersand-model'
 import AmpersandPlayer  from '../game_core/ampersand-player'
+import CrossBrush  from '../game_core/cross-brush'
+import NoughtBrush  from '../game_core/nought-brush'
 
 export default AmpersandModel.extend({
     dataTypes: {
@@ -13,9 +15,9 @@ export default AmpersandModel.extend({
                     };
                 }
                 try {
-                    //
                     // try to parse it from passed in value:
-                    const player = new AmpersandPlayer(newVal._brush, newVal._user);
+                    const brush = (newVal._user.symbol == 'nought') ? new NoughtBrush(newVal._brush._color) : new CrossBrush(newVal._brush._color),
+                        player = new AmpersandPlayer(brush, newVal._user);
 
                     return {
                         val: player,
