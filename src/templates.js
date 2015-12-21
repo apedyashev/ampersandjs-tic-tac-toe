@@ -17,7 +17,7 @@ __p += '<tr><td class="player-name"><span data-hook="left-user-name left-user-wi
 return __p
 }})();
 (function() {
-module.exports["includes/formInput"] = function(data) {
+module.exports["includes/form-input"] = function(data) {
 var __t, __p = '';
 __p += '<div class="form-group"><label data-hook="label"></label><div data-hook="message-container"><div data-hook="message-text" class="alert alert-danger"></div></div><input class="form-control"/></div>';
 return __p
@@ -41,32 +41,8 @@ __p += '<section class="page home"><h2>Welcome to Tic-Tac-Toe game written in Am
 return __p
 }})();
 (function() {
-module.exports["pages/info"] = function(data) {
-var __t, __p = '';
-__p += '<section class="page pageTwo"><h2>Simple Page Example</h2><p>This page was rendered by a simple page view file at client/pages/info.js.</p></section>';
-return __p
-}})();
-(function() {
 module.exports["pages/past-games"] = function(data) {
 var __t, __p = '';
 __p += '<section class="page past-games"><h2>Past games</h2><table class="table table-striped table-condensed"><thead><tr><th class="left-side-user"><span class="pull-right"><i class="fa fa-circle-o"></i> Left-side player</span></th><th class="right-side-user"><span></span><i class="fa fa-times"></i> Right-side player</th></tr></thead><tbody data-hook="past-games-list"><tr data-hook="collection-is-empty"><td colspan="2" class="text-center"><h4>No winners yet</h4></td></tr></tbody></table></section>';
-return __p
-}})();
-(function() {
-module.exports["pages/personAdd"] = function(data) {
-var __t, __p = '';
-__p += '<section class="page add-person"><h2>Add Person</h2><p>This form and all behavior is defined by the form view in <code>client/forms/person.js</code>.</p><p>The same form-view is used for both editing and creating new users.</p><form data-hook="person-form"><fieldset data-hook="field-container"></fieldset><div class="buttons"><button data-hook="reset" type="submit" class="btn">Submit</button></div></form></section>';
-return __p
-}})();
-(function() {
-module.exports["pages/personEdit"] = function(data) {
-var __t, __p = '';
-__p += '<section class="page edit-person"><h2>Edit Person</h2><p>This form and all behavior is defined by the form view in <code>client/forms/person.js</code>.</p><p>The same form-view is used for both editing and creating new users.</p><form data-hook="person-form"><fieldset data-hook="field-container"></fieldset><div class="buttons"><button data-hook="reset" type="submit" class="btn">Submit</button></div></form></section>';
-return __p
-}})();
-(function() {
-module.exports["pages/personView"] = function(data) {
-var __t, __p = '';
-__p += '<section class="page view-person"><h2 data-hook="name"></h2><img data-hook="avatar" width="80" height="80"/><div class="buttons"><a data-hook="edit" class="btn">Edit</a><button data-hook="delete" class="btn">Delete</button></div></section>';
 return __p
 }})();

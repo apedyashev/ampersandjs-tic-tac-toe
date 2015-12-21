@@ -1,5 +1,5 @@
 import Player from './player'
-import Person from '../models/person'
+import PlayerModel from '../models/player'
 
 /**
  * Framework specific implementation
@@ -10,7 +10,7 @@ export default class AmpersandPlayer extends Player {
         if (!userData.id) {
             userData.id = (new Date).getTime();
         }
-        this._user = new Person(userData);
+        this._user = new PlayerModel(userData);
     }
 
     get name() {
