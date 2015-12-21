@@ -45,6 +45,8 @@ const HomePageView = View.extend({
             this.board.canvas = this.query('canvas#game-board');
             this.board.draw(true);
         }
+
+        return this;
     },
 
     startNewGame: function() {

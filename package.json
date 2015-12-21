@@ -1,49 +1,54 @@
 {
-    "name": "ampersandjs-tic-tac-toe",
-    "version": "0.0.1",
-    "description": "Tic-Tac-Toe game written in AmpersandJS",
-    "homepage": "https://github.com/apedyashev/ampersandjs-tic-tac-toe",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/apedyashev/ampersandjs-tic-tac-toe.git"
-    },
-    "bugs": {
-        "url": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate/issues"
-    },
-    "dependencies": {
-        "ampersand-app": "^1.0.0",
-        "ampersand-dom": "^1.2.1",
-        "ampersand-form-view": "^3.1.1",
-        "ampersand-input-view": "^4.0.5",
-        "ampersand-model": "^5.0.3",
-        "ampersand-rest-collection": "^4.0.0",
-        "ampersand-router": "^3.0.1",
-        "ampersand-view": "^7.0.1",
-        "ampersand-view-switcher": "^2.0.0",
-        "domready": "^1.0.5",
-        "font-awesome": "^4.5.0",
-        "jquery": "^2.1.4",
-        "less-plugin-clean-css": "^1.5.1",
-        "local-links": "^1.2.0"
-    },
-    "devDependencies": {
-        "babel-eslint": "^4.1.6",
-        "babelify": "~5.0.3",
-        "browser-sync": "^1.7.1",
-        "browserify": "^6.3.3",
-        "gulp": "~3.9.0",
-        "gulp-concat": "^2.6.0",
-        "gulp-esdoc": "^0.2.0",
-        "gulp-eslint": "^1.1.1",
-        "gulp-jade": "^1.1.0",
-        "gulp-template-compile-commonjs": "git+https://github.com/apedyashev/gulp-template-compile-commonjs.git#0.0.3",
-        "gulp-watch": "^4.3.5",
-        "lodash": "^2.4.1",
-        "rimraf": "~2.2.8",
-        "watchify": "^2.1.1",
-        "gulp-less": "^3.0.5",
-        "gulp-sourcemaps": "^1.6.0"
-    },
-    "author": "Alexey Pedyashev",
-    "license": "MIT"
+  "name": "ampersandjs-tic-tac-toe",
+  "version": "0.0.1",
+  "description": "Tic-Tac-Toe game written in AmpersandJS",
+  "homepage": "https://github.com/apedyashev/ampersandjs-tic-tac-toe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apedyashev/ampersandjs-tic-tac-toe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate/issues"
+  },
+  "dependencies": {
+    "ampersand-app": "^1.0.0",
+    "ampersand-dom": "^1.2.1",
+    "ampersand-form-view": "^3.1.1",
+    "ampersand-input-view": "^4.0.5",
+    "ampersand-model": "^5.0.3",
+    "ampersand-rest-collection": "^4.0.0",
+    "ampersand-router": "^3.0.1",
+    "ampersand-view": "^7.0.1",
+    "ampersand-view-switcher": "^2.0.0",
+    "domready": "^1.0.5",
+    "font-awesome": "^4.5.0",
+    "jquery": "^2.1.4",
+    "less-plugin-clean-css": "^1.5.1",
+    "local-links": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "babelify": "~5.0.3",
+    "browser-sync": "^1.7.1",
+    "browserify": "^9.0.3",
+    "gulp": "~3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-esdoc": "^0.2.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-less": "^3.0.5",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-template-compile-commonjs": "git+https://github.com/apedyashev/gulp-template-compile-commonjs.git#0.0.3",
+    "gulp-watch": "^4.3.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-browserify": "^4.4.2",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "lodash": "^2.4.1",
+    "rimraf": "~2.2.8",
+    "watchify": "^2.1.1"
+  },
+  "author": "Alexey Pedyashev",
+  "license": "MIT"
 }

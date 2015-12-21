@@ -18,6 +18,7 @@ var gulp = require('gulp'),
     cleancss = new LessPluginCleanCSS({ advanced: true }),
     eslint = require('gulp-eslint'),
     esdoc = require('gulp-esdoc'),
+    KarmaServer = require('karma').Server,
     config = {
         entryFile: './src/app.js',
         outputDir: './dist/',
@@ -141,4 +142,11 @@ gulp.task('serve', function () {
       baseDir: './'
     }
   });
+});
+
+gulp.task('test', function (done) {
+    new KarmaServer({
+        configFile: __dirname + '/test/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
