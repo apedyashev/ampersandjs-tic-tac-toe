@@ -31,3 +31,4 @@ gulp docs
 #gulp test TBD
 ```
 
+Tested on node v5.2.0
