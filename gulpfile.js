@@ -1,29 +1,28 @@
-var gulp = require('gulp');
-var path = require('path');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var babelify = require('babelify');
-var rimraf = require('rimraf');
-var source = require('vinyl-source-stream');
-var _ = require('lodash');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var jade = require('gulp-jade');
-var template = require('./gulp-template-compile-commonjs.js');
-var concat = require('gulp-concat');
-var watch = require('gulp-watch');
-var less = require('gulp-less');
-var sourcemaps = require('gulp-sourcemaps');
-var LessPluginCleanCSS = require('less-plugin-clean-css'),
-    cleancss = new LessPluginCleanCSS({ advanced: true });
-var eslint = require('gulp-eslint');
-var esdoc = require('gulp-esdoc');
-
-var config = {
-  entryFile: './src/app.js',
-  outputDir: './dist/',
-  outputFile: 'app.js'
-};
+var gulp = require('gulp'),
+    path = require('path'),
+    browserify = require('browserify'),
+    watchify = require('watchify'),
+    babelify = require('babelify'),
+    rimraf = require('rimraf'),
+    source = require('vinyl-source-stream'),
+    _ = require('lodash'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload,
+    jade = require('gulp-jade'),
+    template = require('gulp-template-compile-commonjs'),
+    concat = require('gulp-concat'),
+    watch = require('gulp-watch'),
+    less = require('gulp-less'),
+    sourcemaps = require('gulp-sourcemaps'),
+    LessPluginCleanCSS = require('less-plugin-clean-css'),
+    cleancss = new LessPluginCleanCSS({ advanced: true }),
+    eslint = require('gulp-eslint'),
+    esdoc = require('gulp-esdoc'),
+    config = {
+        entryFile: './src/app.js',
+        outputDir: './dist/',
+        outputJsFile: 'app.js'
+    };
 
 // clean the output directory
 gulp.task('clean', function(cb){
@@ -43,7 +42,7 @@ function bundle() {
     .transform(babelify)
     .bundle()
     .on('error', function(err) { console.log('Error: ' + err.message); })
-    .pipe(source(config.outputFile))
+    .pipe(source(config.outputJsFile))
     .pipe(gulp.dest(config.outputDir))
     .pipe(reload({ stream: true }));
 }
@@ -92,21 +91,13 @@ gulp.task('less', function () {
         .pipe(gulp.dest(config.outputDir));
 });
 
-// https://github.com/adametry/gulp-eslint
+/**
+ *  https://github.com/adametry/gulp-eslint
+ */
 gulp.task('lint', function () {
-    // ESLint ignores files with "node_modules" paths.
-    // So, it's best to have gulp ignore the directory as well.
-    // Also, Be sure to return the stream from the task;
-    // Otherwise, the task may end before the stream has finished.
     return gulp.src(['src/**/*.js', '!src/templates.js'])
-        // eslint() attaches the lint output to the "eslint" property
-        // of the file object so it can be used by other modules.
         .pipe(eslint())
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
         .pipe(eslint.format())
-        // To have the process exit with an error code (1) on
-        // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
 });
 
@@ -127,7 +118,7 @@ gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
                 "/past-games": "./"
             }
         },
-        files: "dist/app.css"
+        files: config.outputDir + 'app.css'
     });
 
     watch('templates/**/*jade', function () {
