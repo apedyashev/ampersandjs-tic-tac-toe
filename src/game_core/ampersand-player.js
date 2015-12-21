@@ -1,10 +1,10 @@
-import {Player} from './Player'
-import {Person} from '../models/person'
+import Player from './player'
+import Person from '../models/person'
 
 /**
  * Framework specific implementation
  */
-class AmpersandPlayer extends Player {
+export default class AmpersandPlayer extends Player {
     constructor(brush, userData = {}) {
         super(brush);
         if (!userData.id) {
@@ -45,5 +45,3 @@ class AmpersandPlayer extends Player {
         return this._user.get('isInitialized');
     }
 }
-
-export {AmpersandPlayer}

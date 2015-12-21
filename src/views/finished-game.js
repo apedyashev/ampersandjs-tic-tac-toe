@@ -1,8 +1,7 @@
-var View = require('ampersand-view');
-var templates = require('../templates');
+import View from  'ampersand-view'
+let templates = require('../templates');
 
-
-module.exports = View.extend({
+export default View.extend({
     template: templates['includes/finished-game'],
     bindings: {
         'model.leftSideUser.model.fullInfo': {

@@ -1,7 +1,7 @@
 /**
  * Base player class which provides interface that is used by GameBoard
  */
-class Player {
+export default class Player {
     constructor(brush) {
         if (!brush) {
             throw new Error('Players constructor accepts brush');
@@ -49,5 +49,3 @@ class Player {
         return this._brush.color;
     }
 }
-
-export {Player}

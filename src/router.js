@@ -1,10 +1,9 @@
-var app = require('ampersand-app');
-var Router = require('ampersand-router');
-var HomePage = require('./pages/home');
-var PostGamesPage = require('./pages/past-games');
+import app from 'ampersand-app'
+import Router from 'ampersand-router'
+import HomePage from './pages/home'
+import PastGamesPage from './pages/past-games'
 
-
-module.exports = Router.extend({
+export default Router.extend({
     routes: {
         '': 'home',
         'past-games(/)': 'pastGames',
@@ -15,7 +14,6 @@ module.exports = Router.extend({
         '(*path)': 'catchAll'
     },
 
-    // ------- ROUTE HANDLERS ---------
     home: function() {
         app.trigger('page', new HomePage({
             model: app.gameModel,
@@ -24,7 +22,7 @@ module.exports = Router.extend({
     },
 
     pastGames: function() {
-        app.trigger('page', new PostGamesPage({
+        app.trigger('page', new PastGamesPage({
             collection: app.games
         }));
     },

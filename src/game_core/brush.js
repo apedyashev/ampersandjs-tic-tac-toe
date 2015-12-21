@@ -1,4 +1,4 @@
-class Brush {
+export default class Brush {
     constructor(color = '#990000') {
         this._color = color;
     }
@@ -59,5 +59,3 @@ class Brush {
         return this._color;
     }
 }
-
-export {Brush}

@@ -1,15 +1,13 @@
-var View = require('ampersand-view');
-var templates = require('../templates');
-var $ = require('jquery');
-var UserPanelView = require('../views/user-panel');
-var app = require('ampersand-app');
-var _ = require('lodash');
+let templates = require('../templates');
+import app from 'ampersand-app'
+import _ from 'lodash'
+import View from 'ampersand-view'
+import UserPanelView from '../views/user-panel'
+import AmpersandPlayer from '../game_core/ampersand-player'
+import NoughtBrush from '../game_core/nought-brush'
+import CrossBrush from '../game_core/cross-brush'
 
-import {AmpersandPlayer} from '../game_core/AmpersandPlayer';
-import {NoughtBrush} from '../game_core/NoughtBrush';
-import {CrossBrush} from '../game_core/CrossBrush';
-
-module.exports = View.extend({
+export default View.extend({
     pageTitle: 'home',
     template: templates['pages/home'],
     events: {

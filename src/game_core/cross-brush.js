@@ -1,6 +1,6 @@
-import {Brush} from './brush'
+import Brush from './brush'
 
-class CrossBrush extends Brush {
+export default class CrossBrush extends Brush {
     draw(ctx, posX, posY, cellSize, useAnimation = true) {
         let cellPadding = 15;
 
@@ -13,5 +13,3 @@ class CrossBrush extends Brush {
         });
     }
 }
-
-export {CrossBrush};

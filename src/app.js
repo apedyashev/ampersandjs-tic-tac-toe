@@ -1,27 +1,19 @@
-var app = require('ampersand-app');
-var _ = require('lodash');
-var config = require('clientconfig');
-var Router = require('./router');
-var Games = require('./collections/games');
-var domReady = require('domready');
-var $ = require('jquery');
-var MainView = require('./views/main');
-
-var GameModel = require('./models/game');
-
-
-// attach our app to `window` so we can
-// easily access it from the console.
-window.app = app;
-import {GameBoard} from './game_core/GameBoard';
-import {AmpersandPlayer} from './game_core/AmpersandPlayer';
-import {NoughtBrush} from './game_core/NoughtBrush';
-import {CrossBrush} from './game_core/CrossBrush';
+import app from 'ampersand-app'
+import _ from 'lodash'
+import domReady from 'domready'
+import AppRouter from './router'
+import GamesCollection from './collections/games'
+import MainView from './views/main'
+import GameModel from './models/game'
+import GameBoard from './game_core/game-board';
+import AmpersandPlayer from './game_core/ampersand-player';
+import NoughtBrush from './game_core/nought-brush';
+import CrossBrush from './game_core/cross-brush';
 
 // Extends our main app singleton
 app.extend({
-    games: new Games(),
-    router: new Router(),
+    games: new GamesCollection(),
+    router: new AppRouter(),
     noughtsColor: '#006398',
     gameModel: new GameModel({
         leftSideUser: new AmpersandPlayer(new NoughtBrush(), {symbol: 'nought'}),

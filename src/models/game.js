@@ -1,7 +1,7 @@
-var AmpersandModel = require('ampersand-model');
-import {AmpersandPlayer}  from '../game_core/AmpersandPlayer'
+import AmpersandModel  from 'ampersand-model'
+import AmpersandPlayer  from '../game_core/ampersand-player'
 
-module.exports = AmpersandModel.extend({
+export default AmpersandModel.extend({
     dataTypes: {
         ampersandPlayer: {
             // set called every time someone tried to set a property of this datatype

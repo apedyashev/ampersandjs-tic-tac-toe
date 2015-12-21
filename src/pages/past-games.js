@@ -1,10 +1,9 @@
-//var PageView = require('./base');
-var View = require('ampersand-view');
-var templates = require('../templates');
-var FinishedGameView = require('../views/finished-game');
+import View from 'ampersand-view'
+import FinishedGameView from '../views/finished-game'
 
+let templates = require('../templates');
 
-module.exports = View.extend({
+export default View.extend({
     pageTitle: 'collection demo',
     template: templates['pages/past-games'],
     bindings: {

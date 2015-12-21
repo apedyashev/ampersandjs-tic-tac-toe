@@ -1,8 +1,8 @@
-var Collection = require('ampersand-rest-collection');
-var Game = require('../models/game');
+import Collection from 'ampersand-rest-collection'
+import GameModel from '../models/game'
 
-module.exports = Collection.extend({
-    model: Game,
+export default Collection.extend({
+    model: GameModel,
     url: '/api/games',
 
     initialize: function() {

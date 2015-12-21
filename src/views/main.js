@@ -1,17 +1,17 @@
 // This app view is responsible for rendering all content that goes into
 // <html>. It's initted right away and renders itself on DOM ready.
-var app = require('ampersand-app');
-//var setFavicon = require('favicon-setter');
-var View = require('ampersand-view');
-var dom = require('ampersand-dom');
-var ViewSwitcher = require('ampersand-view-switcher');
-var _ = require('lodash');
-var domify = require('domify');
-var localLinks = require('local-links');
-var templates = require('../templates');
+import app from 'ampersand-app'
+import View from 'ampersand-view'
+import dom from 'ampersand-dom'
+import ViewSwitcher from 'ampersand-view-switcher'
+import _ from 'lodash'
+import domify from 'domify'
+import localLinks from 'local-links'
+// TODO: place gulp-template-compile-commonjs to separate module that supports UMD
+let templates = require('../templates');
 
 
-module.exports = View.extend({
+export default View.extend({
     template: templates.body,
     autoRender: true,
     initialize: function () {

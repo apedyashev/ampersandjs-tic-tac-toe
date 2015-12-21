@@ -1,7 +1,6 @@
-var AmpersandModel = require('ampersand-model');
+import AmpersandModel  from 'ampersand-model'
 
-
-let Person = AmpersandModel.extend({
+export default AmpersandModel.extend({
     props: {
         id: 'any',
         name: ['string', true, ''],
@@ -36,5 +35,3 @@ let Person = AmpersandModel.extend({
         }
     }
 });
-
-export {Person}

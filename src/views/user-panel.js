@@ -1,9 +1,9 @@
-var View = require('ampersand-view');
+import View from 'ampersand-view'
+import PlayerNameForm from '../forms/player-name'
+
 var templates = require('../templates');
-var PlayerNameForm = require('../forms/player-name');
 
-
-module.exports = View.extend({
+export default View.extend({
     template: templates['includes/user-panel'],
     bindings: {
         'model.symbol': {

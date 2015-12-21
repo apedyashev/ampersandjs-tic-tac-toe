@@ -1,11 +1,11 @@
-var FormView = require('ampersand-form-view');
-var InputView = require('ampersand-input-view');
-var templates = require('../templates');
-var ExtendedInput = InputView.extend({
+import FormView  from 'ampersand-form-view'
+import InputView from 'ampersand-input-view'
+let templates = require('../templates');
+let ExtendedInput = InputView.extend({
     template: templates['includes/formInput']()
 });
 
-module.exports = FormView.extend({
+export default FormView.extend({
     fields: function() {
         return [
             new ExtendedInput({

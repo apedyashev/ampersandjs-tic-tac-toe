@@ -1,9 +1,9 @@
-import {Brush} from './brush'
+import Brush from './brush'
 
 /**
  * Brush to draw noughts on the game canvas' context
  */
-class NoughtBrush extends Brush {
+export default class NoughtBrush extends Brush {
     /**
      * Draws nought in the center of given cell
      *
@@ -47,4 +47,3 @@ class NoughtBrush extends Brush {
     }
 }
 
-export {NoughtBrush};

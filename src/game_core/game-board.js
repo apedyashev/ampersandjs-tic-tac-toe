@@ -1,12 +1,11 @@
-let $ = require('jquery'),
-    _ = require('lodash');
-
-import {Brush} from './brush';
+import $ from 'jquery';
+import _ from 'lodash';
+import Brush from './brush';
 
 const LTR_DIAG_INDEX = 0,
       RTL_DIAG_INDEX = 1;
 
-class GameBoard {
+export default class GameBoard {
     constructor(options) {
         this._options = options;
 
@@ -311,5 +310,3 @@ class GameBoard {
         };
     }
 }
-
-export {GameBoard}
