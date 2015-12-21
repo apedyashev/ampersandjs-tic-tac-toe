@@ -108,4 +108,23 @@ describe('The HomePage view', function() {
         expect(this.home.query('#right-player span[data-hook="message-text"]').innerText).toEqual('This field is required.');
         expect(this.home.query('#right-player .panel-title').innerText).toContain('Please enter your name');
     });
+
+    it('resets user panels when the New Game button is clicked', function() {
+        this.home.render();
+        const leftUserInput = this.home.query('#left-player input[type="text"]'),
+            rightUserInput = this.home.query('#right-player input[type="text"]'),
+            leftUserButton = this.home.query('#left-player button[type="submit"]'),
+            rightUserButton = this.home.query('#right-player button[type="submit"]'),
+            leftUserName = `Left user ${(new Date).getTime()}`,
+            rightUserName = `Right user ${(new Date).getTime()}`;
+
+        leftUserInput.value = leftUserName;
+        leftUserButton.click();
+
+        rightUserInput.value = rightUserName;
+        rightUserButton.click();
+
+        expect(this.home.query('#left-player .panel-title').innerText).toContain(leftUserName);
+        expect(this.home.query('#right-player .panel-title').innerText).toContain(rightUserName);
+    });
 });
