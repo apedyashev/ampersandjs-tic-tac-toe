@@ -116,7 +116,8 @@ describe('The HomePage view', function() {
             leftUserButton = this.home.query('#left-player button[type="submit"]'),
             rightUserButton = this.home.query('#right-player button[type="submit"]'),
             leftUserName = `Left user ${(new Date).getTime()}`,
-            rightUserName = `Right user ${(new Date).getTime()}`;
+            rightUserName = `Right user ${(new Date).getTime()}`,
+            newGameButton = this.home.query('button[data-hook="new-game"]');
 
         leftUserInput.value = leftUserName;
         leftUserButton.click();
@@ -126,5 +127,10 @@ describe('The HomePage view', function() {
 
         expect(this.home.query('#left-player .panel-title').innerText).toContain(leftUserName);
         expect(this.home.query('#right-player .panel-title').innerText).toContain(rightUserName);
+
+        newGameButton.click();
+
+        expect(this.home.query('#left-player .panel-title').innerText).not.toContain(leftUserName);
+        expect(this.home.query('#right-player .panel-title').innerText).not.toContain(rightUserName);
     });
 });
