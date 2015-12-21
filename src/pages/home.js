@@ -41,7 +41,7 @@ module.exports = PageView.extend({
 
         if (this.board) {
             this.board.canvas = this.query('canvas#game-board');
-            this.board.draw();
+            this.board.draw(true);
         }
     },
 
