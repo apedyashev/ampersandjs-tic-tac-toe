@@ -23,6 +23,12 @@ const HomePageView = View.extend({
             hook: 'show-if-game-is-over',
             yes: '',
             no: 'hide'
+        },
+        'model.isThereWinner': {
+            type: 'booleanClass',
+            hook: 'show-if-no-winner',
+            yes: 'hide',
+            no: ''
         }
     },
     initialize: function(options) {

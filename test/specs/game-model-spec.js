@@ -35,4 +35,22 @@ describe('The GameModel model', function() {
         expect(this.gameModel.rightSideUser.model.get('name')).toEqual('cool user');
         expect(this.gameModel.leftSideUser.model.get('name')).toEqual('cool user #1');
     });
+
+    it('changes isThereWinner prop when isGameOver changes', function() {
+        this.gameModel.rightSideUser.model.set({'isWon': true});
+        this.gameModel.leftSideUser.model.set({'isWon': false});
+        this.gameModel.set('isGameOver', false);
+
+        expect(this.gameModel.get('isThereWinner')).toEqual(false);
+
+        this.gameModel.set('isGameOver', true);
+        expect(this.gameModel.get('isThereWinner')).toEqual(true);
+
+        this.gameModel.set('isGameOver', false);
+        expect(this.gameModel.get('isThereWinner')).toEqual(false);
+
+        this.gameModel.rightSideUser.model.set({'isWon': false});
+        this.gameModel.set('isGameOver', true);
+        expect(this.gameModel.get('isThereWinner')).toEqual(false);
+    });
 });

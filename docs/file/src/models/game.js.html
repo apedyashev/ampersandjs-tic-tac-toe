@@ -98,6 +98,15 @@ const GameModel = AmpersandModel.extend({
         isGameOver: [&apos;boolean&apos;, false, false]
     },
 
+    derived: {
+        isThereWinner: {
+            deps: [&apos;isGameOver&apos;],
+            fn: function() {
+                return this.isGameOver &amp;&amp; (this.leftSideUser.model.isWon || this.rightSideUser.model.isWon);
+            }
+        }
+    },
+
     initialize: function() {
         this.leftSideUser.model.on(&apos;change:name&apos;, () =&gt; {
             const leftSideUserName = this.leftSideUser.model.get(&apos;name&apos;),

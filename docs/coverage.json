@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 51,
-  "actualCount": 51,
+  "expectCount": 52,
+  "actualCount": 52,
   "files": {
     "src/game_core/ampersand-player.js": {
       "expectCount": 10,
@@ -24,8 +24,8 @@
       "undocumentLines": []
     },
     "src/game_core/game-board.js": {
-      "expectCount": 10,
-      "actualCount": 10,
+      "expectCount": 11,
+      "actualCount": 11,
       "undocumentLines": []
     },
     "src/models/game.js": {

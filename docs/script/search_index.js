@@ -457,25 +457,25 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/ampersand-player.js~ampersandplayer#ismyturn",
-    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-isMyTurn",
-    "src/game_core/ampersand-player.js~AmpersandPlayer#isMyTurn",
-    "member"
-  ],
-  [
-    "src/game_core/ampersand-player.js~ampersandplayer#ismyturn",
     "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-set-isMyTurn",
     "src/game_core/ampersand-player.js~AmpersandPlayer#isMyTurn",
     "member"
   ],
   [
-    "src/game_core/ampersand-player.js~ampersandplayer#iswon",
-    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-isWon",
-    "src/game_core/ampersand-player.js~AmpersandPlayer#isWon",
+    "src/game_core/ampersand-player.js~ampersandplayer#ismyturn",
+    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-isMyTurn",
+    "src/game_core/ampersand-player.js~AmpersandPlayer#isMyTurn",
     "member"
   ],
   [
     "src/game_core/ampersand-player.js~ampersandplayer#iswon",
     "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-set-isWon",
+    "src/game_core/ampersand-player.js~AmpersandPlayer#isWon",
+    "member"
+  ],
+  [
+    "src/game_core/ampersand-player.js~ampersandplayer#iswon",
+    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-isWon",
     "src/game_core/ampersand-player.js~AmpersandPlayer#isWon",
     "member"
   ],
@@ -487,13 +487,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/ampersand-player.js~ampersandplayer#name",
-    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-set-name",
+    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-name",
     "src/game_core/ampersand-player.js~AmpersandPlayer#name",
     "member"
   ],
   [
     "src/game_core/ampersand-player.js~ampersandplayer#name",
-    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-get-name",
+    "class/src/game_core/ampersand-player.js~AmpersandPlayer.html#instance-set-name",
     "src/game_core/ampersand-player.js~AmpersandPlayer#name",
     "member"
   ],
@@ -565,13 +565,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/game-board.js~gameboard#crossesplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-set-crossesPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-get-crossesPlayer",
     "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "member"
   ],
   [
     "src/game_core/game-board.js~gameboard#crossesplayer",
-    "class/src/game_core/game-board.js~GameBoard.html#instance-get-crossesPlayer",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-set-crossesPlayer",
     "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "member"
   ],
@@ -580,6 +580,12 @@ window.esdocSearchIndex = [
     "class/src/game_core/game-board.js~GameBoard.html#instance-method-draw",
     "src/game_core/game-board.js~GameBoard#draw",
     "method"
+  ],
+  [
+    "src/game_core/game-board.js~gameboard#gameovercallback",
+    "class/src/game_core/game-board.js~GameBoard.html#instance-set-gameOverCallback",
+    "src/game_core/game-board.js~GameBoard#gameOverCallback",
+    "member"
   ],
   [
     "src/game_core/game-board.js~gameboard#initgame",
@@ -631,13 +637,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/player.js~player#brushcolor",
-    "class/src/game_core/player.js~Player.html#instance-get-brushColor",
+    "class/src/game_core/player.js~Player.html#instance-set-brushColor",
     "src/game_core/player.js~Player#brushColor",
     "member"
   ],
   [
     "src/game_core/player.js~player#brushcolor",
-    "class/src/game_core/player.js~Player.html#instance-set-brushColor",
+    "class/src/game_core/player.js~Player.html#instance-get-brushColor",
     "src/game_core/player.js~Player#brushColor",
     "member"
   ],
@@ -655,13 +661,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/game_core/player.js~player#ismyturn",
-    "class/src/game_core/player.js~Player.html#instance-set-isMyTurn",
+    "class/src/game_core/player.js~Player.html#instance-get-isMyTurn",
     "src/game_core/player.js~Player#isMyTurn",
     "member"
   ],
   [
     "src/game_core/player.js~player#ismyturn",
-    "class/src/game_core/player.js~Player.html#instance-get-isMyTurn",
+    "class/src/game_core/player.js~Player.html#instance-set-isMyTurn",
     "src/game_core/player.js~Player#isMyTurn",
     "member"
   ],

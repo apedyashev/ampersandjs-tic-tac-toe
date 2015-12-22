@@ -6,7 +6,9 @@ section.page.home
             #left-player
         div#game-board-container.col-md-4
             div.toolbar
-                span.label.label-success(data-hook='show-if-game-is-over') Game Over
+                span.label.label-success(data-hook='show-if-game-is-over') Game Over.
+                    = ' '
+                    span(data-hook='show-if-no-winner') No Winner
                 span.pull-right
                     a.btn.btn-link(href='/past-games') Past Games
                     button.btn.btn-small.btn-default(data-hook='new-game')

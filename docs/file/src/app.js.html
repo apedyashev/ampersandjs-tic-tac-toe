@@ -101,18 +101,22 @@ app.extend({
         this.gameModel.set(&apos;isGameOver&apos;, false);
         this.board.initGame();
 
-        const addGameToLeaderBaoard = function(model, value) {
-            if (value) {
-                const game = new GameModel({
-                    leftSideUser: this.gameModel.get(&apos;leftSideUser&apos;),
-                    rightSideUser: this.gameModel.get(&apos;rightSideUser&apos;)
-                });
+        const addGameToLeaderBaoard = () =&gt; {
+            const game = new GameModel({
+                leftSideUser: this.gameModel.get(&apos;leftSideUser&apos;),
+                rightSideUser: this.gameModel.get(&apos;rightSideUser&apos;)
+            });
+            this.gameModel.set(&apos;isGameOver&apos;, true);
+            this.games.add(game);
+        };
+        this.board.gameOverCallback = (winner) =&gt; {
+            if (winner) {
+                addGameToLeaderBaoard();
+            }
+            else {
                 this.gameModel.set(&apos;isGameOver&apos;, true);
-                this.games.add(game);
             }
         };
-        this.board.noughtsPlayer.model.on(&apos;change:isWon&apos;, _.bind(addGameToLeaderBaoard, this));
-        this.board.crossesPlayer.model.on(&apos;change:isWon&apos;, _.bind(addGameToLeaderBaoard, this));
     },
     // This is a helper for navigating around the app.
     // this gets called by a global click handler that handles

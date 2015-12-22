@@ -47,18 +47,22 @@ app.extend({
         this.gameModel.set('isGameOver', false);
         this.board.initGame();
 
-        const addGameToLeaderBaoard = function(model, value) {
-            if (value) {
-                const game = new GameModel({
-                    leftSideUser: this.gameModel.get('leftSideUser'),
-                    rightSideUser: this.gameModel.get('rightSideUser')
-                });
+        const addGameToLeaderBaoard = () => {
+            const game = new GameModel({
+                leftSideUser: this.gameModel.get('leftSideUser'),
+                rightSideUser: this.gameModel.get('rightSideUser')
+            });
+            this.gameModel.set('isGameOver', true);
+            this.games.add(game);
+        };
+        this.board.gameOverCallback = (winner) => {
+            if (winner) {
+                addGameToLeaderBaoard();
+            }
+            else {
                 this.gameModel.set('isGameOver', true);
-                this.games.add(game);
             }
         };
-        this.board.noughtsPlayer.model.on('change:isWon', _.bind(addGameToLeaderBaoard, this));
-        this.board.crossesPlayer.model.on('change:isWon', _.bind(addGameToLeaderBaoard, this));
     },
     // This is a helper for navigating around the app.
     // this gets called by a global click handler that handles

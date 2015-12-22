@@ -8,8 +8,8 @@ const LTR_DIAG_INDEX = 0,
       BOARD_DIMENSION_CELLS = 3;
 
 /**
- * Implements game board and handles game logic. It design to be framework-independent and has only two dependencies:
- * jquery and lodash
+ * Implements game board and handles game logic.
+ * It designed to be framework-independent and has only two dependencies: jquery and lodash
  */
 export default class GameBoard {
     /**
@@ -38,11 +38,12 @@ export default class GameBoard {
      * Resets board matrix to null values, reinits point array and selects the player whose turn is first
      */
     initGame() {
-        this._isGameFinished = false;
+        this._isThereWinner = false;
         this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);
 
         this._initPointsArrays();
         this._setNextPlayersTurn();
+        this._gameOverCallback = null;
     }
 
     /**
@@ -136,6 +137,15 @@ export default class GameBoard {
         this._options.canvasEl = $(canvas);
         this._initCanvas();
         this._attachClickListener();
+    }
+
+    /**
+     * Sets callback function that is called when game is finished. Callback that accepts eight user or null, if there are no winners
+     *
+     * @param {function(winner: AmpersandPlayer)} fn
+     */
+    set gameOverCallback(fn) {
+        this._gameOverCallback = fn;
     }
 
     /**
@@ -239,7 +249,7 @@ export default class GameBoard {
         });
 
         if ((this._players.noughts && this._players.noughts.isWon) || (this._players.crosses && this._players.crosses.isWon)) {
-            this._isGameFinished = true;
+            this._isThereWinner = true;
         }
     }
 
@@ -255,6 +265,10 @@ export default class GameBoard {
             endPoint = this._indecesToCoordinates(rowIndex, 2, this._cellSize, this._cellSize / 2);
 
         winner.isWon = true;
+        if (this._gameOverCallback) {
+            this._gameOverCallback(winner);
+            this._gameOverCallback = null;
+        }
         this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
     }
 
@@ -270,6 +284,10 @@ export default class GameBoard {
             endPoint = this._indecesToCoordinates(2, colIndex, this._cellSize / 2, this._cellSize);
 
         winner.isWon = true;
+        if (this._gameOverCallback) {
+            this._gameOverCallback(winner);
+            this._gameOverCallback = null;
+        }
         this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
     }
 
@@ -290,6 +308,10 @@ export default class GameBoard {
                 y: this._options.height
             };
         winner.isWon = true;
+        if (this._gameOverCallback) {
+            this._gameOverCallback(winner);
+            this._gameOverCallback = null;
+        }
         this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);
     }
 
@@ -330,7 +352,7 @@ export default class GameBoard {
      */
     _doMove(clickedCell) {
         const isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;
-        if (this._isGameFinished || !isGameStarted) {
+        if (this._isThereWinner || !isGameStarted) {
             return;
         }
 
@@ -358,9 +380,17 @@ export default class GameBoard {
             this.draw();
 
             // stop changing players if game is finished
-            if (!this._isGameFinished) {
+            if (!this._isThereWinner) {
                 this._setNextPlayersTurn();
             }
+        }
+        const cells = _.flatten(this._boardMatrix),
+            emptyCells = _.filter(cells, (cell) => {
+                return (cell == null);
+            });
+        if ((emptyCells.length == 0) && !this._isThereWinner) {
+            this._gameOverCallback(null);
+            this._gameOverCallback = null;
         }
     }
 

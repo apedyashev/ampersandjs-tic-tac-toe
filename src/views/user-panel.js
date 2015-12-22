@@ -78,7 +78,6 @@ const UserPanelView = View.extend({
                     el: el,
                     model: this.model,
                     submitCallback: function(data) {
-                        console.log(data);
                         this.model.set(data);
                     }
                 });
