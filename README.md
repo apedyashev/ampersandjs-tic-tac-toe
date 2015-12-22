@@ -1,5 +1,8 @@
 ## Tic-Tac-Toe game written in AmpersandJS
 
+Note
+----
+Used development env: node.js v5.2.0, Debian Linux x64
 
 ### Initial setup
 
@@ -12,7 +15,7 @@ cd ampersandjs-tic-tac-toe
 npm install
 
 # Install gulp  
-npm install -g gulp
+sudo npm install -g gulp
 ```
 
 ### Running in the browser
@@ -32,7 +35,3 @@ gulp docs
 #run tests
 gulp test
 ```
-
-Note
-----
-Tested on node.js v5.2.0
