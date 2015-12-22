@@ -1,4 +1,5 @@
 import Brush from './brush'
+import {Promise} from 'es6-promise'
 
 /**
  * Brush to draw noughts on the game canvas' context

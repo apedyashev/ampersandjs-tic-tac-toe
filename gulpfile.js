@@ -27,13 +27,7 @@ var gulp = require('gulp'),
 
 // clean the output directory
 gulp.task('clean', function(cb){
-    return getBundler()
-        .transform(babelify)
-            .bundle()
-            .on('error', function(err) { console.log('Error: ' + err.message); })
-            .pipe(source(config.outputJsFile))
-            .pipe(gulp.dest(config.outputDir))
-            .pipe(reload({ stream: true }));
+    rimraf(config.outputDir, cb);
 });
 
 var bundler;

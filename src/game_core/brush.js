@@ -1,3 +1,5 @@
+import {Promise} from 'es6-promise'
+
 /**
  * Class which implemets drawing on a canvas.
  * It supposed to be used as a base class to for classes that implement drawing of crosses or noughts

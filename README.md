@@ -11,7 +11,7 @@ cd ampersandjs-tic-tac-toe
 # Then, you need to install all the dependencies...
 npm install
 
-# Install gulp if you are going to work on this project
+# Install gulp  
 npm install -g gulp
 ```
 
@@ -19,6 +19,7 @@ npm install -g gulp
 ```bash
 gulp watch
 ```
+After that  http://localhost:3000 will be open in your default browser
 
 ### Following commands may be also useful:
 ```bash
@@ -32,4 +33,6 @@ gulp docs
 gulp test
 ```
 
-Tested on node v5.2.0
+Note
+----
+Tested on node.js v5.2.0

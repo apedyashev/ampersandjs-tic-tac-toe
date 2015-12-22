@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import {Promise} from 'es6-promise'
 import Brush from './brush';
 
 const LTR_DIAG_INDEX = 0,
