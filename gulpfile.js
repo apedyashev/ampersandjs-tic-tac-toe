@@ -27,7 +27,13 @@ var gulp = require('gulp'),
 
 // clean the output directory
 gulp.task('clean', function(cb){
-    rimraf(config.outputDir, cb);
+    return getBundler()
+        .transform(babelify)
+            .bundle()
+            .on('error', function(err) { console.log('Error: ' + err.message); })
+            .pipe(source(config.outputJsFile))
+            .pipe(gulp.dest(config.outputDir))
+            .pipe(reload({ stream: true }));
 });
 
 var bundler;
@@ -135,13 +141,15 @@ gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
     });
 });
 
-// WEB SERVER
-gulp.task('serve', function () {
-  browserSync({
+browserSync({
     server: {
-      baseDir: './'
-    }
-  });
+        baseDir: './',
+        //https://browsersync.io/docs/options/
+        routes: {
+            "/past-games": "./"
+        }
+    },
+    files: config.outputDir + 'app.css'
 });
 
 gulp.task('test', function (done) {
