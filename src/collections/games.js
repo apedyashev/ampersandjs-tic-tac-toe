@@ -3,6 +3,8 @@ import GameModel from '../models/game'
 
 /**
  * Games collection class derived from {@link https://ampersandjs.com/docs/#ampersand-rest-collection}
+ *
+ * Stores data in local storage
  */
 const GamesCollection = Collection.extend({
     model: GameModel,

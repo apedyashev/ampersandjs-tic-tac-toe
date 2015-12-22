@@ -74,6 +74,8 @@ const PastGamesView = View.extend({
     render: function() {
         this.renderWithTemplate();
         this.renderCollection(this.collection, FinishedGameView, this.queryByHook(&apos;past-games-list&apos;));
+
+        return this;
     }
 });
 export default PastGamesView

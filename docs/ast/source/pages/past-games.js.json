@@ -1227,11 +1227,45 @@
                                 "column": 102
                               }
                             }
+                          },
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "ThisExpression",
+                              "range": [
+                                715,
+                                719
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 19
+                                }
+                              }
+                            },
+                            "range": [
+                              708,
+                              720
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 24,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 24,
+                                "column": 20
+                              }
+                            }
                           }
                         ],
                         "range": [
                           559,
-                          704
+                          726
                         ],
                         "loc": {
                           "start": {
@@ -1239,7 +1273,7 @@
                             "column": 23
                           },
                           "end": {
-                            "line": 23,
+                            "line": 25,
                             "column": 5
                           }
                         }
@@ -1248,7 +1282,7 @@
                       "expression": false,
                       "range": [
                         548,
-                        704
+                        726
                       ],
                       "loc": {
                         "start": {
@@ -1256,7 +1290,7 @@
                           "column": 12
                         },
                         "end": {
-                          "line": 23,
+                          "line": 25,
                           "column": 5
                         }
                       }
@@ -1267,7 +1301,7 @@
                     "computed": false,
                     "range": [
                       540,
-                      704
+                      726
                     ],
                     "loc": {
                       "start": {
@@ -1275,7 +1309,7 @@
                         "column": 4
                       },
                       "end": {
-                        "line": 23,
+                        "line": 25,
                         "column": 5
                       }
                     }
@@ -1283,7 +1317,7 @@
                 ],
                 "range": [
                   272,
-                  706
+                  728
                 ],
                 "loc": {
                   "start": {
@@ -1291,7 +1325,7 @@
                     "column": 34
                   },
                   "end": {
-                    "line": 24,
+                    "line": 26,
                     "column": 1
                   }
                 }
@@ -1299,7 +1333,7 @@
             ],
             "range": [
               260,
-              707
+              729
             ],
             "loc": {
               "start": {
@@ -1307,14 +1341,14 @@
                 "column": 22
               },
               "end": {
-                "line": 24,
+                "line": 26,
                 "column": 2
               }
             }
           },
           "range": [
             244,
-            707
+            729
           ],
           "loc": {
             "start": {
@@ -1322,7 +1356,7 @@
               "column": 6
             },
             "end": {
-              "line": 24,
+              "line": 26,
               "column": 2
             }
           }
@@ -1331,7 +1365,7 @@
       "kind": "const",
       "range": [
         238,
-        708
+        730
       ],
       "loc": {
         "start": {
@@ -1339,7 +1373,7 @@
           "column": 0
         },
         "end": {
-          "line": 24,
+          "line": 26,
           "column": 3
         }
       },
@@ -1353,31 +1387,31 @@
         "type": "Identifier",
         "name": "PastGamesView",
         "range": [
-          724,
-          737
+          746,
+          759
         ],
         "loc": {
           "start": {
-            "line": 25,
+            "line": 27,
             "column": 15
           },
           "end": {
-            "line": 25,
+            "line": 27,
             "column": 28
           }
         }
       },
       "range": [
-        709,
-        738
+        731,
+        760
       ],
       "loc": {
         "start": {
-          "line": 25,
+          "line": 27,
           "column": 0
         },
         "end": {
-          "line": 26,
+          "line": 28,
           "column": 0
         }
       },
@@ -2336,11 +2370,45 @@
                                   "column": 102
                                 }
                               }
+                            },
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  715,
+                                  719
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 24,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 24,
+                                    "column": 19
+                                  }
+                                }
+                              },
+                              "range": [
+                                708,
+                                720
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 8
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 20
+                                }
+                              }
                             }
                           ],
                           "range": [
                             559,
-                            704
+                            726
                           ],
                           "loc": {
                             "start": {
@@ -2348,7 +2416,7 @@
                               "column": 23
                             },
                             "end": {
-                              "line": 23,
+                              "line": 25,
                               "column": 5
                             }
                           }
@@ -2357,7 +2425,7 @@
                         "expression": false,
                         "range": [
                           548,
-                          704
+                          726
                         ],
                         "loc": {
                           "start": {
@@ -2365,7 +2433,7 @@
                             "column": 12
                           },
                           "end": {
-                            "line": 23,
+                            "line": 25,
                             "column": 5
                           }
                         }
@@ -2376,7 +2444,7 @@
                       "computed": false,
                       "range": [
                         540,
-                        704
+                        726
                       ],
                       "loc": {
                         "start": {
@@ -2384,7 +2452,7 @@
                           "column": 4
                         },
                         "end": {
-                          "line": 23,
+                          "line": 25,
                           "column": 5
                         }
                       }
@@ -2392,7 +2460,7 @@
                   ],
                   "range": [
                     272,
-                    706
+                    728
                   ],
                   "loc": {
                     "start": {
@@ -2400,7 +2468,7 @@
                       "column": 34
                     },
                     "end": {
-                      "line": 24,
+                      "line": 26,
                       "column": 1
                     }
                   }
@@ -2408,7 +2476,7 @@
               ],
               "range": [
                 260,
-                707
+                729
               ],
               "loc": {
                 "start": {
@@ -2416,14 +2484,14 @@
                   "column": 22
                 },
                 "end": {
-                  "line": 24,
+                  "line": 26,
                   "column": 2
                 }
               }
             },
             "range": [
               244,
-              707
+              729
             ],
             "loc": {
               "start": {
@@ -2431,7 +2499,7 @@
                 "column": 6
               },
               "end": {
-                "line": 24,
+                "line": 26,
                 "column": 2
               }
             }
@@ -2440,7 +2508,7 @@
         "kind": "const",
         "range": [
           238,
-          708
+          730
         ],
         "loc": {
           "start": {
@@ -2448,7 +2516,7 @@
             "column": 0
           },
           "end": {
-            "line": 24,
+            "line": 26,
             "column": 3
           }
         },
@@ -2475,16 +2543,16 @@
         "trailingComments": []
       },
       "range": [
-        709,
-        738
+        731,
+        760
       ],
       "loc": {
         "start": {
-          "line": 25,
+          "line": 27,
           "column": 0
         },
         "end": {
-          "line": 26,
+          "line": 28,
           "column": 0
         }
       }
@@ -2493,7 +2561,7 @@
   "sourceType": "module",
   "range": [
     0,
-    738
+    760
   ],
   "loc": {
     "start": {
@@ -2501,7 +2569,7 @@
       "column": 0
     },
     "end": {
-      "line": 26,
+      "line": 28,
       "column": 0
     }
   },

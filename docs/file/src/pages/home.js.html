@@ -99,6 +99,8 @@ const HomePageView = View.extend({
             this.board.canvas = this.query(&apos;canvas#game-board&apos;);
             this.board.draw(true);
         }
+
+        return this;
     },
 
     startNewGame: function() {

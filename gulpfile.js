@@ -48,6 +48,10 @@ function bundle() {
     .pipe(reload({ stream: true }));
 }
 
+gulp.task('build-js', ['jst'], function() {
+    return bundle();
+});
+
 gulp.task('build-persistent', function() {
   return bundle();
 });
@@ -57,7 +61,7 @@ gulp.task('build', ['build-persistent'], function() {
 });
 
 gulp.task('jst', function () {
-  gulp.src('templates/**/*jade')
+  return gulp.src('templates/**/*jade')
       .pipe(jade())
       .pipe(template({
             name: function (file) {
@@ -66,7 +70,6 @@ gulp.task('jst', function () {
             templateSettings: {
               variable: 'data'
             }
-
           })
         )
       .pipe(concat('templates.js'))
@@ -75,7 +78,7 @@ gulp.task('jst', function () {
 });
 
 gulp.task('watch-templates', function (cb) {
-    watch('templates/**/*jade', function () {
+    return watch('templates/**/*jade', function () {
         gulp.start('jst');
     });
 });
@@ -110,17 +113,20 @@ gulp.task('docs', function () {
         .pipe(esdoc({ destination: "./docs" }));
 });
 
-gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
-    browserSync({
-        server: {
-            baseDir: './',
-            //https://browsersync.io/docs/options/
-            routes: {
-                "/past-games": "./"
-            }
-        },
-        files: config.outputDir + 'app.css'
-    });
+gulp.task('watch', ['clean', 'build-js', 'less'], function() {
+    //setTimeout(function() {
+        browserSync({
+            server: {
+                baseDir: './',
+                //https://browsersync.io/docs/options/
+                routes: {
+                    "/past-games": "./"
+                }
+            },
+            files: config.outputDir + 'app.css'
+        });
+    //}, 5000);
+
 
     watch('templates/**/*jade', function () {
         gulp.start('jst');
@@ -135,15 +141,17 @@ gulp.task('watch', ['clean', 'build-persistent', 'jst', 'less'], function() {
     });
 });
 
-browserSync({
-    server: {
-        baseDir: './',
-        //https://browsersync.io/docs/options/
-        routes: {
-            "/past-games": "./"
-        }
-    },
-    files: config.outputDir + 'app.css'
+gulp.task('serve', function (done) {
+    browserSync({
+        server: {
+            baseDir: './',
+            //https://browsersync.io/docs/options/
+            routes: {
+                "/past-games": "./"
+            }
+        },
+        files: config.outputDir + 'app.css'
+    });
 });
 
 gulp.task('test', function (done) {
