@@ -93,6 +93,8 @@ const HomePageView = View.extend({
     render: function() {
         this.renderWithTemplate();
 
+        // The first game gets created on DOM ready, i.e. after the home page is rendered. Because of that we have to use
+        // renderSubview() instead of subviews property.
         this.renderSubview(new UserPanelView({
             model: this.model.leftSideUser.model
         }), &apos;#left-player&apos;);

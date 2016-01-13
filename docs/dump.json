@@ -443,7 +443,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Promise} from 'es6-promise'\n\n/**\n * Class which implemets drawing on a canvas.\n * It supposed to be used as a base class to for classes that implement drawing of crosses or noughts\n *\n * @interface\n */\nexport default class Brush {\n    /**\n     * Initializes the brush with color\n     *\n     * @param {string} color - hex value of brush color\n     */\n    constructor(color = '#990000') {\n        this._color = color;\n        this._cellPadding = 15;\n        this._initialPenWeight = 3;\n        this._maxPenWeight = 7;\n    }\n\n    /**\n     * Drawing function that must be implemented in derived class\n     *\n     * @throws {Error}\n     */\n    draw() {\n        throw new Error('Brush::draw must be implemented in derived class');\n    }\n\n    /**\n     * Draws line on the canvas using animation (can be disabled)\n     * @param {native} ctx - 2d context of canvas\n     * @param {number} startX - x position of starting point\n     * @param {number} startY - y position of starting point\n     * @param {number} endX - x position of end point\n     * @param {number} endY - y position of end point\n     * @param {boolean} useAnimation - turns animation on or off\n     *\n     * @returns {Promise}\n     */\n    drawLine(ctx, startX, startY, endX, endY, useAnimation = true) {\n        return new Promise((resolve) => {\n            const   k = (endY - startY) / (endX - startX),\n                b = startY - k * startX,\n                minX = Math.min(startX, endX),\n                maxX = Math.max(startX, endX),\n                // setImmediate is not crossbrowser, so simple function that calls callback\n                fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};\n            let penWeight = 7,\n                timeoutValue = 100;\n\n            ctx.fillStyle = this._color;\n\n            if (startX == endX) {\n                // draw vertical line without using a formula (because there is devision by zero when calculatin b\n                // for the formula y = kx + b )\n                const minY = Math.min(startY, endY),\n                    maxY = Math.max(startY, endY);\n\n                for (let y = minY; y <= maxY; y++) {\n                    (y => {\n                        fnTimeout(() => {\n                            ctx.beginPath();\n                            ctx.fillRect(startX, y, penWeight, penWeight);\n                            ctx.stroke();\n                            // we want different pen weight in the start and and pf the line\n                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxY - minY);\n                            if (y == maxY) {\n                                resolve();\n                            }\n                        }, timeoutValue++);\n                    })(y);\n                }\n            }\n            else {\n                // draw line without using  formula y = kx + b\n                for (let x = minX; x <= maxX; x++) {\n                    (x => {\n                        fnTimeout(() => {\n                            const y = k * x + b;\n                            ctx.beginPath();\n                            ctx.fillRect(x, y, penWeight, penWeight);\n                            ctx.stroke();\n                            // we want different pen weight in the start and and pf the line\n                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxX - minX);\n                            if (x == maxX) {\n                                resolve();\n                            }\n                        }, timeoutValue++);\n                    })(x);\n                }\n            }\n        });\n    }\n\n    /**\n     * Sets color of the brush\n     * @param {string} val - Hex value of color. E.g '#fcf'\n     */\n    set color(val) {\n        this._color = val;\n    }\n\n    /**\n     * Returns color of the brush\n     * @returns {string}\n     */\n    get color() {\n        return this._color;\n    }\n}\n"
+    "content": "import {Promise} from 'es6-promise'\n\n/**\n * Class which implemets drawing on a canvas.\n * It supposed to be used as a base class to for classes that implement drawing of crosses or noughts\n *\n * @interface\n */\nexport default class Brush {\n    /**\n     * Initializes the brush with color\n     *\n     * @param {string} color - hex value of brush color\n     */\n    constructor(color = '#990000') {\n        this._color = color;\n        this._cellPadding = 15;\n        this._initialPenWeight = 3;\n        this._maxPenWeight = 7;\n    }\n\n    /**\n     * Drawing function that must be implemented in derived class\n     *\n     * @throws {Error}\n     */\n    draw() {\n        throw new Error('Brush::draw must be implemented in derived class');\n    }\n\n    /**\n     * Draws line on the canvas using animation (can be disabled)\n     * @param {native} ctx - 2d context of canvas\n     * @param {number} startX - x position of starting point\n     * @param {number} startY - y position of starting point\n     * @param {number} endX - x position of end point\n     * @param {number} endY - y position of end point\n     * @param {boolean} useAnimation - turns animation on or off\n     *\n     * @returns {Promise}\n     */\n    drawLine(ctx, startX, startY, endX, endY, useAnimation = true) {\n        return new Promise((resolve) => {\n            const k = (endY - startY) / (endX - startX),\n                b = startY - k * startX,\n                minX = Math.min(startX, endX),\n                maxX = Math.max(startX, endX),\n                // setImmediate is not crossbrowser, so use simple function that calls callback\n                fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};\n            let penWeight = 7,\n                timeoutValue = 100;\n\n            ctx.fillStyle = this._color;\n\n            if (startX == endX) {\n                // draw vertical line without using a formula (because there is division by zero when k is being calculated\n                // for the formula y = kx + b )\n                const minY = Math.min(startY, endY),\n                      maxY = Math.max(startY, endY);\n\n                for (let y = minY; y <= maxY; y++) {\n                    (y => {\n                        fnTimeout(() => {\n                            ctx.beginPath();\n                            ctx.fillRect(startX, y, penWeight, penWeight);\n                            ctx.stroke();\n                            // we want different pen weight in the start and and of the line\n                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxY - minY);\n                            if (y == maxY) {\n                                resolve();\n                            }\n                        }, timeoutValue++);\n                    })(y);\n                }\n            }\n            else {\n                // draw line using  formula y = kx + b\n                for (let x = minX; x <= maxX; x++) {\n                    (x => {\n                        fnTimeout(() => {\n                            const y = k * x + b;\n                            ctx.beginPath();\n                            ctx.fillRect(x, y, penWeight, penWeight);\n                            ctx.stroke();\n                            // we want different pen weight in the start and and of the line\n                            penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxX - minX);\n                            if (x == maxX) {\n                                resolve();\n                            }\n                        }, timeoutValue++);\n                    })(x);\n                }\n            }\n        });\n    }\n\n    /**\n     * Sets color of the brush\n     * @param {string} val - Hex value of color. E.g '#fcf'\n     */\n    set color(val) {\n        this._color = val;\n    }\n\n    /**\n     * Returns color of the brush\n     * @returns {string}\n     */\n    get color() {\n        return this._color;\n    }\n}\n"
   },
   {
     "__docId__": 19,
@@ -874,7 +874,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import $ from 'jquery';\nimport _ from 'lodash';\nimport {Promise} from 'es6-promise'\nimport Brush from './brush';\n\nconst LTR_DIAG_INDEX = 0,\n      RTL_DIAG_INDEX = 1,\n      BOARD_DIMENSION_CELLS = 3;\n\n/**\n * Implements game board and handles game logic.\n * It designed to be framework-independent and has only two dependencies: jquery and lodash\n */\nexport default class GameBoard {\n    /**\n     * Initializes an instance\n     * @param {{width: number, height: string, canvasEl: jQuery}} options - config options\n     */\n    constructor(options) {\n        this._options = options;\n\n        const {width} = this._options;\n        this._cellSize = width / BOARD_DIMENSION_CELLS;\n\n        // TODO: delete?\n        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);\n        this._players = {\n            noughts: this._options.noughtsPlayer,\n            crosses: this._options.crossesPlayer\n        };\n\n        this._crossOutBrush = new Brush();\n\n        this._initPointsArrays();\n    }\n\n    /**\n     * Resets board matrix to null values, reinits point array and selects the player whose turn is first\n     */\n    initGame() {\n        this._isThereWinner = false;\n        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);\n\n        this._initPointsArrays();\n        this._setNextPlayersTurn();\n        this._gameOverCallback = null;\n    }\n\n    /**\n     * Draws grid, cells and cross-out lines (if somebody won)\n     * @param {boolean} forceRedraw - if true, then previously drawn cells will be forsed to drawn. Otherwise it drawns only newly clicked cells\n     */\n    draw(forceRedraw = false) {\n        this._drawGrid();\n\n        const {width} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS,\n            alreadyDrawnBrushes = [],\n            notDrawnBrushes = [];\n        for (let row = 0; row < BOARD_DIMENSION_CELLS; row++) {\n            for (let col = 0; col < BOARD_DIMENSION_CELLS; col++) {\n                const brushData = this._boardMatrix[row][col],\n                    posX = col * cellSize,\n                    posY = row * cellSize;\n                // Determine cells that have not been drawn yet (basycally only one cell). This cell will be drawn with animation\n                if (brushData && !brushData.wasDrawn) {\n                    this._boardMatrix[row][col].wasDrawn = true;\n                    notDrawnBrushes.push(\n                        _.bind(brushData.brush.draw, brushData.brush, this._ctx, posX, posY, cellSize)\n                    );\n                }\n                // Determine cells that have been drawn already. These cells will be drawn WITHOUT animation\n                else if (brushData && forceRedraw) {\n                    alreadyDrawnBrushes.push(\n                        _.bind(brushData.brush.draw, brushData.brush, this._ctx, posX, posY, cellSize, false)\n                    );\n                }\n            }\n        }\n\n        if (forceRedraw) {\n            alreadyDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());\n        }\n        notDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());\n\n        this._crossOutIfWon(!forceRedraw);\n    }\n\n    /**\n     * Sets width (and height because the board is square) of the board.\n     * @param {string} val - new width of the board\n     */\n    set width(val) {\n        this._options.width  = val;\n        this._options.height = val;\n\n        this._initCanvas();\n    }\n\n    /**\n     * Sets noughts player\n     * @param {AmpersandPlayer} player -  noughts player\n     */\n    set noughtsPlayer(player) {\n        this._players.noughts = player;\n    }\n\n    /**\n     * Returns  noughts player\n     * @returns {AmpersandPlayer}\n     */\n    get noughtsPlayer() {\n        return this._players.noughts;\n    }\n\n    /**\n     * Sets crosses player\n     * @param {AmpersandPlayer} player -  noughts player\n     */\n    set crossesPlayer(player) {\n        this._players.crosses = player;\n    }\n\n    /**\n     * Returns  crosses player\n     * @returns {AmpersandPlayer}\n     */\n    get crossesPlayer() {\n        return this._players.crosses;\n    }\n\n    /**\n     * Set new canvas and reinitializes the gameboard with this canvas\n     * @param {jQuery} canvas - object returned by jQuery\n     */\n    set canvas(canvas) {\n        this._options.canvasEl = $(canvas);\n        this._initCanvas();\n        this._attachClickListener();\n    }\n\n    /**\n     * Sets callback function that is called when game is finished. Callback that accepts eight user or null, if there are no winners\n     *\n     * @param {function(winner: AmpersandPlayer)} fn\n     */\n    set gameOverCallback(fn) {\n        this._gameOverCallback = fn;\n    }\n\n    /**\n     * Attaches listener of click event and does move when a player clicks on the cell\n     * @private\n     */\n    _attachClickListener() {\n        $(this._options.canvasEl).off('click').click((event)=> {\n            const canvasOffset = $(event.target).offset(),\n                mouseX = event.pageX - canvasOffset.left,\n                mouseY = event.pageY - canvasOffset.top,\n                clickedCell = this._translateMousePosToCellCoordinates(mouseX, mouseY);\n            this._doMove(clickedCell);\n        });\n    }\n\n    /**\n     * Initializes canvas and reads canvas 2d context\n     * @private\n     */\n    _initCanvas() {\n        const {canvasEl, width, height} = this._options;\n        if (width != height) {\n            throw new Error('Canvas must be square');\n        }\n        canvasEl.attr('width', width);\n        canvasEl.attr('height', height);\n\n        this._ctx = canvasEl[0].getContext('2d');\n\n        // call with true to force redraw of already drawn cells (forced cells are drawn without animation)\n        this.draw(true);\n    }\n\n    /**\n     * Initializes arrays that store points for each user. There are separate arrays for rows, columns and diagonals.\n     * For example, if there are 3 crosses on the 1st row, then this._rowPoints[0].crosses will be se to 3\n     * @private\n     */\n    _initPointsArrays() {\n        this._rowPoints = [0, 1, 2].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n        this._colPoints = [0, 1, 2].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n        this._diagPoints = [0, 1].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n    }\n\n    /**\n     * Selects the player whose turn is first. If game just started, then the player is selected randomly\n     * @private\n     */\n    _setNextPlayersTurn() {\n        const nextPlyerName = this._getNextPlayerName();\n\n        for (let key in this._players) {\n            this._players[key].isMyTurn = false;\n        }\n\n        this._players[nextPlyerName].isMyTurn = true;\n    }\n\n    /**\n     * Checks col, row and diags points arrays and crosses out col, row or diag if there is a winner.\n     * Player wins if there are 3 points for one of the rows, cols or diags\n     * @param {boolean} useAnimation - enables or disables animation when cross-out line is being drawn\n     * @private\n     */\n    _crossOutIfWon(useAnimation = true) {\n        this._rowPoints.forEach((row, rowIndex) => {\n            if (row.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutRow(rowIndex, this._players.noughts, useAnimation);\n            }\n            if (row.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutRow(rowIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        this._colPoints.forEach((col, colIndex) => {\n            if (col.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutCol(colIndex, this._players.noughts, useAnimation);\n            }\n            if (col.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutCol(colIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        this._diagPoints.forEach((diag, diagIndex) => {\n            if (diag.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutDiagonal(diagIndex, this._players.noughts, useAnimation);\n            }\n            if (diag.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutDiagonal(diagIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        if ((this._players.noughts && this._players.noughts.isWon) || (this._players.crosses && this._players.crosses.isWon)) {\n            this._isThereWinner = true;\n        }\n    }\n\n    /**\n     * Crosses out a row and sets winner.isWon to true\n     * @param {integer} rowIndex - index of the row to be crossed out\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutRow(rowIndex, winner, useAnimation = true) {\n        const startPoint = this._indecesToCoordinates(rowIndex, 0, 0, this._cellSize / 2),\n            endPoint = this._indecesToCoordinates(rowIndex, 2, this._cellSize, this._cellSize / 2);\n\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Crosses out a column and sets winner.isWon to true\n     * @param {integer} colIndex - index of the row to be crossed out\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutCol(colIndex, winner, useAnimation = true) {\n        const startPoint = this._indecesToCoordinates(0, colIndex, this._cellSize / 2, 0),\n            endPoint = this._indecesToCoordinates(2, colIndex, this._cellSize / 2, this._cellSize);\n\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Crosses out a diagonal and sets winner.isWon to true.\n     * @param {integer} diagIndex - index of the row to be crossed out. 0 - top-left to bottom-right. 1 - bottom-left to top-right\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutDiagonal(diagIndex, winner, useAnimation) {\n        const startPoint = {\n                x: (diagIndex === LTR_DIAG_INDEX) ? 0 : this._options.width,\n                y: 0\n            },\n            endPoint = {\n                x: (diagIndex === LTR_DIAG_INDEX) ?  this._options.width : 0,\n                y: this._options.height\n            };\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Translates row and column index into coordinates on canvas\n     * @param {number} rowIndex - row index\n     * @param {number} colIndex - column index\n     * @param {number} xCorrection - additionaly appended to x coordinate\n     * @param {number} yCorrection - additionaly appended to y coordinate\n     * @returns {{x: number, y: number}}\n     * @private\n     */\n    _indecesToCoordinates(rowIndex, colIndex, xCorrection = 0, yCorrection = 0) {\n        return {\n            x: colIndex * this._cellSize + xCorrection,\n            y: rowIndex * this._cellSize + yCorrection\n        };\n    }\n\n    /**\n     * Draws cross-out line\n     * @param {{x: number, y: number}} startPoint - line's start point\n     * @param {{x: number, y: number}} endPoint - line's end point\n     * @param {string} brushColor - hex color. E.g '#c0f1c4'\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _drawCrossOutLine(startPoint, endPoint, brushColor, useAnimation = true) {\n        this._crossOutBrush.color = brushColor;\n        this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, useAnimation);\n    }\n\n    /**\n     * Writes current player to corresponding cell of boardMatrix (if the cell is empty), updates point arrays, draws the board\n     * and select the next player at the end\n     * @param {{col: number, row: number}} clickedCell - coordinated of the cell where player clicked\n     * @private\n     */\n    _doMove(clickedCell) {\n        const isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;\n        if (this._isThereWinner || !isGameStarted) {\n            return;\n        }\n\n        const {col, row} = clickedCell,\n            isCellEmpty = !this._boardMatrix[row][col];\n\n        if (isCellEmpty) {\n            const playerName = this._nextPlayerName;\n            this._boardMatrix[row][col] = {\n                brush: this._players[playerName].brush,\n                wasDrawn: false\n            };\n\n            // updated point arrays for corresponding player\n            this._rowPoints[row][playerName]++;\n            this._colPoints[col][playerName]++;\n            if (row == col) {\n                // left-to-right diagonal\n                this._diagPoints[LTR_DIAG_INDEX][playerName]++;\n            }\n            if ((Math.abs(row - col) == 2) || ((row == 1) && (col == 1))) {\n                // right-to-left diagonal\n                this._diagPoints[RTL_DIAG_INDEX][playerName]++;\n            }\n            this.draw();\n\n            // stop changing players if game is finished\n            if (!this._isThereWinner) {\n                this._setNextPlayersTurn();\n            }\n        }\n        const cells = _.flatten(this._boardMatrix),\n            emptyCells = _.filter(cells, (cell) => {\n                return (cell == null);\n            });\n        if ((emptyCells.length == 0) && !this._isThereWinner) {\n            this._gameOverCallback(null);\n            this._gameOverCallback = null;\n        }\n    }\n\n    /**\n     * Drawns game boards's grid\n     * @private\n     */\n    _drawGrid() {\n        const {width, height} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS;\n        this._ctx.strokeRect(0, 0, width, height);\n\n        // draw vertical lines\n        for (let x = cellSize; x < width; x += cellSize) {\n            this._ctx.beginPath();\n            this._ctx.moveTo(x, 0);\n            this._ctx.lineTo(x, height);\n            this._ctx.closePath();\n            this._ctx.stroke();\n        }\n\n        // draw horizontal lines\n        for (let y = cellSize; y < width; y += cellSize) {\n            this._ctx.beginPath();\n            this._ctx.moveTo(0, y);\n            this._ctx.lineTo(width, y);\n            this._ctx.closePath();\n            this._ctx.stroke();\n        }\n    }\n\n    /**\n     * Returns either 'noughts' or 'crosses'. If game is just started, then the player is selected randomly\n     * @returns {string}\n     * @private\n     */\n    _getNextPlayerName() {\n        const names = ['noughts', 'crosses'];\n        // determine the first-moving player randomly\n        if (!this._nextPlayerName) {\n            this._nextPlayerName = names[Math.random() < 0.5 ? 0 : 1];\n        }\n        else {\n            if (this._nextPlayerName == names[0]) {\n                this._nextPlayerName = names[1];\n            }\n            else if (this._nextPlayerName == names[1]) {\n                this._nextPlayerName = names[0];\n            }\n            else {\n                throw new Error('Unexpected _nextPlayerName: ' + this._nextPlayerName);\n            }\n        }\n\n        return this._nextPlayerName;\n    }\n\n    /**\n     * Translates coordinates of mouse on the canvas to cells row and col indeces\n     * @param {number} mouseX\n     * @param {number} mouseY\n     * @returns {{col: number, row: number}}\n     * @private\n     */\n    _translateMousePosToCellCoordinates(mouseX, mouseY) {\n        const {width} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS,\n            col = Math.floor(mouseX / cellSize),\n            row = Math.floor(mouseY / cellSize);\n\n        return {\n            col,\n            row\n        };\n    }\n}\n"
+    "content": "import $ from 'jquery';\nimport _ from 'lodash';\nimport {Promise} from 'es6-promise'\nimport Brush from './brush';\n\nconst LTR_DIAG_INDEX = 0,\n      RTL_DIAG_INDEX = 1,\n      BOARD_DIMENSION_CELLS = 3;\n\n/**\n * Implements game board and handles game logic.\n * It designed to be framework-independent and has only two dependencies: jquery and lodash\n */\nexport default class GameBoard {\n    /**\n     * Initializes an instance\n     * @param {{width: number, height: string, canvasEl: jQuery}} options - config options\n     */\n    constructor(options) {\n        this._options = options;\n\n        const {width} = this._options;\n        this._cellSize = width / BOARD_DIMENSION_CELLS;\n\n        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);\n        this._players = {\n            noughts: this._options.noughtsPlayer,\n            crosses: this._options.crossesPlayer\n        };\n\n        this._crossOutBrush = new Brush();\n\n        this._initPointsArrays();\n    }\n\n    /**\n     * Resets board matrix to null values, reinits point array and selects the player whose turn is first\n     */\n    initGame() {\n        this._isThereWinner = false;\n        this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);\n\n        this._initPointsArrays();\n        this._setNextPlayersTurn();\n        this._gameOverCallback = null;\n    }\n\n    /**\n     * Draws grid, cells and cross-out lines (if somebody won)\n     * @param {boolean} forceRedraw - if true, then previously drawn cells will be forsed to drawn. Otherwise it draws only newly clicked cells\n     */\n    draw(forceRedraw = false) {\n        this._drawGrid();\n\n        const {width} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS,\n            alreadyDrawnBrushes = [],\n            notDrawnBrushes = [];\n        for (let row = 0; row < BOARD_DIMENSION_CELLS; row++) {\n            for (let col = 0; col < BOARD_DIMENSION_CELLS; col++) {\n                const brushData = this._boardMatrix[row][col],\n                    posX = col * cellSize,\n                    posY = row * cellSize;\n                // Determine cells that have not been drawn yet (basically only one cell). This cell will be drawn using animation\n                if (brushData && !brushData.wasDrawn) {\n                    this._boardMatrix[row][col].wasDrawn = true;\n                    notDrawnBrushes.push(\n                        _.bind(brushData.brush.draw, brushData.brush, this._ctx, posX, posY, cellSize)\n                    );\n                }\n                // Determine cells that have been drawn already. These cells will be drawn WITHOUT animation\n                else if (brushData && forceRedraw) {\n                    alreadyDrawnBrushes.push(\n                        _.bind(brushData.brush.draw, brushData.brush, this._ctx, posX, posY, cellSize, false)\n                    );\n                }\n            }\n        }\n\n        if (forceRedraw) {\n            // redraw already drawn cells in series, each one drawing once the previous function has completed.\n            alreadyDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());\n        }\n        // drawn new cells in series, each one drawing once the previous function has completed.\n        notDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());\n\n        this._crossOutIfWon(!forceRedraw);\n    }\n\n    /**\n     * Sets width (and height because the board is square) of the board.\n     * @param {string} val - new width of the board\n     */\n    set width(val) {\n        this._options.width  = val;\n        this._options.height = val;\n\n        this._initCanvas();\n    }\n\n    /**\n     * Sets noughts player\n     * @param {AmpersandPlayer} player -  noughts player\n     */\n    set noughtsPlayer(player) {\n        this._players.noughts = player;\n    }\n\n    /**\n     * Returns  noughts player\n     * @returns {AmpersandPlayer}\n     */\n    get noughtsPlayer() {\n        return this._players.noughts;\n    }\n\n    /**\n     * Sets crosses player\n     * @param {AmpersandPlayer} player -  noughts player\n     */\n    set crossesPlayer(player) {\n        this._players.crosses = player;\n    }\n\n    /**\n     * Returns  crosses player\n     * @returns {AmpersandPlayer}\n     */\n    get crossesPlayer() {\n        return this._players.crosses;\n    }\n\n    /**\n     * Set new canvas and reinitializes the gameboard with this canvas\n     * @param {jQuery} canvas - object returned by jQuery\n     */\n    set canvas(canvas) {\n        this._options.canvasEl = $(canvas);\n        this._initCanvas();\n        this._attachClickListener();\n    }\n\n    /**\n     * Sets callback function that is called when game is finished. Callback that accepts eight user or null, if there are no winners\n     *\n     * @param {function(winner: AmpersandPlayer)} fn\n     */\n    set gameOverCallback(fn) {\n        this._gameOverCallback = fn;\n    }\n\n    /**\n     * Attaches listener of click event and does move when a player clicks on the cell\n     * @private\n     */\n    _attachClickListener() {\n        $(this._options.canvasEl).off('click').click((event) => {\n            const canvasOffset = $(event.target).offset(),\n                mouseX = event.pageX - canvasOffset.left,\n                mouseY = event.pageY - canvasOffset.top,\n                clickedCell = this._translateMousePosToCellCoordinates(mouseX, mouseY);\n            this._doMove(clickedCell);\n        });\n    }\n\n    /**\n     * Initializes canvas and reads canvas 2d context\n     * @private\n     */\n    _initCanvas() {\n        const {canvasEl, width, height} = this._options;\n        if (width != height) {\n            throw new Error('Canvas must be square');\n        }\n        canvasEl.attr('width', width);\n        canvasEl.attr('height', height);\n\n        this._ctx = canvasEl[0].getContext('2d');\n\n        // call with true to force redraw of already drawn cells (forced cells are drawn without animation)\n        this.draw(true);\n    }\n\n    /**\n     * Initializes arrays that store points for each user. There are separate arrays for rows, columns and diagonals.\n     * For example, if there are 3 crosses on the 1st row, then this._rowPoints[0].crosses will be se to 3\n     * @private\n     */\n    _initPointsArrays() {\n        this._rowPoints = [0, 1, 2].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n        this._colPoints = [0, 1, 2].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n        this._diagPoints = [0, 1].map(() => ({\n            'noughts': 0,\n            'crosses': 0\n        }));\n    }\n\n    /**\n     * Selects the player whose turn is next. If game just started, then the player is selected randomly\n     * @private\n     */\n    _setNextPlayersTurn() {\n        const nextPlayerName = this._getNextPlayerName();\n\n        for (let key in this._players) {\n            this._players[key].isMyTurn = false;\n        }\n\n        this._players[nextPlayerName].isMyTurn = true;\n    }\n\n    /**\n     * Checks col, row and diags points arrays and crosses out col, row or diagonal if there is a winner.\n     * Player wins if there are 3 points for one of the rows, cols or diagonals\n     * @param {boolean} useAnimation - enables or disables animation when cross-out line is being drawn\n     * @private\n     */\n    _crossOutIfWon(useAnimation = true) {\n        this._rowPoints.forEach((row, rowIndex) => {\n            if (row.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutRow(rowIndex, this._players.noughts, useAnimation);\n            }\n            if (row.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutRow(rowIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        this._colPoints.forEach((col, colIndex) => {\n            if (col.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutCol(colIndex, this._players.noughts, useAnimation);\n            }\n            if (col.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutCol(colIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        this._diagPoints.forEach((diag, diagIndex) => {\n            if (diag.noughts == BOARD_DIMENSION_CELLS) {\n                this._crossOutDiagonal(diagIndex, this._players.noughts, useAnimation);\n            }\n            if (diag.crosses == BOARD_DIMENSION_CELLS) {\n                this._crossOutDiagonal(diagIndex, this._players.crosses, useAnimation);\n            }\n        });\n\n        if ((this._players.noughts && this._players.noughts.isWon) || (this._players.crosses && this._players.crosses.isWon)) {\n            this._isThereWinner = true;\n        }\n    }\n\n    /**\n     * Crosses out a row and sets winner.isWon to true\n     * @param {integer} rowIndex - index of the row to be crossed out\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutRow(rowIndex, winner, useAnimation = true) {\n        const startPoint = this._indecesToCoordinates(rowIndex, 0, 0, this._cellSize / 2),\n            endPoint = this._indecesToCoordinates(rowIndex, 2, this._cellSize, this._cellSize / 2);\n\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Crosses out a column and sets winner.isWon to true\n     * @param {integer} colIndex - index of the row to be crossed out\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutCol(colIndex, winner, useAnimation = true) {\n        const startPoint = this._indecesToCoordinates(0, colIndex, this._cellSize / 2, 0),\n            endPoint = this._indecesToCoordinates(2, colIndex, this._cellSize / 2, this._cellSize);\n\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Crosses out a diagonal and sets winner.isWon to true.\n     * @param {integer} diagIndex - index of the row to be crossed out. 0 - top-left to bottom-right. 1 - bottom-left to top-right\n     * @param {Player|AmpersandPlayer} winner\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _crossOutDiagonal(diagIndex, winner, useAnimation) {\n        const startPoint = {\n                x: (diagIndex === LTR_DIAG_INDEX) ? 0 : this._options.width,\n                y: 0\n            },\n            endPoint = {\n                x: (diagIndex === LTR_DIAG_INDEX) ?  this._options.width : 0,\n                y: this._options.height\n            };\n        winner.isWon = true;\n        if (this._gameOverCallback) {\n            this._gameOverCallback(winner);\n            this._gameOverCallback = null;\n        }\n        this._drawCrossOutLine(startPoint, endPoint, winner.brushColor, useAnimation);\n    }\n\n    /**\n     * Translates row and column index into coordinates on canvas\n     * @param {number} rowIndex - row index\n     * @param {number} colIndex - column index\n     * @param {number} xCorrection - additionaly appended to x coordinate\n     * @param {number} yCorrection - additionaly appended to y coordinate\n     * @returns {{x: number, y: number}}\n     * @private\n     */\n    _indecesToCoordinates(rowIndex, colIndex, xCorrection = 0, yCorrection = 0) {\n        return {\n            x: colIndex * this._cellSize + xCorrection,\n            y: rowIndex * this._cellSize + yCorrection\n        };\n    }\n\n    /**\n     * Draws cross-out line\n     * @param {{x: number, y: number}} startPoint - line's start point\n     * @param {{x: number, y: number}} endPoint - line's end point\n     * @param {string} brushColor - hex color. E.g '#c0f1c4'\n     * @param {boolean} useAnimation - enables or disables animation\n     * @private\n     */\n    _drawCrossOutLine(startPoint, endPoint, brushColor, useAnimation = true) {\n        this._crossOutBrush.color = brushColor;\n        this._crossOutBrush.drawLine(this._ctx, startPoint.x, startPoint.y, endPoint.x, endPoint.y, useAnimation);\n    }\n\n    /**\n     * Writes current player to corresponding cell of boardMatrix (if the cell is empty), updates point arrays, draws the board\n     * and select the next player at the end\n     * @param {{col: number, row: number}} clickedCell - coordinated of the cell where player clicked\n     * @private\n     */\n    _doMove(clickedCell) {\n        const isGameStarted = this._players.noughts.isInitialized && this._players.crosses.isInitialized;\n        if (this._isThereWinner || !isGameStarted) {\n            return;\n        }\n\n        const {col, row} = clickedCell,\n            isCellEmpty = !this._boardMatrix[row][col];\n\n        if (isCellEmpty) {\n            const playerName = this._nextPlayerName;\n            this._boardMatrix[row][col] = {\n                brush: this._players[playerName].brush,\n                wasDrawn: false\n            };\n\n            // updated point arrays for corresponding player\n            this._rowPoints[row][playerName]++;\n            this._colPoints[col][playerName]++;\n            if (row == col) {\n                // left-to-right diagonal\n                this._diagPoints[LTR_DIAG_INDEX][playerName]++;\n            }\n            if ((Math.abs(row - col) == 2) || ((row == 1) && (col == 1))) {\n                // right-to-left diagonal\n                this._diagPoints[RTL_DIAG_INDEX][playerName]++;\n            }\n            this.draw();\n\n            // stop changing players if game is finished\n            if (!this._isThereWinner) {\n                this._setNextPlayersTurn();\n            }\n        }\n        const cells = _.flatten(this._boardMatrix),\n            emptyCells = _.filter(cells, (cell) => {\n                return (cell == null);\n            });\n        if ((emptyCells.length == 0) && !this._isThereWinner) {\n            this._gameOverCallback(null);\n            this._gameOverCallback = null;\n        }\n    }\n\n    /**\n     * Drawns game boards's grid\n     * @private\n     */\n    _drawGrid() {\n        const {width, height} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS;\n        this._ctx.strokeRect(0, 0, width, height);\n\n        // draw vertical lines\n        for (let x = cellSize; x < width; x += cellSize) {\n            this._ctx.beginPath();\n            this._ctx.moveTo(x, 0);\n            this._ctx.lineTo(x, height);\n            this._ctx.closePath();\n            this._ctx.stroke();\n        }\n\n        // draw horizontal lines\n        for (let y = cellSize; y < width; y += cellSize) {\n            this._ctx.beginPath();\n            this._ctx.moveTo(0, y);\n            this._ctx.lineTo(width, y);\n            this._ctx.closePath();\n            this._ctx.stroke();\n        }\n    }\n\n    /**\n     * Returns either 'noughts' or 'crosses'. If game is just started, then the player is selected randomly\n     * @returns {string}\n     * @private\n     */\n    _getNextPlayerName() {\n        const names = ['noughts', 'crosses'];\n        // determine the first-moving player randomly\n        if (!this._nextPlayerName) {\n            this._nextPlayerName = names[Math.random() < 0.5 ? 0 : 1];\n        }\n        else {\n            if (this._nextPlayerName == names[0]) {\n                this._nextPlayerName = names[1];\n            }\n            else if (this._nextPlayerName == names[1]) {\n                this._nextPlayerName = names[0];\n            }\n            else {\n                throw new Error('Unexpected _nextPlayerName: ' + this._nextPlayerName);\n            }\n        }\n\n        return this._nextPlayerName;\n    }\n\n    /**\n     * Translates coordinates of mouse on the canvas to cells row and col indeces\n     * @param {number} mouseX\n     * @param {number} mouseY\n     * @returns {{col: number, row: number}}\n     * @private\n     */\n    _translateMousePosToCellCoordinates(mouseX, mouseY) {\n        const {width} = this._options,\n            cellSize = width / BOARD_DIMENSION_CELLS,\n            col = Math.floor(mouseX / cellSize),\n            row = Math.floor(mouseY / cellSize);\n\n        return {\n            col,\n            row\n        };\n    }\n}\n"
   },
   {
     "__docId__": 34,
@@ -984,7 +984,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_boardMatrix",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 25,
     "undocument": true,
     "type": {
       "types": [
@@ -1002,7 +1002,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_players",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 26,
     "undocument": true,
     "type": {
       "types": [
@@ -1020,7 +1020,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_crossOutBrush",
     "access": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 31,
     "undocument": true,
     "type": {
       "types": [
@@ -1038,7 +1038,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#initGame",
     "access": null,
     "description": "Resets board matrix to null values, reinits point array and selects the player whose turn is first",
-    "lineNumber": 40,
+    "lineNumber": 39,
     "params": [],
     "generator": false
   },
@@ -1052,7 +1052,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_isThereWinner",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 40,
     "undocument": true,
     "type": {
       "types": [
@@ -1070,7 +1070,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_boardMatrix",
     "access": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 41,
     "undocument": true,
     "type": {
       "types": [
@@ -1088,7 +1088,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 46,
+    "lineNumber": 45,
     "undocument": true,
     "type": {
       "types": [
@@ -1106,7 +1106,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#draw",
     "access": null,
     "description": "Draws grid, cells and cross-out lines (if somebody won)",
-    "lineNumber": 53,
+    "lineNumber": 52,
     "params": [
       {
         "nullable": null,
@@ -1116,7 +1116,7 @@
         "spread": false,
         "optional": false,
         "name": "forceRedraw",
-        "description": "if true, then previously drawn cells will be forsed to drawn. Otherwise it drawns only newly clicked cells"
+        "description": "if true, then previously drawn cells will be forsed to drawn. Otherwise it draws only newly clicked cells"
       }
     ],
     "generator": false
@@ -1131,7 +1131,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#width",
     "access": null,
     "description": "Sets width (and height because the board is square) of the board.",
-    "lineNumber": 93,
+    "lineNumber": 94,
     "params": [
       {
         "nullable": null,
@@ -1161,7 +1161,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#noughtsPlayer",
     "access": null,
     "description": "Sets noughts player",
-    "lineNumber": 104,
+    "lineNumber": 105,
     "params": [
       {
         "nullable": null,
@@ -1191,7 +1191,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#noughtsPlayer",
     "access": null,
     "description": "Returns  noughts player",
-    "lineNumber": 112,
+    "lineNumber": 113,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1223,7 +1223,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "access": null,
     "description": "Sets crosses player",
-    "lineNumber": 120,
+    "lineNumber": 121,
     "params": [
       {
         "nullable": null,
@@ -1253,7 +1253,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#crossesPlayer",
     "access": null,
     "description": "Returns  crosses player",
-    "lineNumber": 128,
+    "lineNumber": 129,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1285,7 +1285,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#canvas",
     "access": null,
     "description": "Set new canvas and reinitializes the gameboard with this canvas",
-    "lineNumber": 136,
+    "lineNumber": 137,
     "params": [
       {
         "nullable": null,
@@ -1315,7 +1315,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#gameOverCallback",
     "access": null,
     "description": "Sets callback function that is called when game is finished. Callback that accepts eight user or null, if there are no winners",
-    "lineNumber": 147,
+    "lineNumber": 148,
     "params": [
       {
         "nullable": null,
@@ -1345,7 +1345,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 148,
+    "lineNumber": 149,
     "undocument": true,
     "type": {
       "types": [
@@ -1363,7 +1363,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_attachClickListener",
     "access": "private",
     "description": "Attaches listener of click event and does move when a player clicks on the cell",
-    "lineNumber": 155,
+    "lineNumber": 156,
     "params": [],
     "generator": false
   },
@@ -1377,7 +1377,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_initCanvas",
     "access": "private",
     "description": "Initializes canvas and reads canvas 2d context",
-    "lineNumber": 169,
+    "lineNumber": 170,
     "params": [],
     "generator": false
   },
@@ -1391,7 +1391,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_ctx",
     "access": null,
     "description": null,
-    "lineNumber": 177,
+    "lineNumber": 178,
     "undocument": true,
     "type": {
       "types": [
@@ -1409,7 +1409,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_initPointsArrays",
     "access": "private",
     "description": "Initializes arrays that store points for each user. There are separate arrays for rows, columns and diagonals.\nFor example, if there are 3 crosses on the 1st row, then this._rowPoints[0].crosses will be se to 3",
-    "lineNumber": 188,
+    "lineNumber": 189,
     "params": [],
     "generator": false
   },
@@ -1423,7 +1423,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_rowPoints",
     "access": null,
     "description": null,
-    "lineNumber": 189,
+    "lineNumber": 190,
     "undocument": true,
     "type": {
       "types": [
@@ -1441,7 +1441,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_colPoints",
     "access": null,
     "description": null,
-    "lineNumber": 193,
+    "lineNumber": 194,
     "undocument": true,
     "type": {
       "types": [
@@ -1459,7 +1459,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_diagPoints",
     "access": null,
     "description": null,
-    "lineNumber": 197,
+    "lineNumber": 198,
     "undocument": true,
     "type": {
       "types": [
@@ -1476,8 +1476,8 @@
     "memberof": "src/game_core/game-board.js~GameBoard",
     "longname": "src/game_core/game-board.js~GameBoard#_setNextPlayersTurn",
     "access": "private",
-    "description": "Selects the player whose turn is first. If game just started, then the player is selected randomly",
-    "lineNumber": 207,
+    "description": "Selects the player whose turn is next. If game just started, then the player is selected randomly",
+    "lineNumber": 208,
     "params": [],
     "generator": false
   },
@@ -1490,8 +1490,8 @@
     "memberof": "src/game_core/game-board.js~GameBoard",
     "longname": "src/game_core/game-board.js~GameBoard#_crossOutIfWon",
     "access": "private",
-    "description": "Checks col, row and diags points arrays and crosses out col, row or diag if there is a winner.\nPlayer wins if there are 3 points for one of the rows, cols or diags",
-    "lineNumber": 223,
+    "description": "Checks col, row and diags points arrays and crosses out col, row or diagonal if there is a winner.\nPlayer wins if there are 3 points for one of the rows, cols or diagonals",
+    "lineNumber": 224,
     "params": [
       {
         "nullable": null,
@@ -1516,7 +1516,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_isThereWinner",
     "access": null,
     "description": null,
-    "lineNumber": 252,
+    "lineNumber": 253,
     "undocument": true,
     "type": {
       "types": [
@@ -1534,7 +1534,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_crossOutRow",
     "access": "private",
     "description": "Crosses out a row and sets winner.isWon to true",
-    "lineNumber": 263,
+    "lineNumber": 264,
     "params": [
       {
         "nullable": null,
@@ -1580,7 +1580,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 270,
+    "lineNumber": 271,
     "undocument": true,
     "type": {
       "types": [
@@ -1598,7 +1598,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_crossOutCol",
     "access": "private",
     "description": "Crosses out a column and sets winner.isWon to true",
-    "lineNumber": 282,
+    "lineNumber": 283,
     "params": [
       {
         "nullable": null,
@@ -1644,7 +1644,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 289,
+    "lineNumber": 290,
     "undocument": true,
     "type": {
       "types": [
@@ -1662,7 +1662,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_crossOutDiagonal",
     "access": "private",
     "description": "Crosses out a diagonal and sets winner.isWon to true.",
-    "lineNumber": 301,
+    "lineNumber": 302,
     "params": [
       {
         "nullable": null,
@@ -1708,7 +1708,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 313,
+    "lineNumber": 314,
     "undocument": true,
     "type": {
       "types": [
@@ -1726,7 +1726,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_indecesToCoordinates",
     "access": "private",
     "description": "Translates row and column index into coordinates on canvas",
-    "lineNumber": 327,
+    "lineNumber": 328,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1795,7 +1795,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_drawCrossOutLine",
     "access": "private",
     "description": "Draws cross-out line",
-    "lineNumber": 342,
+    "lineNumber": 343,
     "params": [
       {
         "nullable": null,
@@ -1850,7 +1850,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_doMove",
     "access": "private",
     "description": "Writes current player to corresponding cell of boardMatrix (if the cell is empty), updates point arrays, draws the board\nand select the next player at the end",
-    "lineNumber": 353,
+    "lineNumber": 354,
     "params": [
       {
         "nullable": null,
@@ -1875,7 +1875,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_gameOverCallback",
     "access": null,
     "description": null,
-    "lineNumber": 393,
+    "lineNumber": 394,
     "undocument": true,
     "type": {
       "types": [
@@ -1893,7 +1893,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_drawGrid",
     "access": "private",
     "description": "Drawns game boards's grid",
-    "lineNumber": 401,
+    "lineNumber": 402,
     "params": [],
     "generator": false
   },
@@ -1907,7 +1907,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_getNextPlayerName",
     "access": "private",
     "description": "Returns either 'noughts' or 'crosses'. If game is just started, then the player is selected randomly",
-    "lineNumber": 430,
+    "lineNumber": 431,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1935,7 +1935,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_nextPlayerName",
     "access": null,
     "description": null,
-    "lineNumber": 434,
+    "lineNumber": 435,
     "undocument": true,
     "type": {
       "types": [
@@ -1953,7 +1953,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_nextPlayerName",
     "access": null,
     "description": null,
-    "lineNumber": 438,
+    "lineNumber": 439,
     "undocument": true,
     "type": {
       "types": [
@@ -1971,7 +1971,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_nextPlayerName",
     "access": null,
     "description": null,
-    "lineNumber": 441,
+    "lineNumber": 442,
     "undocument": true,
     "type": {
       "types": [
@@ -1989,7 +1989,7 @@
     "longname": "src/game_core/game-board.js~GameBoard#_translateMousePosToCellCoordinates",
     "access": "private",
     "description": "Translates coordinates of mouse on the canvas to cells row and col indeces",
-    "lineNumber": 458,
+    "lineNumber": 459,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2039,7 +2039,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Brush from './brush'\nimport {Promise} from 'es6-promise'\n\n/**\n * Brush to draw noughts on the game canvas' context\n */\nexport default class NoughtBrush extends Brush {\n    /**\n     * Draws nought in the center of given cell\n     *\n     * @param {native} ctx - canvas 2d context\n     * @param {number} cellPosX - X position of top left corner of the cell\n     * @param {number} cellPosY - Y position of top left corner of the cell\n     * @param {number} cellSize - cell's width (or height, because cell is supposed to be square)\n     * @param {boolean} useAnimation - enables or disables animation\n     */\n    draw(ctx, cellPosX, cellPosY, cellSize, useAnimation = true) {\n        const START_ANGLE = -50,\n              END_ANGLE   = 315,\n              PI_IN_DEGREES = 180,\n              TWO_PI_IN_DEGREES = 360,\n              // the difference between pen weight on the start and on the end of circle\n              PEN_WEIGHT__START_END_DIFF = 10,\n              x0 = cellPosX  + (cellSize / 2),\n              y0 = cellPosY  + (cellSize / 2),\n              fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};\n        let radius = (cellSize / 2) - this._cellPadding,\n            penWeight = this._initialPenWeight,\n            timeoutValue = 100;\n\n        ctx.fillStyle = this._color;\n\n        return new Promise((resolve) => {\n            for (let alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {\n                (alpha => {\n                    fnTimeout(() => {\n                        const x = x0 + radius * Math.cos(alpha * Math.PI / PI_IN_DEGREES),\n                            y = y0 + radius * Math.sin(alpha * Math.PI / PI_IN_DEGREES);\n\n                        ctx.beginPath();\n                        ctx.fillRect(x, y, penWeight, penWeight);\n                        ctx.stroke();\n\n                        // we want different pen weight and radius in the start and and pf the circle\n                        penWeight += (this._maxPenWeight - this._initialPenWeight) / TWO_PI_IN_DEGREES;\n                        radius += PEN_WEIGHT__START_END_DIFF / TWO_PI_IN_DEGREES;\n                        if (alpha == (END_ANGLE - 1)) {\n                            resolve();\n                        }\n                    }, timeoutValue++);\n                })(alpha);\n            }\n        });\n    }\n}\n\n"
+    "content": "import Brush from './brush'\nimport {Promise} from 'es6-promise'\n\n/**\n * Brush to draw noughts on the game canvas' context\n */\nexport default class NoughtBrush extends Brush {\n    /**\n     * Draws nought in the center of given cell using following equations:\n     * <pre>\n     *  x = x0 + R * cos(alpha);\n     *  y = y0 + R * sin(alpha);\n     * </pre>\n     * @param {native} ctx - canvas 2d context\n     * @param {number} cellPosX - X position of top left corner of the cell\n     * @param {number} cellPosY - Y position of top left corner of the cell\n     * @param {number} cellSize - cell's width (or height, because cell is supposed to be square)\n     * @param {boolean} useAnimation - enables or disables animation\n     */\n    draw(ctx, cellPosX, cellPosY, cellSize, useAnimation = true) {\n        const START_ANGLE = -50,\n              END_ANGLE   = 315,\n              PI_IN_DEGREES = 180,\n              TWO_PI_IN_DEGREES = 360,\n              // the difference between pen weight on the start and on the end of circle\n              PEN_WEIGHT__START_END_DIFF = 10,\n              x0 = cellPosX  + (cellSize / 2),\n              y0 = cellPosY  + (cellSize / 2),\n              fnTimeout = useAnimation ? setTimeout : (fn) => {fn()};\n        let radius = (cellSize / 2) - this._cellPadding,\n            penWeight = this._initialPenWeight,\n            timeoutValue = 100;\n\n        ctx.fillStyle = this._color;\n\n        return new Promise((resolve) => {\n            for (let alpha = START_ANGLE; alpha < END_ANGLE; alpha++) {\n                (alpha => {\n                    fnTimeout(() => {\n                        const x = x0 + radius * Math.cos(alpha * Math.PI / PI_IN_DEGREES),\n                            y = y0 + radius * Math.sin(alpha * Math.PI / PI_IN_DEGREES);\n\n                        ctx.beginPath();\n                        ctx.fillRect(x, y, penWeight, penWeight);\n                        ctx.stroke();\n\n                        // we want different pen weight and radius in the start and and pf the circle\n                        penWeight += (this._maxPenWeight - this._initialPenWeight) / TWO_PI_IN_DEGREES;\n                        radius += PEN_WEIGHT__START_END_DIFF / TWO_PI_IN_DEGREES;\n                        if (alpha == (END_ANGLE - 1)) {\n                            resolve();\n                        }\n                    }, timeoutValue++);\n                })(alpha);\n            }\n        });\n    }\n}\n\n"
   },
   {
     "__docId__": 82,
@@ -2069,8 +2069,8 @@
     "memberof": "src/game_core/nought-brush.js~NoughtBrush",
     "longname": "src/game_core/nought-brush.js~NoughtBrush#draw",
     "access": null,
-    "description": "Draws nought in the center of given cell",
-    "lineNumber": 17,
+    "description": "Draws nought in the center of given cell using following equations:\n<pre>\n x = x0 + R * cos(alpha);\n y = y0 + R * sin(alpha);\n</pre>",
+    "lineNumber": 20,
     "params": [
       {
         "nullable": null,
@@ -2578,7 +2578,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import AmpersandModel  from 'ampersand-model'\nimport AmpersandPlayer  from '../game_core/ampersand-player'\nimport CrossBrush  from '../game_core/cross-brush'\nimport NoughtBrush  from '../game_core/nought-brush'\n\n/**\n * Model that stores game data (players and finished/unfinished state) See {@link https://ampersandjs.com/docs/#ampersand-model}\n */\nconst GameModel = AmpersandModel.extend({\n    dataTypes: {\n        ampersandPlayer: {\n            // set called every time someone tried to set a property of this datatype\n            set: function(newVal) {\n                if (newVal instanceof AmpersandPlayer) {\n                    return {\n                        val: newVal,\n                        type: 'ampersandPlayer'\n                    };\n                }\n                try {\n                    // try to parse it from passed in value:\n                    const brush = (newVal._user.symbol == 'nought') ? new NoughtBrush(newVal._brush._color) : new CrossBrush(newVal._brush._color),\n                        player = new AmpersandPlayer(brush, newVal._user);\n\n                    return {\n                        val: player,\n                        type: 'ampersandPlayer'\n                    };\n                }\n                catch (parseError) {\n                    // return the value with what we think its type is\n                    return {\n                        val: newVal,\n                        type: typeof newVal\n                    };\n                }\n            }\n        }\n\n    },\n    props: {\n        leftSideUser: 'ampersandPlayer',\n        rightSideUser: 'ampersandPlayer',\n        isGameOver: ['boolean', false, false]\n    },\n\n    derived: {\n        isThereWinner: {\n            deps: ['isGameOver'],\n            fn: function() {\n                return this.isGameOver && (this.leftSideUser.model.isWon || this.rightSideUser.model.isWon);\n            }\n        }\n    },\n\n    initialize: function() {\n        this.leftSideUser.model.on('change:name', () => {\n            const leftSideUserName = this.leftSideUser.model.get('name'),\n                rightSideUSerName = this.rightSideUser.model.get('name');\n            if (leftSideUserName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {\n                this.leftSideUser.model.set('name', leftSideUserName + ' #1');\n            }\n        });\n\n        this.rightSideUser.model.on('change:name', () => {\n            const leftSideUserName = this.leftSideUser.model.get('name'),\n                rightSideUSerName = this.rightSideUser.model.get('name');\n            if (rightSideUSerName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {\n                this.rightSideUser.model.set('name', rightSideUSerName + ' #1');\n            }\n        });\n    }\n});\nexport default GameModel\n"
+    "content": "import AmpersandModel  from 'ampersand-model'\nimport AmpersandPlayer  from '../game_core/ampersand-player'\nimport CrossBrush  from '../game_core/cross-brush'\nimport NoughtBrush  from '../game_core/nought-brush'\n\n/**\n * Model that stores game data (players and finished/unfinished state) See {@link https://ampersandjs.com/docs/#ampersand-model}\n */\nconst GameModel = AmpersandModel.extend({\n    dataTypes: {\n        ampersandPlayer: {\n            // set called every time someone tried to set a property of this datatype\n            set: function(newVal) {\n                if (newVal instanceof AmpersandPlayer) {\n                    return {\n                        val: newVal,\n                        type: 'ampersandPlayer'\n                    };\n                }\n                try {\n                    // try to parse it from passed in value:\n                    const brush = (newVal._user.symbol == 'nought') ? new NoughtBrush(newVal._brush._color) : new CrossBrush(newVal._brush._color),\n                        player = new AmpersandPlayer(brush, newVal._user);\n\n                    return {\n                        val: player,\n                        type: 'ampersandPlayer'\n                    };\n                }\n                catch (parseError) {\n                    // return the value with what we think its type is\n                    return {\n                        val: newVal,\n                        type: typeof newVal\n                    };\n                }\n            }\n        }\n\n    },\n    props: {\n        leftSideUser: 'ampersandPlayer',\n        rightSideUser: 'ampersandPlayer',\n        isGameOver: ['boolean', false, false]\n    },\n\n    derived: {\n        isThereWinner: {\n            deps: ['isGameOver'],\n            fn: function() {\n                return this.isGameOver && (this.leftSideUser.model.isWon || this.rightSideUser.model.isWon);\n            }\n        }\n    },\n\n    initialize: function() {\n        this.leftSideUser.model.on('change:name', () => {\n            const leftSideUserName = this.leftSideUser.model.get('name'),\n                rightSideUserName = this.rightSideUser.model.get('name');\n            if (leftSideUserName && (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {\n                this.leftSideUser.model.set('name', leftSideUserName + ' #1');\n            }\n        });\n\n        this.rightSideUser.model.on('change:name', () => {\n            const leftSideUserName = this.leftSideUser.model.get('name'),\n                rightSideUserName = this.rightSideUser.model.get('name');\n            if (rightSideUserName && (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {\n                this.rightSideUser.model.set('name', rightSideUserName + ' #1');\n            }\n        });\n    }\n});\nexport default GameModel\n"
   },
   {
     "__docId__": 102,
@@ -2644,7 +2644,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import app from 'ampersand-app'\nimport _ from 'lodash'\nimport View from 'ampersand-view'\nimport UserPanelView from '../views/user-panel'\nimport AmpersandPlayer from '../game_core/ampersand-player'\nimport NoughtBrush from '../game_core/nought-brush'\nimport CrossBrush from '../game_core/cross-brush'\n\nconst templates = require('../templates');\n\n/**\n * Home page view. See {@link https://ampersandjs.com/docs/#ampersand-view}\n */\nconst HomePageView = View.extend({\n    pageTitle: 'home',\n    template: templates['pages/home'],\n    events: {\n        'click [data-hook~=new-game]': 'startNewGame'\n    },\n    bindings: {\n        'model.isGameOver': {\n            type: 'booleanClass',\n            hook: 'show-if-game-is-over',\n            yes: '',\n            no: 'hide'\n        },\n        'model.isThereWinner': {\n            type: 'booleanClass',\n            hook: 'show-if-no-winner',\n            yes: 'hide',\n            no: ''\n        }\n    },\n    initialize: function(options) {\n        this.board = options.board;\n        this.model.on('change:leftSideUser', _.bind(this.render, this));\n        this.model.on('change:rightSideUser', _.bind(this.render, this));\n    },\n    render: function() {\n        this.renderWithTemplate();\n\n        this.renderSubview(new UserPanelView({\n            model: this.model.leftSideUser.model\n        }), '#left-player');\n\n        this.renderSubview(new UserPanelView({\n            model: this.model.rightSideUser.model\n        }), '#right-player');\n\n        if (this.board) {\n            this.board.canvas = this.query('canvas#game-board');\n            this.board.draw(true);\n        }\n\n        return this;\n    },\n\n    startNewGame: function() {\n        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush(app.noughtsColor), {'symbol': 'nought'}));\n        this.model.set('rightSideUser', new AmpersandPlayer(new CrossBrush(), {'symbol': 'cross'}));\n        app.createNewGame(this.model.get('leftSideUser'), this.model.get('rightSideUser'));\n        this.render();\n    }\n});\nexport default HomePageView\n"
+    "content": "import app from 'ampersand-app'\nimport _ from 'lodash'\nimport View from 'ampersand-view'\nimport UserPanelView from '../views/user-panel'\nimport AmpersandPlayer from '../game_core/ampersand-player'\nimport NoughtBrush from '../game_core/nought-brush'\nimport CrossBrush from '../game_core/cross-brush'\n\nconst templates = require('../templates');\n\n/**\n * Home page view. See {@link https://ampersandjs.com/docs/#ampersand-view}\n */\nconst HomePageView = View.extend({\n    pageTitle: 'home',\n    template: templates['pages/home'],\n    events: {\n        'click [data-hook~=new-game]': 'startNewGame'\n    },\n    bindings: {\n        'model.isGameOver': {\n            type: 'booleanClass',\n            hook: 'show-if-game-is-over',\n            yes: '',\n            no: 'hide'\n        },\n        'model.isThereWinner': {\n            type: 'booleanClass',\n            hook: 'show-if-no-winner',\n            yes: 'hide',\n            no: ''\n        }\n    },\n    initialize: function(options) {\n        this.board = options.board;\n        this.model.on('change:leftSideUser', _.bind(this.render, this));\n        this.model.on('change:rightSideUser', _.bind(this.render, this));\n    },\n    render: function() {\n        this.renderWithTemplate();\n\n        // The first game gets created on DOM ready, i.e. after the home page is rendered. Because of that we have to use\n        // renderSubview() instead of subviews property.\n        this.renderSubview(new UserPanelView({\n            model: this.model.leftSideUser.model\n        }), '#left-player');\n\n        this.renderSubview(new UserPanelView({\n            model: this.model.rightSideUser.model\n        }), '#right-player');\n\n        if (this.board) {\n            this.board.canvas = this.query('canvas#game-board');\n            this.board.draw(true);\n        }\n\n        return this;\n    },\n\n    startNewGame: function() {\n        this.model.set('leftSideUser', new AmpersandPlayer(new NoughtBrush(app.noughtsColor), {'symbol': 'nought'}));\n        this.model.set('rightSideUser', new AmpersandPlayer(new CrossBrush(), {'symbol': 'cross'}));\n        app.createNewGame(this.model.get('leftSideUser'), this.model.get('rightSideUser'));\n        this.render();\n    }\n});\nexport default HomePageView\n"
   },
   {
     "__docId__": 106,
@@ -2698,7 +2698,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import View from 'ampersand-view'\nimport FinishedGameView from '../views/finished-game'\n\nconst templates = require('../templates');\n\n/**\n * Paste games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}\n */\nconst PastGamesView = View.extend({\n    pageTitle: 'collection demo',\n    template: templates['pages/past-games'],\n    bindings: {\n        'collection.length': {\n            type: 'booleanClass',\n            hook: 'collection-is-empty',\n            yes: 'hide',\n            no: ''\n        }\n    },\n    render: function() {\n        this.renderWithTemplate();\n        this.renderCollection(this.collection, FinishedGameView, this.queryByHook('past-games-list'));\n\n        return this;\n    }\n});\nexport default PastGamesView\n"
+    "content": "import View from 'ampersand-view'\nimport FinishedGameView from '../views/finished-game'\n\nconst templates = require('../templates');\n\n/**\n * Past games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}\n */\nconst PastGamesView = View.extend({\n    pageTitle: 'collection demo',\n    template: templates['pages/past-games'],\n    bindings: {\n        'collection.length': {\n            type: 'booleanClass',\n            hook: 'collection-is-empty',\n            yes: 'hide',\n            no: ''\n        }\n    },\n    render: function() {\n        this.renderWithTemplate();\n        this.renderCollection(this.collection, FinishedGameView, this.queryByHook('past-games-list'));\n\n        return this;\n    }\n});\nexport default PastGamesView\n"
   },
   {
     "__docId__": 109,
@@ -2733,7 +2733,7 @@
     "export": true,
     "importPath": "ampersandjs-tic-tac-toe/src/pages/past-games.js",
     "importStyle": "PastGamesView",
-    "description": "Paste games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}",
+    "description": "Past games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}",
     "lineNumber": 9,
     "type": {
       "types": [
@@ -2765,7 +2765,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "(function() {\nmodule.exports[\"body\"] = function(data) {\nvar __t, __p = '';\n__p += '<body><nav class=\"navbar navbar-default\"><div class=\"container-fluid\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Tic-Tac-Toe</a></div><ul class=\"nav navbar-nav\"><li><a href=\"/\">home</a></li><li><a href=\"/past-games\">past games</a></li></ul></div></nav><div class=\"container\"><main data-hook=\"page-container\"></main><footer><div class=\"text-center\">&copy; Alexey Pedyashev 2015</div></footer></div></body>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"head\"] = function(data) {\nvar __t, __p = '';\n__p += '<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0\"/><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/finished-game\"] = function(data) {\nvar __t, __p = '';\n__p += '<tr><td class=\"player-name\"><span data-hook=\"left-user-name left-user-win-class\" class=\"label pull-right\"></span></td><td class=\"player-name\"><span data-hook=\"right-user-name right-user-win-class\" class=\"label pull-left\"></span></td></tr>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/form-input\"] = function(data) {\nvar __t, __p = '';\n__p += '<div class=\"form-group\"><label data-hook=\"label\"></label><input class=\"form-control\"/><span data-hook=\"message-container\" class=\"help-block\"><span data-hook=\"message-text\"></span></span></div>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/person\"] = function(data) {\nvar __t, __p = '';\n__p += '<li class=\"person list-group-item container\"><img data-hook=\"avatar\" width=\"40\" height=\"40\"/><a data-hook=\"name\"></a><span class=\"btn-group pull-right\"> <a data-hook=\"action-edit\" class=\"btn btn-default\">edit </a><a href=\"#\" data-hook=\"action-delete\" class=\"btn btn-danger\">delete</a></span></li>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/user-panel\"] = function(data) {\nvar __t, __p = '';\n__p += '<div data-hook=\"player-is-initialized my-turn\" class=\"panel panel-default player-panel\"><div class=\"panel-heading\"><div class=\"panel-title\"><i class=\"fa fa-circle-o pull-left symbol-icon\"></i><i class=\"fa fa-times pull-left symbol-icon\"></i> <div data-hook=\"show-if-initialized\"><div data-hook=\"player-name\"></div></div><div data-hook=\"hide-if-initialized\">Please enter your name</div></div></div><div class=\"panel-body\"><div data-hook=\"show-if-player-won\"><h4 class=\"text-success text-center\">You are the winner! Congratulations!</h4><div class=\"text-center\"><i class=\"fa fa-trophy fa-5x winner-icon\"></i></div></div><div data-hook=\"hide-if-player-won\"><div data-hook=\"show-if-initialized\"><div data-hook=\"my-turn-visible\" class=\"text-success text-center\"><h4>Your turn!</h4><div><i class=\"fa fa-commenting fa-5x\"></i></div></div></div></div><div data-hook=\"show-if-initialized\"><div data-hook=\"show-if-not-my-turn\" class=\"text-center\"><h4>Wait and relax...</h4><i class=\"fa fa-coffee fa-5x\"></i></div></div><form data-hook=\"hide-if-initialized\"><fieldset data-hook=\"field-container\"></fieldset><button type=\"submit\" class=\"btn btn-default pull-right\">Save</button></form></div></div>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"pages/home\"] = function(data) {\nvar __t, __p = '';\n__p += '<section class=\"page home\"><h2>Welcome to Tic-Tac-Toe game written in AmpersandJS</h2><div class=\"row\"><div class=\"col-md-4\"><div id=\"left-player\"></div></div><div id=\"game-board-container\" class=\"col-md-4\"><div class=\"toolbar\"><span data-hook=\"show-if-game-is-over\" class=\"label label-success\">Game Over. <span data-hook=\"show-if-no-winner\">No Winner</span></span><span class=\"pull-right\"><a href=\"/past-games\" class=\"btn btn-link\">Past Games</a><button data-hook=\"new-game\" class=\"btn btn-small btn-default\"><i class=\"fa fa-refresh\"></i> New Game</button></span></div><canvas id=\"game-board\"></canvas></div><div class=\"col-md-4\"><div id=\"right-player\"></div></div></div></section>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"pages/past-games\"] = function(data) {\nvar __t, __p = '';\n__p += '<section class=\"page past-games\"><h2>Past games</h2><table class=\"table table-striped table-condensed\"><thead><tr><th class=\"left-side-user\"><span class=\"pull-right\"><i class=\"fa fa-circle-o\"></i> Left-side player</span></th><th class=\"right-side-user\"><span></span><i class=\"fa fa-times\"></i> Right-side player</th></tr></thead><tbody data-hook=\"past-games-list\"><tr data-hook=\"collection-is-empty\"><td colspan=\"2\" class=\"text-center\"><h4>No winners yet</h4></td></tr></tbody></table></section>';\nreturn __p\n}})();"
+    "content": "(function() {\nmodule.exports[\"body\"] = function(data) {\nvar __t, __p = '';\n__p += '<body><nav class=\"navbar navbar-default\"><div class=\"container-fluid\"><div class=\"navbar-header\"><a href=\"/\" class=\"navbar-brand\">Tic-Tac-Toe</a></div><ul class=\"nav navbar-nav\"><li><a href=\"/\">home</a></li><li><a href=\"/past-games\">past games</a></li></ul></div></nav><div class=\"container\"><main data-hook=\"page-container\"></main><footer><div class=\"text-center\">&copy; Alexey Pedyashev 2016</div></footer></div></body>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"head\"] = function(data) {\nvar __t, __p = '';\n__p += '<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,maximum-scale=1.0\"/><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/finished-game\"] = function(data) {\nvar __t, __p = '';\n__p += '<tr><td class=\"player-name\"><span data-hook=\"left-user-name left-user-win-class\" class=\"label pull-right\"></span></td><td class=\"player-name\"><span data-hook=\"right-user-name right-user-win-class\" class=\"label pull-left\"></span></td></tr>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/form-input\"] = function(data) {\nvar __t, __p = '';\n__p += '<div class=\"form-group\"><label data-hook=\"label\"></label><input class=\"form-control\"/><span data-hook=\"message-container\" class=\"help-block\"><span data-hook=\"message-text\"></span></span></div>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/person\"] = function(data) {\nvar __t, __p = '';\n__p += '<li class=\"person list-group-item container\"><img data-hook=\"avatar\" width=\"40\" height=\"40\"/><a data-hook=\"name\"></a><span class=\"btn-group pull-right\"> <a data-hook=\"action-edit\" class=\"btn btn-default\">edit </a><a href=\"#\" data-hook=\"action-delete\" class=\"btn btn-danger\">delete</a></span></li>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"includes/user-panel\"] = function(data) {\nvar __t, __p = '';\n__p += '<div data-hook=\"player-is-initialized my-turn\" class=\"panel panel-default player-panel\"><div class=\"panel-heading\"><div class=\"panel-title\"><i class=\"fa fa-circle-o pull-left symbol-icon\"></i><i class=\"fa fa-times pull-left symbol-icon\"></i> <div data-hook=\"show-if-initialized\"><div data-hook=\"player-name\"></div></div><div data-hook=\"hide-if-initialized\">Please enter your name</div></div></div><div class=\"panel-body\"><div data-hook=\"show-if-player-won\"><h4 class=\"text-success text-center\">You are the winner! Congratulations!</h4><div class=\"text-center\"><i class=\"fa fa-trophy fa-5x winner-icon\"></i></div></div><div data-hook=\"hide-if-player-won\"><div data-hook=\"show-if-initialized\"><div data-hook=\"my-turn-visible\" class=\"text-success text-center\"><h4>Your turn!</h4><div><i class=\"fa fa-commenting fa-5x\"></i></div></div></div></div><div data-hook=\"show-if-initialized\"><div data-hook=\"show-if-not-my-turn\" class=\"text-center\"><h4>Wait and relax...</h4><i class=\"fa fa-coffee fa-5x\"></i></div></div><form data-hook=\"hide-if-initialized\"><fieldset data-hook=\"field-container\"></fieldset><button type=\"submit\" class=\"btn btn-default pull-right\">Save</button></form></div></div>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"pages/home\"] = function(data) {\nvar __t, __p = '';\n__p += '<section class=\"page home\"><h2>Welcome to Tic-Tac-Toe game written in AmpersandJS</h2><div class=\"row\"><div class=\"col-md-4\"><div id=\"left-player\"></div></div><div id=\"game-board-container\" class=\"col-md-4\"><div class=\"toolbar\"><span data-hook=\"show-if-game-is-over\" class=\"label label-success\">Game Over. <span data-hook=\"show-if-no-winner\">No Winner</span></span><span class=\"pull-right\"><a href=\"/past-games\" class=\"btn btn-link\">Past Games</a><button data-hook=\"new-game\" class=\"btn btn-small btn-default\"><i class=\"fa fa-refresh\"></i> New Game</button></span></div><canvas id=\"game-board\"></canvas></div><div class=\"col-md-4\"><div id=\"right-player\"></div></div></div></section>';\nreturn __p\n}})();\n(function() {\nmodule.exports[\"pages/past-games\"] = function(data) {\nvar __t, __p = '';\n__p += '<section class=\"page past-games\"><h2>Past games</h2><table class=\"table table-striped table-condensed\"><thead><tr><th class=\"left-side-user\"><span class=\"pull-right\"><i class=\"fa fa-circle-o\"></i> Left-side player</span></th><th class=\"right-side-user\"><span></span><i class=\"fa fa-times\"></i> Right-side player</th></tr></thead><tbody data-hook=\"past-games-list\"><tr data-hook=\"collection-is-empty\"><td colspan=\"2\" class=\"text-center\"><h4>No winners yet</h4></td></tr></tbody></table></section>';\nreturn __p\n}})();"
   },
   {
     "__docId__": 113,

@@ -4,7 +4,7 @@ import FinishedGameView from '../views/finished-game'
 const templates = require('../templates');
 
 /**
- * Paste games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}
+ * Past games (leaderboard) page view. See {@link https://ampersandjs.com/docs/#ampersand-view}
  */
 const PastGamesView = View.extend({
     pageTitle: 'collection demo',

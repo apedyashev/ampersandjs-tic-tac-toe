@@ -6,8 +6,11 @@ import {Promise} from 'es6-promise'
  */
 export default class NoughtBrush extends Brush {
     /**
-     * Draws nought in the center of given cell
-     *
+     * Draws nought in the center of given cell using following equations:
+     * <pre>
+     *  x = x0 + R * cos(alpha);
+     *  y = y0 + R * sin(alpha);
+     * </pre>
      * @param {native} ctx - canvas 2d context
      * @param {number} cellPosX - X position of top left corner of the cell
      * @param {number} cellPosY - Y position of top left corner of the cell

@@ -56,17 +56,17 @@ const GameModel = AmpersandModel.extend({
     initialize: function() {
         this.leftSideUser.model.on('change:name', () => {
             const leftSideUserName = this.leftSideUser.model.get('name'),
-                rightSideUSerName = this.rightSideUser.model.get('name');
-            if (leftSideUserName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
+                rightSideUserName = this.rightSideUser.model.get('name');
+            if (leftSideUserName && (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {
                 this.leftSideUser.model.set('name', leftSideUserName + ' #1');
             }
         });
 
         this.rightSideUser.model.on('change:name', () => {
             const leftSideUserName = this.leftSideUser.model.get('name'),
-                rightSideUSerName = this.rightSideUser.model.get('name');
-            if (rightSideUSerName && (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
-                this.rightSideUser.model.set('name', rightSideUSerName + ' #1');
+                rightSideUserName = this.rightSideUser.model.get('name');
+            if (rightSideUserName && (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {
+                this.rightSideUser.model.set('name', rightSideUserName + ' #1');
             }
         });
     }

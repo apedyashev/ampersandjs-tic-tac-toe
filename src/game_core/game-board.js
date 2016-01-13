@@ -22,7 +22,6 @@ export default class GameBoard {
         const {width} = this._options;
         this._cellSize = width / BOARD_DIMENSION_CELLS;
 
-        // TODO: delete?
         this._boardMatrix = [0, 1, 2].map(() => [null, null, null]);
         this._players = {
             noughts: this._options.noughtsPlayer,
@@ -48,7 +47,7 @@ export default class GameBoard {
 
     /**
      * Draws grid, cells and cross-out lines (if somebody won)
-     * @param {boolean} forceRedraw - if true, then previously drawn cells will be forsed to drawn. Otherwise it drawns only newly clicked cells
+     * @param {boolean} forceRedraw - if true, then previously drawn cells will be forsed to drawn. Otherwise it draws only newly clicked cells
      */
     draw(forceRedraw = false) {
         this._drawGrid();
@@ -62,7 +61,7 @@ export default class GameBoard {
                 const brushData = this._boardMatrix[row][col],
                     posX = col * cellSize,
                     posY = row * cellSize;
-                // Determine cells that have not been drawn yet (basycally only one cell). This cell will be drawn with animation
+                // Determine cells that have not been drawn yet (basically only one cell). This cell will be drawn using animation
                 if (brushData && !brushData.wasDrawn) {
                     this._boardMatrix[row][col].wasDrawn = true;
                     notDrawnBrushes.push(
@@ -79,8 +78,10 @@ export default class GameBoard {
         }
 
         if (forceRedraw) {
+            // redraw already drawn cells in series, each one drawing once the previous function has completed.
             alreadyDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());
         }
+        // drawn new cells in series, each one drawing once the previous function has completed.
         notDrawnBrushes.reduce((p, f) => p.then(f), Promise.resolve());
 
         this._crossOutIfWon(!forceRedraw);
@@ -153,7 +154,7 @@ export default class GameBoard {
      * @private
      */
     _attachClickListener() {
-        $(this._options.canvasEl).off('click').click((event)=> {
+        $(this._options.canvasEl).off('click').click((event) => {
             const canvasOffset = $(event.target).offset(),
                 mouseX = event.pageX - canvasOffset.left,
                 mouseY = event.pageY - canvasOffset.top,
@@ -201,22 +202,22 @@ export default class GameBoard {
     }
 
     /**
-     * Selects the player whose turn is first. If game just started, then the player is selected randomly
+     * Selects the player whose turn is next. If game just started, then the player is selected randomly
      * @private
      */
     _setNextPlayersTurn() {
-        const nextPlyerName = this._getNextPlayerName();
+        const nextPlayerName = this._getNextPlayerName();
 
         for (let key in this._players) {
             this._players[key].isMyTurn = false;
         }
 
-        this._players[nextPlyerName].isMyTurn = true;
+        this._players[nextPlayerName].isMyTurn = true;
     }
 
     /**
-     * Checks col, row and diags points arrays and crosses out col, row or diag if there is a winner.
-     * Player wins if there are 3 points for one of the rows, cols or diags
+     * Checks col, row and diags points arrays and crosses out col, row or diagonal if there is a winner.
+     * Player wins if there are 3 points for one of the rows, cols or diagonals
      * @param {boolean} useAnimation - enables or disables animation when cross-out line is being drawn
      * @private
      */

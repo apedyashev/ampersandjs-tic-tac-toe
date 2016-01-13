@@ -17,7 +17,7 @@ describe('The GameModel model', function() {
 
     it('is a model', function() {
         expect(this.gameModel.cid).toBeDefined();
-        expect(this.gameModel.cid).toContain("state");
+        expect(this.gameModel.cid).toContain('state');
     });
 
     it('appends #1 to right user, if right user has the same name as left user', function() {

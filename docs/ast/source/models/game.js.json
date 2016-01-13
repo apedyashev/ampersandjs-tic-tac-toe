@@ -3225,7 +3225,7 @@
                                             "type": "VariableDeclarator",
                                             "id": {
                                               "type": "Identifier",
-                                              "name": "rightSideUSerName",
+                                              "name": "rightSideUserName",
                                               "range": [
                                                 2093,
                                                 2110
@@ -3541,7 +3541,7 @@
                                                 "computed": false,
                                                 "object": {
                                                   "type": "Identifier",
-                                                  "name": "rightSideUSerName",
+                                                  "name": "rightSideUserName",
                                                   "range": [
                                                     2223,
                                                     2240
@@ -4331,7 +4331,7 @@
                                             "type": "VariableDeclarator",
                                             "id": {
                                               "type": "Identifier",
-                                              "name": "rightSideUSerName",
+                                              "name": "rightSideUserName",
                                               "range": [
                                                 2514,
                                                 2531
@@ -4549,7 +4549,7 @@
                                           "operator": "&&",
                                           "left": {
                                             "type": "Identifier",
-                                            "name": "rightSideUSerName",
+                                            "name": "rightSideUserName",
                                             "range": [
                                               2588,
                                               2605
@@ -4647,7 +4647,7 @@
                                                 "computed": false,
                                                 "object": {
                                                   "type": "Identifier",
-                                                  "name": "rightSideUSerName",
+                                                  "name": "rightSideUserName",
                                                   "range": [
                                                     2645,
                                                     2662
@@ -4899,7 +4899,7 @@
                                                     "operator": "+",
                                                     "left": {
                                                       "type": "Identifier",
-                                                      "name": "rightSideUSerName",
+                                                      "name": "rightSideUserName",
                                                       "range": [
                                                         2734,
                                                         2751
@@ -8147,7 +8147,7 @@
                                               "type": "VariableDeclarator",
                                               "id": {
                                                 "type": "Identifier",
-                                                "name": "rightSideUSerName",
+                                                "name": "rightSideUserName",
                                                 "range": [
                                                   2093,
                                                   2110
@@ -8463,7 +8463,7 @@
                                                   "computed": false,
                                                   "object": {
                                                     "type": "Identifier",
-                                                    "name": "rightSideUSerName",
+                                                    "name": "rightSideUserName",
                                                     "range": [
                                                       2223,
                                                       2240
@@ -9253,7 +9253,7 @@
                                               "type": "VariableDeclarator",
                                               "id": {
                                                 "type": "Identifier",
-                                                "name": "rightSideUSerName",
+                                                "name": "rightSideUserName",
                                                 "range": [
                                                   2514,
                                                   2531
@@ -9471,7 +9471,7 @@
                                             "operator": "&&",
                                             "left": {
                                               "type": "Identifier",
-                                              "name": "rightSideUSerName",
+                                              "name": "rightSideUserName",
                                               "range": [
                                                 2588,
                                                 2605
@@ -9569,7 +9569,7 @@
                                                   "computed": false,
                                                   "object": {
                                                     "type": "Identifier",
-                                                    "name": "rightSideUSerName",
+                                                    "name": "rightSideUserName",
                                                     "range": [
                                                       2645,
                                                       2662
@@ -9821,7 +9821,7 @@
                                                       "operator": "+",
                                                       "left": {
                                                         "type": "Identifier",
-                                                        "name": "rightSideUSerName",
+                                                        "name": "rightSideUserName",
                                                         "range": [
                                                           2734,
                                                           2751

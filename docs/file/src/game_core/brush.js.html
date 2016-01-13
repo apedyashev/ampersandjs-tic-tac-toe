@@ -95,11 +95,11 @@ export default class Brush {
      */
     drawLine(ctx, startX, startY, endX, endY, useAnimation = true) {
         return new Promise((resolve) =&gt; {
-            const   k = (endY - startY) / (endX - startX),
+            const k = (endY - startY) / (endX - startX),
                 b = startY - k * startX,
                 minX = Math.min(startX, endX),
                 maxX = Math.max(startX, endX),
-                // setImmediate is not crossbrowser, so simple function that calls callback
+                // setImmediate is not crossbrowser, so use simple function that calls callback
                 fnTimeout = useAnimation ? setTimeout : (fn) =&gt; {fn()};
             let penWeight = 7,
                 timeoutValue = 100;
@@ -107,10 +107,10 @@ export default class Brush {
             ctx.fillStyle = this._color;
 
             if (startX == endX) {
-                // draw vertical line without using a formula (because there is devision by zero when calculatin b
+                // draw vertical line without using a formula (because there is division by zero when k is being calculated
                 // for the formula y = kx + b )
                 const minY = Math.min(startY, endY),
-                    maxY = Math.max(startY, endY);
+                      maxY = Math.max(startY, endY);
 
                 for (let y = minY; y &lt;= maxY; y++) {
                     (y =&gt; {
@@ -118,7 +118,7 @@ export default class Brush {
                             ctx.beginPath();
                             ctx.fillRect(startX, y, penWeight, penWeight);
                             ctx.stroke();
-                            // we want different pen weight in the start and and pf the line
+                            // we want different pen weight in the start and and of the line
                             penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxY - minY);
                             if (y == maxY) {
                                 resolve();
@@ -128,7 +128,7 @@ export default class Brush {
                 }
             }
             else {
-                // draw line without using  formula y = kx + b
+                // draw line using  formula y = kx + b
                 for (let x = minX; x &lt;= maxX; x++) {
                     (x =&gt; {
                         fnTimeout(() =&gt; {
@@ -136,7 +136,7 @@ export default class Brush {
                             ctx.beginPath();
                             ctx.fillRect(x, y, penWeight, penWeight);
                             ctx.stroke();
-                            // we want different pen weight in the start and and pf the line
+                            // we want different pen weight in the start and and of the line
                             penWeight -= (this._maxPenWeight - this._initialPenWeight) / (maxX - minX);
                             if (x == maxX) {
                                 resolve();

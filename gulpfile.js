@@ -114,19 +114,16 @@ gulp.task('docs', function () {
 });
 
 gulp.task('watch', ['clean', 'build-js', 'less'], function() {
-    //setTimeout(function() {
-        browserSync({
-            server: {
-                baseDir: './',
-                //https://browsersync.io/docs/options/
-                routes: {
-                    "/past-games": "./"
-                }
-            },
-            files: config.outputDir + 'app.css'
-        });
-    //}, 5000);
-
+    browserSync({
+        server: {
+            baseDir: './',
+            //https://browsersync.io/docs/options/
+            routes: {
+                "/past-games": "./"
+            }
+        },
+        files: config.outputDir + 'app.css'
+    });
 
     watch('templates/**/*jade', function () {
         gulp.start('jst');
@@ -141,7 +138,10 @@ gulp.task('watch', ['clean', 'build-js', 'less'], function() {
     });
 });
 
-gulp.task('serve', function (done) {
+// Lint, test and build docs. Supposed to be called before git push
+gulp.task('pre-push', ['lint', 'test', 'docs']);
+
+gulp.task('serve', function () {
     browserSync({
         server: {
             baseDir: './',

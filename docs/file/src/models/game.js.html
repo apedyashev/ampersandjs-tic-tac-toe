@@ -110,17 +110,17 @@ const GameModel = AmpersandModel.extend({
     initialize: function() {
         this.leftSideUser.model.on(&apos;change:name&apos;, () =&gt; {
             const leftSideUserName = this.leftSideUser.model.get(&apos;name&apos;),
-                rightSideUSerName = this.rightSideUser.model.get(&apos;name&apos;);
-            if (leftSideUserName &amp;&amp; (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
+                rightSideUserName = this.rightSideUser.model.get(&apos;name&apos;);
+            if (leftSideUserName &amp;&amp; (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {
                 this.leftSideUser.model.set(&apos;name&apos;, leftSideUserName + &apos; #1&apos;);
             }
         });
 
         this.rightSideUser.model.on(&apos;change:name&apos;, () =&gt; {
             const leftSideUserName = this.leftSideUser.model.get(&apos;name&apos;),
-                rightSideUSerName = this.rightSideUser.model.get(&apos;name&apos;);
-            if (rightSideUSerName &amp;&amp; (leftSideUserName.toUpperCase() === rightSideUSerName.toUpperCase())) {
-                this.rightSideUser.model.set(&apos;name&apos;, rightSideUSerName + &apos; #1&apos;);
+                rightSideUserName = this.rightSideUser.model.get(&apos;name&apos;);
+            if (rightSideUserName &amp;&amp; (leftSideUserName.toUpperCase() === rightSideUserName.toUpperCase())) {
+                this.rightSideUser.model.set(&apos;name&apos;, rightSideUserName + &apos; #1&apos;);
             }
         });
     }

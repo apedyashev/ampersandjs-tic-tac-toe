@@ -1,7 +1,7 @@
 (function() {
 module.exports["body"] = function(data) {
 var __t, __p = '';
-__p += '<body><nav class="navbar navbar-default"><div class="container-fluid"><div class="navbar-header"><a href="/" class="navbar-brand">Tic-Tac-Toe</a></div><ul class="nav navbar-nav"><li><a href="/">home</a></li><li><a href="/past-games">past games</a></li></ul></div></nav><div class="container"><main data-hook="page-container"></main><footer><div class="text-center">&copy; Alexey Pedyashev 2015</div></footer></div></body>';
+__p += '<body><nav class="navbar navbar-default"><div class="container-fluid"><div class="navbar-header"><a href="/" class="navbar-brand">Tic-Tac-Toe</a></div><ul class="nav navbar-nav"><li><a href="/">home</a></li><li><a href="/past-games">past games</a></li></ul></div></nav><div class="container"><main data-hook="page-container"></main><footer><div class="text-center">&copy; Alexey Pedyashev 2016</div></footer></div></body>';
 return __p
 }})();
 (function() {
